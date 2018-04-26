@@ -1,0 +1,169 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/HomeThree.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _SearchBarWhite = require(_dependencyMap[3], "../components/SearchBar/SearchBarWhite");
+
+    var _SearchBarWhite2 = _interopRequireDefault(_SearchBarWhite);
+
+    var _SearchBarPinterest = require(_dependencyMap[4], "../components/SearchBar/SearchBarPinterest");
+
+    var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
+
+    var _CategoryButton = require(_dependencyMap[5], "../components/CategoryButton/CategoryButton");
+
+    var _CategoryButton2 = _interopRequireDefault(_CategoryButton);
+
+    var _expo = require(_dependencyMap[6], "expo");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        HomeThree: {
+            displayName: "HomeThree"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/HomeThree.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var HomeThree = _wrapComponent("HomeThree")(function (_Component) {
+        _inherits(HomeThree, _Component);
+
+        function HomeThree() {
+            _classCallCheck(this, HomeThree);
+
+            return _possibleConstructorReturn(this, (HomeThree.__proto__ || Object.getPrototypeOf(HomeThree)).apply(this, arguments));
+        }
+
+        _createClass(HomeThree, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.main,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 13
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.container,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 14
+                            }
+                        },
+                        _react3.default.createElement(_SearchBarPinterest2.default, {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 15
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                flex: 1,
+                                flexDirection: 'row',
+                                justifyContent: 'space-around'
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 17
+                            }
+                        },
+                        _react3.default.createElement(_CategoryButton2.default, {
+                            title: "Trending",
+                            color: "",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 18
+                            }
+                        }),
+                        _react3.default.createElement(_CategoryButton2.default, {
+                            title: "Latest",
+                            color: "",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 19
+                            }
+                        }),
+                        _react3.default.createElement(_CategoryButton2.default, {
+                            title: "Must",
+                            color: "",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 20
+                            }
+                        }),
+                        _react3.default.createElement(_CategoryButton2.default, {
+                            title: "Surprise",
+                            color: "",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 21
+                            }
+                        }),
+                        _react3.default.createElement(_CategoryButton2.default, {
+                            title: "Surprise",
+                            color: "",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 22
+                            }
+                        })
+                    )
+                );
+            }
+        }]);
+
+        return HomeThree;
+    }(_react2.Component));
+
+    var styles = {
+        main: {
+            flex: 1,
+            backgroundColor: '#fff'
+        },
+        container: {
+            backgroundColor: '#C2185B'
+        }
+    };
+    exports.default = HomeThree;
+});

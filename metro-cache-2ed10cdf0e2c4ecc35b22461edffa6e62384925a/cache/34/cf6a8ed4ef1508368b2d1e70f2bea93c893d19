@@ -1,0 +1,427 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/Cuisines.js";
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _reactNative = require(_dependencyMap[2], "react-native");
+
+  var _SearchBarPinterest = require(_dependencyMap[3], "../components/SearchBar/SearchBarPinterest");
+
+  var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    Cuisines: {
+      displayName: "Cuisines"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/Cuisines.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var deviceWidth = _reactNative.Dimensions.get('window').width;
+
+  var FIXED_BAR_WIDTH = 280;
+  var BAR_SPACE = 10;
+  var images = ['https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'https://images.pexels.com/photos/8758/food-dinner-lemon-rice.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'https://images.pexels.com/photos/132694/pexels-photo-132694.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'https://images.pexels.com/photos/52539/cream-puffs-delicious-france-confectionery-food-52539.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'];
+
+  var Cuisines = _wrapComponent("Cuisines")(function (_Component) {
+    _inherits(Cuisines, _Component);
+
+    function Cuisines() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Cuisines);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cuisines.__proto__ || Object.getPrototypeOf(Cuisines)).call.apply(_ref, [this].concat(args))), _this), _this.numItems = images.length, _this.itemWidth = FIXED_BAR_WIDTH / _this.numItems - (_this.numItems - 1) * BAR_SPACE, _this.animVal = new _reactNative.Animated.Value(0), _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Cuisines, [{
+      key: "render",
+      value: function render() {
+        var _this2 = this;
+
+        var imageArray = [];
+        var barArray = [];
+        images.forEach(function (image, i) {
+          console.log(image, i);
+
+          var thisImage = _react3.default.createElement(
+            _reactNative.ImageBackground,
+            {
+              key: "image" + i,
+              source: {
+                uri: image
+              },
+              style: {
+                width: deviceWidth
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 31
+              }
+            },
+            _react3.default.createElement(_SearchBarPinterest2.default, {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 36
+              }
+            }),
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                style: {
+                  marginTop: 10,
+                  marginLeft: 20
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 37
+                }
+              },
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  style: {
+                    color: '#fff',
+                    fontFamily: 'open-sans-semibold',
+                    fontSize: 20
+                  },
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 41
+                  }
+                },
+                "Spring Rolls"
+              ),
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  style: {
+                    color: '#fff',
+                    fontFamily: 'open-sans-semibold',
+                    fontSize: 15
+                  },
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 46
+                  }
+                },
+                "Cafe Mocha"
+              )
+            ),
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                style: {
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  marginTop: 350
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 52
+                }
+              },
+              _react3.default.createElement(
+                _reactNative.View,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 57
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.TouchableHighlight,
+                  {
+                    onPress: _this2.props.onPress,
+                    style: styles.imageNotSelectedContainer,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 58
+                    }
+                  },
+                  _react3.default.createElement(_reactNative.Image, {
+                    style: styles.imageNotSelected,
+                    source: require(_dependencyMap[4], '../assets/icons/fire.png'),
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 59
+                    }
+                  })
+                ),
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  {
+                    onPress: _this2.onPressTab,
+                    style: styles.tabText,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 64
+                    }
+                  },
+                  "Near Me"
+                )
+              ),
+              _react3.default.createElement(
+                _reactNative.View,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 65
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.TouchableHighlight,
+                  {
+                    onPress: _this2.props.onPress,
+                    style: styles.imageContainer,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 66
+                    }
+                  },
+                  _react3.default.createElement(_reactNative.Image, {
+                    style: styles.image,
+                    source: require(_dependencyMap[4], '../assets/icons/fire.png'),
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 67
+                    }
+                  })
+                ),
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  {
+                    onPress: _this2.onPressTab,
+                    style: styles.tabText,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 72
+                    }
+                  },
+                  "Trending"
+                )
+              ),
+              _react3.default.createElement(
+                _reactNative.View,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 73
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.TouchableHighlight,
+                  {
+                    onPress: _this2.props.onPress,
+                    style: styles.imageNotSelectedContainer,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 74
+                    }
+                  },
+                  _react3.default.createElement(_reactNative.Image, {
+                    style: styles.imageNotSelected,
+                    source: require(_dependencyMap[4], '../assets/icons/fire.png'),
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 75
+                    }
+                  })
+                ),
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  {
+                    onPress: _this2.onPressTab,
+                    style: styles.tabText,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 80
+                    }
+                  },
+                  "Review"
+                )
+              )
+            )
+          );
+
+          imageArray.push(thisImage);
+
+          var scrollBarVal = _this2.animVal.interpolate({
+            inputRange: [deviceWidth * (i - 1), deviceWidth * (i + 1)],
+            outputRange: [-_this2.itemWidth, _this2.itemWidth],
+            extrapolate: 'clamp'
+          });
+
+          var thisBar = _react3.default.createElement(
+            _reactNative.View,
+            {
+              key: "bar" + i,
+              style: [styles.track, {
+                width: _this2.itemWidth,
+                marginLeft: i === 0 ? 0 : BAR_SPACE
+              }],
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 96
+              }
+            },
+            _react3.default.createElement(_reactNative.Animated.View, {
+              style: [styles.bar, {
+                width: _this2.itemWidth,
+                transform: [{
+                  translateX: scrollBarVal
+                }]
+              }],
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 106
+              }
+            })
+          );
+
+          barArray.push(thisBar);
+        });
+        return _react3.default.createElement(
+          _reactNative.View,
+          {
+            style: styles.container,
+            flex: 1,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 124
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.ScrollView,
+            {
+              horizontal: true,
+              showsHorizontalScrollIndicator: false,
+              scrollEventThrottle: 10,
+              pagingEnabled: true,
+              onScroll: _reactNative.Animated.event([{
+                nativeEvent: {
+                  contentOffset: {
+                    x: this.animVal
+                  }
+                }
+              }]),
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 128
+              }
+            },
+            imageArray
+          ),
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: styles.barContainer,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 143
+              }
+            },
+            barArray
+          )
+        );
+      }
+    }]);
+
+    return Cuisines;
+  }(_react2.Component));
+
+  exports.default = Cuisines;
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    barContainer: {
+      position: 'absolute',
+      zIndex: 2,
+      top: 40,
+      flexDirection: 'row'
+    },
+    track: {
+      backgroundColor: '#ccc',
+      overflow: 'hidden',
+      height: 2
+    },
+    bar: {
+      backgroundColor: '#5294d6',
+      height: 2,
+      position: 'absolute',
+      left: 0,
+      top: 0
+    },
+    imageNotSelectedContainer: {
+      backgroundColor: '#fff',
+      height: 50,
+      width: 50,
+      borderRadius: 25,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    imageNotSelected: {
+      height: 25,
+      width: 25
+    },
+    imageContainer: {
+      backgroundColor: '#fff',
+      height: 60,
+      width: 60,
+      borderRadius: 30,
+      alignItems: 'center',
+      justifyContent: 'center',
+      elevation: 5
+    },
+    image: {
+      height: 30,
+      width: 30
+    },
+    tabText: {
+      fontSize: 16,
+      fontFamily: 'open-sans-regular',
+      color: '#fff'
+    }
+  });
+});

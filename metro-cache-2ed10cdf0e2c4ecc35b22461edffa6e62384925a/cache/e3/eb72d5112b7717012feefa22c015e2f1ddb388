@@ -1,0 +1,25 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var tags = [{
+        id: 1,
+        title: "Cheese Chutney"
+    }, {
+        id: 2,
+        title: "Veg Masala"
+    }, {
+        id: 3,
+        title: "Chocolate"
+    }, {
+        id: 4,
+        title: "Paneer Tikka"
+    }, {
+        id: 5,
+        title: "Grilled"
+    }, {
+        id: 6,
+        title: "Raspberry"
+    }];
+    exports.default = tags;
+});

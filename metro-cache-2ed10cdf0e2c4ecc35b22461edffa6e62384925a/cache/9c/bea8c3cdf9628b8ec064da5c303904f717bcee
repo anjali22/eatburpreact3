@@ -1,0 +1,11 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+	module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+		"__packager_asset": true,
+		"httpServerLocation": "/assets/app/assets/fonts",
+		"scales": [1],
+		"hash": "324944d6dae53ea48a648b1d44ec78c3",
+		"name": "Pacifico-Regular",
+		"type": "ttf",
+		"fileHashes": ["324944d6dae53ea48a648b1d44ec78c3"]
+	});
+});

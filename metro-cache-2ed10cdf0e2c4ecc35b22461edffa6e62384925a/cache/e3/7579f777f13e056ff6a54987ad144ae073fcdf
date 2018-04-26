@@ -1,0 +1,579 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/Home.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _SearchBarPinterest = require(_dependencyMap[3], "../components/SearchBar/SearchBarPinterest");
+
+    var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
+
+    var _SearchBarWhite = require(_dependencyMap[4], "../components/SearchBar/SearchBarWhite");
+
+    var _SearchBarWhite2 = _interopRequireDefault(_SearchBarWhite);
+
+    var _CategoryButton = require(_dependencyMap[5], "../components/CategoryButton/CategoryButton");
+
+    var _CategoryButton2 = _interopRequireDefault(_CategoryButton);
+
+    var _expo = require(_dependencyMap[6], "expo");
+
+    var _food = require(_dependencyMap[7], "../data/food");
+
+    var _food2 = _interopRequireDefault(_food);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Home: {
+            displayName: "Home"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/Home.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Home = _wrapComponent("Home")(function (_Component) {
+        _inherits(Home, _Component);
+
+        function Home() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, Home);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+                foodData: _food2.default
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(Home, [{
+            key: "_renderItem",
+            value: function _renderItem(_ref2) {
+                var item = _ref2.item,
+                    index = _ref2.index;
+
+                if (index === 0) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.firstListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 18
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 19
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 20
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 25
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 26
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 29
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 1) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.twoListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 37
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 38
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 39
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 44
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 45
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 48
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 2) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.threeListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 56
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 57
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 58
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 63
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 64
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 67
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 3) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.fourListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 75
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 76
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 77
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 82
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 83
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 86
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 4) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.fiveListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 94
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 95
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 96
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 101
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 102
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 105
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 5) return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.lastListComponent,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 113
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.imageContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 114
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.Image, {
+                            style: styles.image,
+                            resizeMode: "cover",
+                            source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 115
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.content,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 120
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.foodName,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 121
+                                }
+                            },
+                            item.name
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.placeName,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 124
+                                }
+                            },
+                            item.bestAt
+                        )
+                    )
+                );
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.main,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 152
+                        }
+                    },
+                    _react3.default.createElement(_SearchBarWhite2.default, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 153
+                        }
+                    }),
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        style: styles.list,
+                        data: this.state.foodData,
+                        extraData: this.state,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 154
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return Home;
+    }(_react2.Component));
+
+    var styles = {
+        main: {
+            flex: 1,
+            backgroundColor: '#fff'
+        },
+        list: {
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+            marginRight: 10,
+            marginLeft: 10
+        },
+        listComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#fff',
+            padding: 5
+        },
+        firstListComponent: {
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#00649f',
+            padding: 5
+        },
+        twoListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#01aac1',
+            padding: 5
+        },
+        threeListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#00dbe7',
+            padding: 5
+        },
+        fourListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#97ecc5',
+            padding: 5
+        },
+        fiveListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#c6f1e7',
+            padding: 5
+        },
+        lastListComponent: {
+            flexDirection: 'row',
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#c7f3ff',
+            padding: 5
+        },
+        imageContainer: {},
+        image: {
+            height: 80,
+            width: 80,
+            borderRadius: 40
+        },
+        content: {
+            marginLeft: 20,
+            marginTop: 5
+        },
+        foodName: {
+            fontFamily: 'open-sans-semibold',
+            fontSize: 18,
+            color: '#fff'
+        },
+        placeName: {
+            fontFamily: 'open-sans-light',
+            fontSize: 15,
+            color: '#fff'
+        }
+    };
+    exports.default = Home;
+});

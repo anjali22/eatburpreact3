@@ -1,0 +1,12 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+	module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+		"__packager_asset": true,
+		"httpServerLocation": "/assets/app/assets/images",
+		"width": 999,
+		"height": 1001,
+		"scales": [1],
+		"hash": "3d37be5b05c5ad6267fe2120789e0652",
+		"name": "cornSandwich",
+		"type": "jpg"
+	});
+});

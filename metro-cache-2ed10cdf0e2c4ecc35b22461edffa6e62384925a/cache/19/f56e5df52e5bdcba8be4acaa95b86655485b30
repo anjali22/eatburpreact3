@@ -1,0 +1,11 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var shallowEqual = require(_dependencyMap[0], "fbjs/lib/shallowEqual");
+
+  function shallowCompare(instance, nextProps, nextState) {
+    return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
+  }
+
+  module.exports = shallowCompare;
+});

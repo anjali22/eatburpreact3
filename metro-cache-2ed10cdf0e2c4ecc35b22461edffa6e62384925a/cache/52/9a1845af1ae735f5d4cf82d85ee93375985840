@@ -1,0 +1,1441 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index2 = require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index3 = _interopRequireDefault(_index2);
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/carousel/Carousel.js";
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _propTypes = require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _reactAddonsShallowCompare = require(_dependencyMap[4], "react-addons-shallow-compare");
+
+    var _reactAddonsShallowCompare2 = _interopRequireDefault(_reactAddonsShallowCompare);
+
+    var _animations = require(_dependencyMap[5], "../utils/animations");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Carousel: {
+            displayName: "Carousel"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index3.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/carousel/Carousel.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var IS_IOS = _reactNative.Platform.OS === 'ios';
+    var AnimatedFlatList = _reactNative.FlatList ? _reactNative.Animated.createAnimatedComponent(_reactNative.FlatList) : null;
+
+    var AnimatedScrollView = _reactNative.Animated.createAnimatedComponent(_reactNative.ScrollView);
+
+    var IS_RTL = _reactNative.I18nManager.isRTL;
+
+    var Carousel = _wrapComponent("Carousel")((_temp = _class = function (_Component) {
+        _inherits(Carousel, _Component);
+
+        function Carousel(props) {
+            _classCallCheck(this, Carousel);
+
+            var _this = _possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this, props));
+
+            _this.state = {
+                hideCarousel: true,
+                interpolators: []
+            };
+
+            var initialActiveItem = _this._getFirstItem(props.firstItem);
+
+            _this._activeItem = initialActiveItem;
+            _this._previousActiveItem = initialActiveItem;
+            _this._previousFirstItem = initialActiveItem;
+            _this._previousItemsLength = initialActiveItem;
+            _this._positions = [];
+            _this._currentContentOffset = 0;
+            _this._canFireCallback = false;
+            _this._scrollOffsetRef = null;
+            _this._onScrollTriggered = true;
+            _this._lastScrollDate = 0;
+            _this._scrollEnabled = props.scrollEnabled === false ? false : true;
+            _this._initPositionsAndInterpolators = _this._initPositionsAndInterpolators.bind(_this);
+            _this._renderItem = _this._renderItem.bind(_this);
+            _this._onSnap = _this._onSnap.bind(_this);
+            _this._onLayout = _this._onLayout.bind(_this);
+            _this._onScroll = _this._onScroll.bind(_this);
+            _this._onScrollBeginDrag = props.enableSnap ? _this._onScrollBeginDrag.bind(_this) : undefined;
+            _this._onScrollEnd = props.enableSnap || props.autoplay ? _this._onScrollEnd.bind(_this) : undefined;
+            _this._onScrollEndDrag = !props.enableMomentum ? _this._onScrollEndDrag.bind(_this) : undefined;
+            _this._onMomentumScrollEnd = props.enableMomentum ? _this._onMomentumScrollEnd.bind(_this) : undefined;
+            _this._onTouchStart = _this._onTouchStart.bind(_this);
+            _this._onTouchRelease = _this._onTouchRelease.bind(_this);
+            var scrollEventConfig = {
+                listener: _this._onScroll,
+                useNativeDriver: true
+            };
+            _this._scrollPos = new _reactNative.Animated.Value(0);
+            _this._onScrollHandler = props.vertical ? _reactNative.Animated.event([{
+                nativeEvent: {
+                    contentOffset: {
+                        y: _this._scrollPos
+                    }
+                }
+            }], scrollEventConfig) : _reactNative.Animated.event([{
+                nativeEvent: {
+                    contentOffset: {
+                        x: _this._scrollPos
+                    }
+                }
+            }], scrollEventConfig);
+            _this._ignoreNextMomentum = false;
+
+            if (!_reactNative.ViewPropTypes) {
+                console.warn('react-native-snap-carousel: It is recommended to use at least version 0.44 of React Native with the plugin');
+            }
+
+            if (!props.vertical && (!props.sliderWidth || !props.itemWidth)) {
+                console.warn('react-native-snap-carousel: You need to specify both `sliderWidth` and `itemWidth` for horizontal carousels');
+            }
+
+            if (props.vertical && (!props.sliderHeight || !props.itemHeight)) {
+                console.warn('react-native-snap-carousel: You need to specify both `sliderHeight` and `itemHeight` for vertical carousels');
+            }
+
+            if (props.apparitionDelay && !IS_IOS && !props.useScrollView) {
+                console.warn('react-native-snap-carousel: Using `apparitionDelay` on Android is not recommended since it can lead to rendering issues');
+            }
+
+            if (props.customAnimationType || props.customAnimationOptions) {
+                console.warn('react-native-snap-carousel: Props `customAnimationType` and `customAnimationOptions` have been renamed to `activeAnimationType` and `activeAnimationOptions`');
+            }
+
+            if (props.onScrollViewScroll) {
+                console.warn('react-native-snap-carousel: Prop `onScrollViewScroll` has been removed. Use `onScroll` instead');
+            }
+
+            return _this;
+        }
+
+        _createClass(Carousel, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                var _this2 = this;
+
+                var _props = this.props,
+                    apparitionDelay = _props.apparitionDelay,
+                    autoplay = _props.autoplay,
+                    firstItem = _props.firstItem;
+
+                var _firstItem = this._getFirstItem(firstItem);
+
+                var apparitionCallback = function apparitionCallback() {
+                    _this2.setState({
+                        hideCarousel: false
+                    });
+
+                    if (autoplay) {
+                        _this2.startAutoplay();
+                    }
+                };
+
+                this._initPositionsAndInterpolators();
+
+                requestAnimationFrame(function () {
+                    _this2._snapToItem(_firstItem, false, false, true, false);
+
+                    _this2._hackActiveSlideAnimation(_firstItem, 'start', true);
+
+                    if (apparitionDelay) {
+                        _this2._apparitionTimeout = setTimeout(function () {
+                            apparitionCallback();
+                        }, apparitionDelay);
+                    } else {
+                        apparitionCallback();
+                    }
+                });
+            }
+        }, {
+            key: "shouldComponentUpdate",
+            value: function shouldComponentUpdate(nextProps, nextState) {
+                if (this.props.shouldOptimizeUpdates === false) {
+                    return true;
+                } else {
+                    return (0, _reactAddonsShallowCompare2.default)(this, nextProps, nextState);
+                }
+            }
+        }, {
+            key: "componentWillReceiveProps",
+            value: function componentWillReceiveProps(nextProps) {
+                var interpolators = this.state.interpolators;
+                var firstItem = nextProps.firstItem,
+                    itemHeight = nextProps.itemHeight,
+                    itemWidth = nextProps.itemWidth,
+                    sliderHeight = nextProps.sliderHeight,
+                    sliderWidth = nextProps.sliderWidth;
+
+                var itemsLength = this._getCustomDataLength(nextProps);
+
+                if (!itemsLength) {
+                    return;
+                }
+
+                var nextFirstItem = this._getFirstItem(firstItem, nextProps);
+
+                var nextActiveItem = this._activeItem || this._activeItem === 0 ? this._activeItem : nextFirstItem;
+                var hasNewSliderWidth = sliderWidth && sliderWidth !== this.props.sliderWidth;
+                var hasNewSliderHeight = sliderHeight && sliderHeight !== this.props.sliderHeight;
+                var hasNewItemWidth = itemWidth && itemWidth !== this.props.itemWidth;
+                var hasNewItemHeight = itemHeight && itemHeight !== this.props.itemHeight;
+
+                if (nextActiveItem > itemsLength - 1) {
+                    nextActiveItem = itemsLength - 1;
+                }
+
+                if (interpolators.length !== itemsLength || hasNewSliderWidth || hasNewSliderHeight || hasNewItemWidth || hasNewItemHeight) {
+                    this._activeItem = nextActiveItem;
+                    this._previousItemsLength = itemsLength;
+
+                    this._initPositionsAndInterpolators(nextProps);
+
+                    if (this._previousItemsLength > itemsLength) {
+                        this._hackActiveSlideAnimation(nextActiveItem, null, true);
+                    }
+
+                    if (hasNewSliderWidth || hasNewSliderHeight || hasNewItemWidth || hasNewItemHeight) {
+                        this._snapToItem(nextActiveItem, false, false, false, false);
+                    }
+                } else if (nextFirstItem !== this._previousFirstItem && nextFirstItem !== this._activeItem) {
+                    this._activeItem = nextFirstItem;
+                    this._previousFirstItem = nextFirstItem;
+
+                    this._snapToItem(nextFirstItem, true, true, false, false);
+                }
+            }
+        }, {
+            key: "componentWillUnmount",
+            value: function componentWillUnmount() {
+                this.stopAutoplay();
+                clearTimeout(this._apparitionTimeout);
+                clearTimeout(this._hackSlideAnimationTimeout);
+                clearTimeout(this._enableAutoplayTimeout);
+                clearTimeout(this._autoplayTimeout);
+                clearTimeout(this._snapNoMomentumTimeout);
+                clearTimeout(this._edgeItemTimeout);
+                clearTimeout(this._lockScrollTimeout);
+            }
+        }, {
+            key: "_needsScrollView",
+            value: function _needsScrollView() {
+                var useScrollView = this.props.useScrollView;
+                return useScrollView || !AnimatedFlatList || this._shouldUseStackLayout() || this._shouldUseTinderLayout();
+            }
+        }, {
+            key: "_needsRTLAdaptations",
+            value: function _needsRTLAdaptations() {
+                var vertical = this.props.vertical;
+                return IS_RTL && !IS_IOS && !vertical;
+            }
+        }, {
+            key: "_canLockScroll",
+            value: function _canLockScroll() {
+                var _props2 = this.props,
+                    enableMomentum = _props2.enableMomentum,
+                    lockScrollWhileSnapping = _props2.lockScrollWhileSnapping;
+                return !enableMomentum && lockScrollWhileSnapping;
+            }
+        }, {
+            key: "_enableLoop",
+            value: function _enableLoop() {
+                var _props3 = this.props,
+                    data = _props3.data,
+                    enableSnap = _props3.enableSnap,
+                    loop = _props3.loop;
+                return enableSnap && loop && data.length && data.length > 1;
+            }
+        }, {
+            key: "_shouldAnimateSlides",
+            value: function _shouldAnimateSlides() {
+                var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
+                var inactiveSlideOpacity = props.inactiveSlideOpacity,
+                    inactiveSlideScale = props.inactiveSlideScale,
+                    scrollInterpolator = props.scrollInterpolator,
+                    slideInterpolatedStyle = props.slideInterpolatedStyle;
+                return inactiveSlideOpacity < 1 || inactiveSlideScale < 1 || !!scrollInterpolator || !!slideInterpolatedStyle || this._shouldUseShiftLayout() || this._shouldUseStackLayout() || this._shouldUseTinderLayout();
+            }
+        }, {
+            key: "_shouldUseCustomAnimation",
+            value: function _shouldUseCustomAnimation() {
+                var activeAnimationOptions = this.props.activeAnimationOptions;
+                return !!activeAnimationOptions && !this._shouldUseStackLayout() && !this._shouldUseTinderLayout();
+            }
+        }, {
+            key: "_shouldUseShiftLayout",
+            value: function _shouldUseShiftLayout() {
+                var _props4 = this.props,
+                    inactiveSlideShift = _props4.inactiveSlideShift,
+                    layout = _props4.layout;
+                return layout === 'default' && inactiveSlideShift !== 0;
+            }
+        }, {
+            key: "_shouldUseStackLayout",
+            value: function _shouldUseStackLayout() {
+                return this.props.layout === 'stack';
+            }
+        }, {
+            key: "_shouldUseTinderLayout",
+            value: function _shouldUseTinderLayout() {
+                return this.props.layout === 'tinder';
+            }
+        }, {
+            key: "_getCustomData",
+            value: function _getCustomData() {
+                var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
+                var data = props.data,
+                    loopClonesPerSide = props.loopClonesPerSide;
+                var dataLength = data.length;
+
+                if (!data || !dataLength) {
+                    return [];
+                }
+
+                if (!this._enableLoop()) {
+                    return data;
+                }
+
+                var previousItems = [];
+                var nextItems = [];
+
+                if (loopClonesPerSide > dataLength) {
+                    var _previousItems2, _nextItems2;
+
+                    var dataMultiplier = Math.floor(loopClonesPerSide / dataLength);
+                    var remainder = loopClonesPerSide % dataLength;
+
+                    for (var i = 0; i < dataMultiplier; i++) {
+                        var _previousItems, _nextItems;
+
+                        (_previousItems = previousItems).push.apply(_previousItems, _toConsumableArray(data));
+
+                        (_nextItems = nextItems).push.apply(_nextItems, _toConsumableArray(data));
+                    }
+
+                    (_previousItems2 = previousItems).unshift.apply(_previousItems2, _toConsumableArray(data.slice(-remainder)));
+
+                    (_nextItems2 = nextItems).push.apply(_nextItems2, _toConsumableArray(data.slice(0, remainder)));
+                } else {
+                    previousItems = data.slice(-loopClonesPerSide);
+                    nextItems = data.slice(0, loopClonesPerSide);
+                }
+
+                return previousItems.concat(data, nextItems);
+            }
+        }, {
+            key: "_getCustomDataLength",
+            value: function _getCustomDataLength() {
+                var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
+                var data = props.data,
+                    loopClonesPerSide = props.loopClonesPerSide;
+                var dataLength = data && data.length;
+
+                if (!dataLength) {
+                    return 0;
+                }
+
+                return this._enableLoop() ? dataLength + 2 * loopClonesPerSide : dataLength;
+            }
+        }, {
+            key: "_getCustomIndex",
+            value: function _getCustomIndex(index) {
+                var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.props;
+
+                var itemsLength = this._getCustomDataLength(props);
+
+                if (!itemsLength || !index && index !== 0) {
+                    return 0;
+                }
+
+                return this._needsRTLAdaptations() ? itemsLength - index - 1 : index;
+            }
+        }, {
+            key: "_getDataIndex",
+            value: function _getDataIndex(index) {
+                var _props5 = this.props,
+                    data = _props5.data,
+                    loopClonesPerSide = _props5.loopClonesPerSide;
+                var dataLength = data && data.length;
+
+                if (!this._enableLoop() || !dataLength) {
+                    return index;
+                }
+
+                if (index >= dataLength + loopClonesPerSide) {
+                    return loopClonesPerSide > dataLength ? (index - loopClonesPerSide) % dataLength : index - dataLength - loopClonesPerSide;
+                } else if (index < loopClonesPerSide) {
+                    if (loopClonesPerSide > dataLength) {
+                        var baseDataIndexes = [];
+                        var dataIndexes = [];
+                        var dataMultiplier = Math.floor(loopClonesPerSide / dataLength);
+                        var remainder = loopClonesPerSide % dataLength;
+
+                        for (var i = 0; i < dataLength; i++) {
+                            baseDataIndexes.push(i);
+                        }
+
+                        for (var j = 0; j < dataMultiplier; j++) {
+                            dataIndexes.push.apply(dataIndexes, baseDataIndexes);
+                        }
+
+                        dataIndexes.unshift.apply(dataIndexes, _toConsumableArray(baseDataIndexes.slice(-remainder)));
+                        return dataIndexes[index];
+                    } else {
+                        return index + dataLength - loopClonesPerSide;
+                    }
+                } else {
+                    return index - loopClonesPerSide;
+                }
+            }
+        }, {
+            key: "_getPositionIndex",
+            value: function _getPositionIndex(index) {
+                var _props6 = this.props,
+                    loop = _props6.loop,
+                    loopClonesPerSide = _props6.loopClonesPerSide;
+                return loop ? index + loopClonesPerSide : index;
+            }
+        }, {
+            key: "_getFirstItem",
+            value: function _getFirstItem(index) {
+                var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.props;
+                var loopClonesPerSide = props.loopClonesPerSide;
+
+                var itemsLength = this._getCustomDataLength(props);
+
+                if (!itemsLength || index > itemsLength - 1 || index < 0) {
+                    return 0;
+                }
+
+                return this._enableLoop() ? index + loopClonesPerSide : index;
+            }
+        }, {
+            key: "_getScrollEnabled",
+            value: function _getScrollEnabled() {
+                return this._scrollEnabled;
+            }
+        }, {
+            key: "_setScrollEnabled",
+            value: function _setScrollEnabled() {
+                var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+                var scrollEnabled = this.props.scrollEnabled;
+
+                if (scrollEnabled === false || !this._scrollComponent || !this._scrollComponent.setNativeProps) {
+                    return;
+                }
+
+                this._scrollComponent.setNativeProps({
+                    scrollEnabled: value
+                });
+
+                this._scrollEnabled = value;
+            }
+        }, {
+            key: "_getKeyExtractor",
+            value: function _getKeyExtractor(item, index) {
+                return "flatlist-item-" + index;
+            }
+        }, {
+            key: "_getScrollOffset",
+            value: function _getScrollOffset(event) {
+                var vertical = this.props.vertical;
+                return event && event.nativeEvent && event.nativeEvent.contentOffset && Math.round(event.nativeEvent.contentOffset[vertical ? 'y' : 'x']) || 0;
+            }
+        }, {
+            key: "_getContainerInnerMargin",
+            value: function _getContainerInnerMargin() {
+                var opposite = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+                var _props7 = this.props,
+                    sliderWidth = _props7.sliderWidth,
+                    sliderHeight = _props7.sliderHeight,
+                    itemWidth = _props7.itemWidth,
+                    itemHeight = _props7.itemHeight,
+                    vertical = _props7.vertical,
+                    activeSlideAlignment = _props7.activeSlideAlignment;
+
+                if (activeSlideAlignment === 'start' && !opposite || activeSlideAlignment === 'end' && opposite) {
+                    return 0;
+                } else if (activeSlideAlignment === 'end' && !opposite || activeSlideAlignment === 'start' && opposite) {
+                    return vertical ? sliderHeight - itemHeight : sliderWidth - itemWidth;
+                } else {
+                    return vertical ? (sliderHeight - itemHeight) / 2 : (sliderWidth - itemWidth) / 2;
+                }
+            }
+        }, {
+            key: "_getViewportOffet",
+            value: function _getViewportOffet() {
+                var _props8 = this.props,
+                    sliderWidth = _props8.sliderWidth,
+                    sliderHeight = _props8.sliderHeight,
+                    itemWidth = _props8.itemWidth,
+                    itemHeight = _props8.itemHeight,
+                    vertical = _props8.vertical,
+                    activeSlideAlignment = _props8.activeSlideAlignment;
+
+                if (activeSlideAlignment === 'start') {
+                    return vertical ? itemHeight / 2 : itemWidth / 2;
+                } else if (activeSlideAlignment === 'end') {
+                    return vertical ? sliderHeight - itemHeight / 2 : sliderWidth - itemWidth / 2;
+                } else {
+                    return vertical ? sliderHeight / 2 : sliderWidth / 2;
+                }
+            }
+        }, {
+            key: "_getCenter",
+            value: function _getCenter(offset) {
+                return offset + this._getViewportOffet() - this._getContainerInnerMargin();
+            }
+        }, {
+            key: "_getActiveItem",
+            value: function _getActiveItem(offset) {
+                var _props9 = this.props,
+                    activeSlideOffset = _props9.activeSlideOffset,
+                    swipeThreshold = _props9.swipeThreshold;
+
+                var center = this._getCenter(offset);
+
+                var centerOffset = activeSlideOffset || swipeThreshold;
+
+                for (var i = 0; i < this._positions.length; i++) {
+                    var _positions$i = this._positions[i],
+                        start = _positions$i.start,
+                        end = _positions$i.end;
+
+                    if (center + centerOffset >= start && center - centerOffset <= end) {
+                        return i;
+                    }
+                }
+
+                var lastIndex = this._positions.length - 1;
+
+                if (this._positions[lastIndex] && center - centerOffset > this._positions[lastIndex].end) {
+                    return lastIndex;
+                }
+
+                return 0;
+            }
+        }, {
+            key: "_initPositionsAndInterpolators",
+            value: function _initPositionsAndInterpolators() {
+                var _this3 = this;
+
+                var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
+                var data = props.data,
+                    itemWidth = props.itemWidth,
+                    itemHeight = props.itemHeight,
+                    scrollInterpolator = props.scrollInterpolator,
+                    vertical = props.vertical;
+                var sizeRef = vertical ? itemHeight : itemWidth;
+
+                if (!data.length) {
+                    return;
+                }
+
+                var interpolators = [];
+                this._positions = [];
+
+                this._getCustomData(props).forEach(function (itemData, index) {
+                    var _index = _this3._getCustomIndex(index, props);
+
+                    var animatedValue = void 0;
+                    _this3._positions[index] = {
+                        start: index * sizeRef,
+                        end: index * sizeRef + sizeRef
+                    };
+
+                    if (!_this3._shouldAnimateSlides(props)) {
+                        animatedValue = 1;
+                    } else if (_this3._shouldUseCustomAnimation()) {
+                        animatedValue = new _reactNative.Animated.Value(_index === _this3._activeItem ? 1 : 0);
+                    } else {
+                        var interpolator = void 0;
+
+                        if (scrollInterpolator) {
+                            interpolator = scrollInterpolator(_index, props);
+                        } else if (_this3._shouldUseStackLayout()) {
+                            interpolator = (0, _animations.stackScrollInterpolator)(_index, props);
+                        } else if (_this3._shouldUseTinderLayout()) {
+                            interpolator = (0, _animations.tinderScrollInterpolator)(_index, props);
+                        }
+
+                        if (!interpolator || !interpolator.inputRange || !interpolator.outputRange) {
+                            interpolator = (0, _animations.defaultScrollInterpolator)(_index, props);
+                        }
+
+                        animatedValue = _this3._scrollPos.interpolate(_extends({}, interpolator, {
+                            extrapolate: 'clamp'
+                        }));
+                    }
+
+                    interpolators.push(animatedValue);
+                });
+
+                this.setState({
+                    interpolators: interpolators
+                });
+            }
+        }, {
+            key: "_getSlideAnimation",
+            value: function _getSlideAnimation(index, toValue) {
+                var interpolators = this.state.interpolators;
+                var _props10 = this.props,
+                    activeAnimationType = _props10.activeAnimationType,
+                    activeAnimationOptions = _props10.activeAnimationOptions;
+                var animatedValue = interpolators && interpolators[index];
+
+                if (!animatedValue && animatedValue !== 0) {
+                    return false;
+                }
+
+                var animationCommonOptions = _extends({
+                    isInteraction: false,
+                    useNativeDriver: true
+                }, activeAnimationOptions, {
+                    toValue: toValue
+                });
+
+                return _reactNative.Animated.parallel([_reactNative.Animated['timing'](animatedValue, _extends({}, animationCommonOptions, {
+                    easing: _reactNative.Easing.linear
+                })), _reactNative.Animated[activeAnimationType](animatedValue, _extends({}, animationCommonOptions))]);
+            }
+        }, {
+            key: "_playCustomSlideAnimation",
+            value: function _playCustomSlideAnimation(current, next) {
+                var interpolators = this.state.interpolators;
+
+                var itemsLength = this._getCustomDataLength();
+
+                var _currentIndex = this._getCustomIndex(current);
+
+                var _currentDataIndex = this._getDataIndex(_currentIndex);
+
+                var _nextIndex = this._getCustomIndex(next);
+
+                var _nextDataIndex = this._getDataIndex(_nextIndex);
+
+                var animations = [];
+
+                if (this._enableLoop()) {
+                    for (var i = 0; i < itemsLength; i++) {
+                        if (this._getDataIndex(i) === _currentDataIndex && interpolators[i]) {
+                            animations.push(this._getSlideAnimation(i, 0));
+                        } else if (this._getDataIndex(i) === _nextDataIndex && interpolators[i]) {
+                            animations.push(this._getSlideAnimation(i, 1));
+                        }
+                    }
+                } else {
+                    if (interpolators[current]) {
+                        animations.push(this._getSlideAnimation(current, 0));
+                    }
+
+                    if (interpolators[next]) {
+                        animations.push(this._getSlideAnimation(next, 1));
+                    }
+                }
+
+                _reactNative.Animated.parallel(animations, {
+                    stopTogether: false
+                }).start();
+            }
+        }, {
+            key: "_hackActiveSlideAnimation",
+            value: function _hackActiveSlideAnimation(index, goTo) {
+                var _this4 = this;
+
+                var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+                var data = this.props.data;
+
+                if (!this._scrollComponent || !this._positions[index] || !force && this._enableLoop()) {
+                    return;
+                }
+
+                var offset = this._positions[index] && this._positions[index].start;
+
+                if (!offset && offset !== 0) {
+                    return;
+                }
+
+                var itemsLength = data && data.length;
+                var direction = goTo || itemsLength === 1 ? 'start' : 'end';
+
+                this._scrollTo(offset + (direction === 'start' ? -1 : 1), false);
+
+                clearTimeout(this._hackSlideAnimationTimeout);
+                this._hackSlideAnimationTimeout = setTimeout(function () {
+                    _this4._scrollTo(offset, false);
+                }, 50);
+            }
+        }, {
+            key: "_lockScroll",
+            value: function _lockScroll() {
+                var _this5 = this;
+
+                clearTimeout(this._lockScrollTimeout);
+                this._lockScrollTimeout = setTimeout(function () {
+                    _this5._releaseScroll();
+                }, 1000);
+
+                this._setScrollEnabled(false);
+            }
+        }, {
+            key: "_releaseScroll",
+            value: function _releaseScroll() {
+                clearTimeout(this._lockScrollTimeout);
+
+                this._setScrollEnabled(true);
+            }
+        }, {
+            key: "_repositionScroll",
+            value: function _repositionScroll(index) {
+                var _props11 = this.props,
+                    data = _props11.data,
+                    loopClonesPerSide = _props11.loopClonesPerSide;
+                var dataLength = data && data.length;
+
+                if (!this._enableLoop() || !dataLength || index >= loopClonesPerSide && index < dataLength + loopClonesPerSide) {
+                    return;
+                }
+
+                var repositionTo = index;
+
+                if (index >= dataLength + loopClonesPerSide) {
+                    repositionTo = index - dataLength;
+                } else if (index < loopClonesPerSide) {
+                    repositionTo = index + dataLength;
+                }
+
+                this._snapToItem(repositionTo, false, false, false, false);
+            }
+        }, {
+            key: "_scrollTo",
+            value: function _scrollTo(offset) {
+                var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+                var vertical = this.props.vertical;
+
+                if (!this._scrollComponent || !this._needsScrollView() && !this._scrollComponent._listRef) {
+                    return;
+                }
+
+                var specificOptions = this._needsScrollView() ? {
+                    x: vertical ? 0 : offset,
+                    y: vertical ? offset : 0
+                } : {
+                    offset: offset
+                };
+
+                var options = _extends({}, specificOptions, {
+                    animated: animated
+                });
+
+                if (this._needsScrollView()) {
+                    this._scrollComponent.scrollTo(options);
+                } else {
+                    this._scrollComponent.scrollToOffset(options);
+                }
+            }
+        }, {
+            key: "_onScroll",
+            value: function _onScroll(event) {
+                var _props12 = this.props,
+                    callbackOffsetMargin = _props12.callbackOffsetMargin,
+                    enableMomentum = _props12.enableMomentum,
+                    onScroll = _props12.onScroll;
+                var scrollOffset = event ? this._getScrollOffset(event) : this._currentContentOffset;
+
+                var nextActiveItem = this._getActiveItem(scrollOffset);
+
+                var scrollConditions = nextActiveItem === this._itemToSnapTo && scrollOffset >= this._scrollOffsetRef - callbackOffsetMargin && scrollOffset <= this._scrollOffsetRef + callbackOffsetMargin;
+                this._currentContentOffset = scrollOffset;
+                this._onScrollTriggered = true;
+                this._lastScrollDate = Date.now();
+
+                if (this._activeItem !== nextActiveItem && this._shouldUseCustomAnimation()) {
+                    this._playCustomSlideAnimation(this._activeItem, nextActiveItem);
+                }
+
+                if (enableMomentum) {
+                    clearTimeout(this._snapNoMomentumTimeout);
+
+                    if (this._activeItem !== nextActiveItem) {
+                        this._activeItem = nextActiveItem;
+                    }
+
+                    if (scrollConditions && this._canFireCallback) {
+                        this._onSnap(this._getDataIndex(nextActiveItem));
+                    }
+                } else if (scrollConditions && this._activeItem !== nextActiveItem) {
+                    this._activeItem = nextActiveItem;
+
+                    if (this._canLockScroll()) {
+                        this._releaseScroll();
+                    }
+
+                    if (this._canFireCallback) {
+                        this._onSnap(this._getDataIndex(nextActiveItem));
+                    }
+                }
+
+                if (nextActiveItem === this._itemToSnapTo && scrollOffset === this._scrollOffsetRef) {
+                    this._repositionScroll(nextActiveItem);
+                }
+
+                if (onScroll && event) {
+                    onScroll(event);
+                }
+            }
+        }, {
+            key: "_onStartShouldSetResponderCapture",
+            value: function _onStartShouldSetResponderCapture(event) {
+                var onStartShouldSetResponderCapture = this.props.onStartShouldSetResponderCapture;
+
+                if (onStartShouldSetResponderCapture) {
+                    onStartShouldSetResponderCapture(event);
+                }
+
+                return this._getScrollEnabled();
+            }
+        }, {
+            key: "_onTouchStart",
+            value: function _onTouchStart() {
+                if (this._getScrollEnabled() !== false && this._autoplaying) {
+                    this.stopAutoplay();
+                }
+            }
+        }, {
+            key: "_onScrollBeginDrag",
+            value: function _onScrollBeginDrag(event) {
+                var onScrollBeginDrag = this.props.onScrollBeginDrag;
+
+                if (!this._getScrollEnabled()) {
+                    return;
+                }
+
+                this._scrollStartOffset = this._getScrollOffset(event);
+                this._scrollStartActive = this._getActiveItem(this._scrollStartOffset);
+                this._ignoreNextMomentum = false;
+
+                if (onScrollBeginDrag) {
+                    onScrollBeginDrag(event);
+                }
+            }
+        }, {
+            key: "_onScrollEndDrag",
+            value: function _onScrollEndDrag(event) {
+                var onScrollEndDrag = this.props.onScrollEndDrag;
+
+                if (this._scrollComponent) {
+                    this._onScrollEnd && this._onScrollEnd();
+                }
+
+                if (onScrollEndDrag) {
+                    onScrollEndDrag(event);
+                }
+            }
+        }, {
+            key: "_onMomentumScrollEnd",
+            value: function _onMomentumScrollEnd(event) {
+                var onMomentumScrollEnd = this.props.onMomentumScrollEnd;
+
+                if (this._scrollComponent) {
+                    this._onScrollEnd && this._onScrollEnd();
+                }
+
+                if (onMomentumScrollEnd) {
+                    onMomentumScrollEnd(event);
+                }
+            }
+        }, {
+            key: "_onScrollEnd",
+            value: function _onScrollEnd(event) {
+                var _this6 = this;
+
+                var _props13 = this.props,
+                    autoplay = _props13.autoplay,
+                    enableSnap = _props13.enableSnap;
+
+                if (this._ignoreNextMomentum) {
+                    this._ignoreNextMomentum = false;
+                    return;
+                }
+
+                this._scrollEndOffset = this._currentContentOffset;
+                this._scrollEndActive = this._getActiveItem(this._scrollEndOffset);
+
+                if (enableSnap) {
+                    this._snapScroll(this._scrollEndOffset - this._scrollStartOffset);
+                }
+
+                if (autoplay) {
+                    clearTimeout(this._enableAutoplayTimeout);
+                    this._enableAutoplayTimeout = setTimeout(function () {
+                        _this6.startAutoplay();
+                    }, 300);
+                }
+            }
+        }, {
+            key: "_onTouchRelease",
+            value: function _onTouchRelease(event) {
+                var _this7 = this;
+
+                var enableMomentum = this.props.enableMomentum;
+
+                if (enableMomentum && IS_IOS) {
+                    clearTimeout(this._snapNoMomentumTimeout);
+                    this._snapNoMomentumTimeout = setTimeout(function () {
+                        _this7._snapToItem(_this7._activeItem);
+                    }, 100);
+                }
+            }
+        }, {
+            key: "_onLayout",
+            value: function _onLayout(event) {
+                var onLayout = this.props.onLayout;
+
+                if (this._onLayoutInitDone) {
+                    this._initPositionsAndInterpolators();
+
+                    this._snapToItem(this._activeItem, false, false, false, false);
+                } else {
+                    this._onLayoutInitDone = true;
+                }
+
+                if (onLayout) {
+                    onLayout(event);
+                }
+            }
+        }, {
+            key: "_snapScroll",
+            value: function _snapScroll(delta) {
+                var swipeThreshold = this.props.swipeThreshold;
+
+                if (!this._scrollEndActive && this._scrollEndActive !== 0 && IS_IOS) {
+                    this._scrollEndActive = this._scrollStartActive;
+                }
+
+                if (this._scrollStartActive !== this._scrollEndActive) {
+                    this._snapToItem(this._scrollEndActive);
+                } else {
+                    if (delta > 0) {
+                        if (delta > swipeThreshold) {
+                            this._snapToItem(this._scrollStartActive + 1);
+                        } else {
+                            this._snapToItem(this._scrollEndActive);
+                        }
+                    } else if (delta < 0) {
+                        if (delta < -swipeThreshold) {
+                            this._snapToItem(this._scrollStartActive - 1);
+                        } else {
+                            this._snapToItem(this._scrollEndActive);
+                        }
+                    } else {
+                        this._snapToItem(this._scrollEndActive);
+                    }
+                }
+            }
+        }, {
+            key: "_snapToItem",
+            value: function _snapToItem(index) {
+                var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+                var fireCallback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+                var _this8 = this;
+
+                var initial = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+                var lockScroll = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+                var _props14 = this.props,
+                    enableMomentum = _props14.enableMomentum,
+                    onSnapToItem = _props14.onSnapToItem;
+
+                var itemsLength = this._getCustomDataLength();
+
+                if (!itemsLength || !this._scrollComponent || !this._needsScrollView() && !this._scrollComponent._listRef) {
+                    return;
+                }
+
+                if (!index || index < 0) {
+                    index = 0;
+                } else if (itemsLength > 0 && index >= itemsLength) {
+                    index = itemsLength - 1;
+                }
+
+                if (index !== this._previousActiveItem) {
+                    this._previousActiveItem = index;
+
+                    if (lockScroll && this._canLockScroll()) {
+                        this._lockScroll();
+                    }
+
+                    if (onSnapToItem && fireCallback) {
+                        this._canFireCallback = true;
+                    }
+                }
+
+                this._itemToSnapTo = index;
+                this._scrollOffsetRef = this._positions[index] && this._positions[index].start;
+                this._onScrollTriggered = false;
+
+                if (!this._scrollOffsetRef && this._scrollOffsetRef !== 0) {
+                    return;
+                }
+
+                this._scrollTo(this._scrollOffsetRef, animated);
+
+                if (enableMomentum) {
+                    if (IS_IOS && !initial) {
+                        this._ignoreNextMomentum = true;
+                    }
+
+                    if (index === 0 || index === itemsLength - 1) {
+                        clearTimeout(this._edgeItemTimeout);
+                        this._edgeItemTimeout = setTimeout(function () {
+                            if (!initial && index === _this8._activeItem && !_this8._onScrollTriggered) {
+                                _this8._onScroll();
+                            }
+                        }, 250);
+                    }
+                }
+            }
+        }, {
+            key: "_onSnap",
+            value: function _onSnap(index) {
+                var onSnapToItem = this.props.onSnapToItem;
+
+                if (!this._scrollComponent) {
+                    return;
+                }
+
+                this._canFireCallback = false;
+                onSnapToItem && onSnapToItem(index);
+            }
+        }, {
+            key: "startAutoplay",
+            value: function startAutoplay() {
+                var _this9 = this;
+
+                var _props15 = this.props,
+                    autoplayInterval = _props15.autoplayInterval,
+                    autoplayDelay = _props15.autoplayDelay;
+
+                if (this._autoplaying) {
+                    return;
+                }
+
+                clearTimeout(this._autoplayTimeout);
+                this._autoplayTimeout = setTimeout(function () {
+                    _this9._autoplaying = true;
+                    _this9._autoplayInterval = setInterval(function () {
+                        if (_this9._autoplaying) {
+                            _this9.snapToNext();
+                        }
+                    }, autoplayInterval);
+                }, autoplayDelay);
+            }
+        }, {
+            key: "stopAutoplay",
+            value: function stopAutoplay() {
+                this._autoplaying = false;
+                clearInterval(this._autoplayInterval);
+            }
+        }, {
+            key: "snapToItem",
+            value: function snapToItem(index) {
+                var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+                if (!index || index < 0) {
+                    index = 0;
+                }
+
+                var positionIndex = this._getPositionIndex(index);
+
+                if (positionIndex === this._activeItem) {
+                    return;
+                }
+
+                this._snapToItem(positionIndex, animated);
+            }
+        }, {
+            key: "snapToNext",
+            value: function snapToNext() {
+                var animated = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+                var itemsLength = this._getCustomDataLength();
+
+                var newIndex = this._activeItem + 1;
+
+                if (newIndex > itemsLength - 1) {
+                    if (!this._enableLoop()) {
+                        return;
+                    }
+
+                    newIndex = 0;
+                }
+
+                this._snapToItem(newIndex, animated);
+            }
+        }, {
+            key: "snapToPrev",
+            value: function snapToPrev() {
+                var animated = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+                var itemsLength = this._getCustomDataLength();
+
+                var newIndex = this._activeItem - 1;
+
+                if (newIndex < 0) {
+                    if (!this._enableLoop()) {
+                        return;
+                    }
+
+                    newIndex = itemsLength - 1;
+                }
+
+                this._snapToItem(newIndex, animated);
+            }
+        }, {
+            key: "triggerRenderingHack",
+            value: function triggerRenderingHack(offset) {
+                if (Date.now() - this._lastScrollDate < 500) {
+                    return;
+                }
+
+                var scrollPosition = this._currentContentOffset;
+
+                if (!scrollPosition && scrollPosition !== 0) {
+                    return;
+                }
+
+                var scrollOffset = offset || (scrollPosition === 0 ? 1 : -1);
+
+                this._scrollTo(scrollPosition + scrollOffset, false);
+            }
+        }, {
+            key: "_getSlideInterpolatedStyle",
+            value: function _getSlideInterpolatedStyle(index, animatedValue) {
+                var _props16 = this.props,
+                    layoutCardOffset = _props16.layoutCardOffset,
+                    slideInterpolatedStyle = _props16.slideInterpolatedStyle;
+
+                if (slideInterpolatedStyle) {
+                    return slideInterpolatedStyle(index, animatedValue, this.props);
+                } else if (this._shouldUseTinderLayout()) {
+                    return (0, _animations.tinderAnimatedStyles)(index, animatedValue, this.props, layoutCardOffset);
+                } else if (this._shouldUseStackLayout()) {
+                    return (0, _animations.stackAnimatedStyles)(index, animatedValue, this.props, layoutCardOffset);
+                } else if (this._shouldUseShiftLayout()) {
+                    return (0, _animations.shiftAnimatedStyles)(index, animatedValue, this.props);
+                } else {
+                    return (0, _animations.defaultAnimatedStyles)(index, animatedValue, this.props);
+                }
+            }
+        }, {
+            key: "_renderItem",
+            value: function _renderItem(_ref) {
+                var item = _ref.item,
+                    index = _ref.index;
+                var interpolators = this.state.interpolators;
+                var _props17 = this.props,
+                    hasParallaxImages = _props17.hasParallaxImages,
+                    itemWidth = _props17.itemWidth,
+                    itemHeight = _props17.itemHeight,
+                    renderItem = _props17.renderItem,
+                    sliderHeight = _props17.sliderHeight,
+                    sliderWidth = _props17.sliderWidth,
+                    slideStyle = _props17.slideStyle,
+                    vertical = _props17.vertical;
+                var animatedValue = interpolators && interpolators[index];
+
+                if (!animatedValue && animatedValue !== 0) {
+                    return false;
+                }
+
+                var animate = this._shouldAnimateSlides();
+
+                var Component = animate ? _reactNative.Animated.View : _reactNative.View;
+                var animatedStyle = animate ? this._getSlideInterpolatedStyle(index, animatedValue) : {};
+                var parallaxProps = hasParallaxImages ? {
+                    scrollPosition: this._scrollPos,
+                    carouselRef: this._scrollComponent,
+                    vertical: vertical,
+                    sliderWidth: sliderWidth,
+                    sliderHeight: sliderHeight,
+                    itemWidth: itemWidth,
+                    itemHeight: itemHeight
+                } : undefined;
+                var specificProps = this._needsScrollView() ? {
+                    key: "scrollview-item-" + index
+                } : {};
+                return _react3.default.createElement(
+                    Component,
+                    _extends({
+                        style: [slideStyle, animatedStyle],
+                        pointerEvents: 'box-none'
+                    }, specificProps, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 1118
+                        }
+                    }),
+                    renderItem({
+                        item: item,
+                        index: index
+                    }, parallaxProps)
+                );
+            }
+        }, {
+            key: "_getComponentOverridableProps",
+            value: function _getComponentOverridableProps() {
+                var _props18 = this.props,
+                    enableMomentum = _props18.enableMomentum,
+                    itemWidth = _props18.itemWidth,
+                    itemHeight = _props18.itemHeight,
+                    loopClonesPerSide = _props18.loopClonesPerSide,
+                    sliderWidth = _props18.sliderWidth,
+                    sliderHeight = _props18.sliderHeight,
+                    vertical = _props18.vertical;
+                var visibleItems = Math.ceil(vertical ? sliderHeight / itemHeight : sliderWidth / itemWidth) + 1;
+                var initialNumPerSide = this._enableLoop() ? loopClonesPerSide : 2;
+                var initialNumToRender = visibleItems + initialNumPerSide * 2;
+                var maxToRenderPerBatch = 1 + initialNumToRender * 2;
+                var windowSize = maxToRenderPerBatch;
+                var specificProps = !this._needsScrollView() ? {
+                    initialNumToRender: initialNumToRender,
+                    maxToRenderPerBatch: maxToRenderPerBatch,
+                    windowSize: windowSize
+                } : {};
+                return _extends({
+                    decelerationRate: enableMomentum ? 0.9 : 'fast',
+                    showsHorizontalScrollIndicator: false,
+                    showsVerticalScrollIndicator: false,
+                    overScrollMode: 'never',
+                    automaticallyAdjustContentInsets: false,
+                    directionalLockEnabled: true,
+                    pinchGestureEnabled: false,
+                    scrollsToTop: false,
+                    removeClippedSubviews: true,
+                    inverted: this._needsRTLAdaptations()
+                }, specificProps);
+            }
+        }, {
+            key: "_getComponentStaticProps",
+            value: function _getComponentStaticProps() {
+                var _this10 = this;
+
+                var hideCarousel = this.state.hideCarousel;
+                var _props19 = this.props,
+                    containerCustomStyle = _props19.containerCustomStyle,
+                    contentContainerCustomStyle = _props19.contentContainerCustomStyle,
+                    keyExtractor = _props19.keyExtractor,
+                    sliderWidth = _props19.sliderWidth,
+                    sliderHeight = _props19.sliderHeight,
+                    style = _props19.style,
+                    vertical = _props19.vertical;
+                var containerStyle = [containerCustomStyle || style || {}, hideCarousel ? {
+                    opacity: 0
+                } : {}, vertical ? {
+                    height: sliderHeight,
+                    flexDirection: 'column'
+                } : {
+                    width: sliderWidth,
+                    flexDirection: this._needsRTLAdaptations() ? 'row-reverse' : 'row'
+                }];
+                var contentContainerStyle = [contentContainerCustomStyle || {}, vertical ? {
+                    paddingTop: this._getContainerInnerMargin(),
+                    paddingBottom: this._getContainerInnerMargin(true)
+                } : {
+                    paddingLeft: this._getContainerInnerMargin(),
+                    paddingRight: this._getContainerInnerMargin(true)
+                }];
+                var specificProps = !this._needsScrollView() ? {
+                    renderItem: this._renderItem,
+                    numColumns: 1,
+                    getItemLayout: undefined,
+                    initialScrollIndex: undefined,
+                    keyExtractor: keyExtractor || this._getKeyExtractor
+                } : {};
+                return _extends({
+                    ref: function ref(c) {
+                        if (c) {
+                            _this10._scrollComponent = c._component;
+                        }
+                    },
+                    data: this._getCustomData(),
+                    style: containerStyle,
+                    contentContainerStyle: contentContainerStyle,
+                    horizontal: !vertical,
+                    scrollEventThrottle: 1,
+                    onScroll: this._onScrollHandler,
+                    onScrollBeginDrag: this._onScrollBeginDrag,
+                    onScrollEndDrag: this._onScrollEndDrag,
+                    onMomentumScrollEnd: this._onMomentumScrollEnd,
+                    onResponderRelease: this._onTouchRelease,
+                    onStartShouldSetResponderCapture: this._onStartShouldSetResponderCapture,
+                    onTouchStart: this._onTouchStart,
+                    onLayout: this._onLayout
+                }, specificProps);
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _this11 = this;
+
+                var _props20 = this.props,
+                    data = _props20.data,
+                    renderItem = _props20.renderItem;
+
+                if (!data || !renderItem) {
+                    return false;
+                }
+
+                var props = _extends({}, this._getComponentOverridableProps(), this.props, this._getComponentStaticProps());
+
+                return this._needsScrollView() ? _react3.default.createElement(
+                    AnimatedScrollView,
+                    _extends({}, props, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 1240
+                        }
+                    }),
+                    this._getCustomData().map(function (item, index) {
+                        return _this11._renderItem({
+                            item: item,
+                            index: index
+                        });
+                    })
+                ) : _react3.default.createElement(AnimatedFlatList, _extends({}, props, {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 1248
+                    }
+                }));
+            }
+        }, {
+            key: "realIndex",
+            get: function get() {
+                return this._activeItem;
+            }
+        }, {
+            key: "currentIndex",
+            get: function get() {
+                return this._getDataIndex(this._activeItem);
+            }
+        }, {
+            key: "currentScrollPosition",
+            get: function get() {
+                return this._currentContentOffset;
+            }
+        }]);
+
+        return Carousel;
+    }(_react2.Component), _class.propTypes = {
+        data: _propTypes2.default.array.isRequired,
+        renderItem: _propTypes2.default.func.isRequired,
+        itemWidth: _propTypes2.default.number,
+        itemHeight: _propTypes2.default.number,
+        sliderWidth: _propTypes2.default.number,
+        sliderHeight: _propTypes2.default.number,
+        activeAnimationType: _propTypes2.default.string,
+        activeAnimationOptions: _propTypes2.default.object,
+        activeSlideAlignment: _propTypes2.default.oneOf(['center', 'end', 'start']),
+        activeSlideOffset: _propTypes2.default.number,
+        apparitionDelay: _propTypes2.default.number,
+        autoplay: _propTypes2.default.bool,
+        autoplayDelay: _propTypes2.default.number,
+        autoplayInterval: _propTypes2.default.number,
+        callbackOffsetMargin: _propTypes2.default.number,
+        containerCustomStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        contentContainerCustomStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        enableMomentum: _propTypes2.default.bool,
+        enableSnap: _propTypes2.default.bool,
+        firstItem: _propTypes2.default.number,
+        hasParallaxImages: _propTypes2.default.bool,
+        inactiveSlideOpacity: _propTypes2.default.number,
+        inactiveSlideScale: _propTypes2.default.number,
+        inactiveSlideShift: _propTypes2.default.number,
+        layout: _propTypes2.default.oneOf(['default', 'stack', 'tinder']),
+        layoutCardOffset: _propTypes2.default.number,
+        lockScrollWhileSnapping: _propTypes2.default.bool,
+        loop: _propTypes2.default.bool,
+        loopClonesPerSide: _propTypes2.default.number,
+        scrollInterpolator: _propTypes2.default.func,
+        slideInterpolatedStyle: _propTypes2.default.func,
+        slideStyle: _reactNative.Animated.View.propTypes.style,
+        shouldOptimizeUpdates: _propTypes2.default.bool,
+        swipeThreshold: _propTypes2.default.number,
+        useScrollView: _propTypes2.default.bool,
+        vertical: _propTypes2.default.bool,
+        onSnapToItem: _propTypes2.default.func
+    }, _class.defaultProps = {
+        activeAnimationType: 'timing',
+        activeAnimationOptions: null,
+        activeSlideAlignment: 'center',
+        activeSlideOffset: 20,
+        apparitionDelay: 0,
+        autoplay: false,
+        autoplayDelay: 5000,
+        autoplayInterval: 3000,
+        callbackOffsetMargin: 5,
+        containerCustomStyle: {},
+        contentContainerCustomStyle: {},
+        enableMomentum: false,
+        enableSnap: true,
+        firstItem: 0,
+        hasParallaxImages: false,
+        inactiveSlideOpacity: 0.7,
+        inactiveSlideScale: 0.9,
+        inactiveSlideShift: 0,
+        layout: 'default',
+        lockScrollWhileSnapping: false,
+        loop: false,
+        loopClonesPerSide: 3,
+        slideStyle: {},
+        shouldOptimizeUpdates: true,
+        swipeThreshold: 20,
+        useScrollView: !AnimatedFlatList,
+        vertical: false
+    }, _temp));
+
+    exports.default = Carousel;
+});

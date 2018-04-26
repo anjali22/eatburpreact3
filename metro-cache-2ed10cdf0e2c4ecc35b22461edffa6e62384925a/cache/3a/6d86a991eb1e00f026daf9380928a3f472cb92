@@ -1,0 +1,25 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _redux = require(_dependencyMap[0], "redux");
+
+    var _reduxLogger = require(_dependencyMap[1], "redux-logger");
+
+    var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+
+    var _reducers = require(_dependencyMap[2], "../reducers");
+
+    var _reducers2 = _interopRequireDefault(_reducers);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    var middleware = [];
+
+    if (process.env.NODE_ENV === 'development') {
+        middleware.push(_reduxLogger2.default);
+    }
+
+    exports.default = (0, _redux.createStore)(_reducers2.default, _redux.applyMiddleware.apply(undefined, middleware));
+});

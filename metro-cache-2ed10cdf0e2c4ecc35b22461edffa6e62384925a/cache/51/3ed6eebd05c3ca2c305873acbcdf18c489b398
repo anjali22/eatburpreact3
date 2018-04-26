@@ -1,0 +1,111 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.itemWidth = exports.sliderWidth = undefined;
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _reactNative = require(_dependencyMap[0], "react-native");
+
+    var _index = require(_dependencyMap[1], "./index.style");
+
+    var IS_IOS = _reactNative.Platform.OS === 'ios';
+
+    var _Dimensions$get = _reactNative.Dimensions.get('window'),
+        viewportWidth = _Dimensions$get.width,
+        viewportHeight = _Dimensions$get.height;
+
+    function wp(percentage) {
+        var value = percentage * viewportWidth / 100;
+        return Math.round(value);
+    }
+
+    var slideHeight = viewportHeight * 0.36;
+    var slideWidth = wp(75);
+    var itemHorizontalMargin = wp(2);
+    var sliderWidth = exports.sliderWidth = viewportWidth;
+    var itemWidth = exports.itemWidth = slideWidth + itemHorizontalMargin * 2;
+    var entryBorderRadius = 8;
+    exports.default = _reactNative.StyleSheet.create({
+        slideInnerContainer: {
+            backgroundColor: '#efefef',
+            width: itemWidth,
+            height: 350,
+            paddingHorizontal: itemHorizontalMargin,
+            paddingBottom: 18
+        },
+        shadow: {
+            position: 'absolute',
+            top: 0,
+            left: itemHorizontalMargin,
+            right: itemHorizontalMargin,
+            bottom: 18,
+            shadowColor: _index.colors.black,
+            shadowOpacity: 0.25,
+            shadowOffset: {
+                width: 0,
+                height: 10
+            },
+            shadowRadius: 10,
+            borderRadius: entryBorderRadius
+        },
+        imageContainer: {
+            flex: 1,
+            marginBottom: IS_IOS ? 0 : -1,
+            backgroundColor: 'white',
+            borderTopLeftRadius: entryBorderRadius,
+            borderTopRightRadius: entryBorderRadius
+        },
+        imageContainerEven: {
+            backgroundColor: _index.colors.black
+        },
+        image: _extends({}, _reactNative.StyleSheet.absoluteFillObject, {
+            resizeMode: 'cover',
+            borderRadius: IS_IOS ? entryBorderRadius : 0,
+            borderTopLeftRadius: entryBorderRadius,
+            borderTopRightRadius: entryBorderRadius
+        }),
+        radiusMask: {
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: entryBorderRadius,
+            backgroundColor: 'white'
+        },
+        radiusMaskEven: {
+            backgroundColor: _index.colors.black
+        },
+        textContainer: {
+            justifyContent: 'center',
+            paddingTop: 20 - entryBorderRadius,
+            paddingBottom: 20,
+            paddingHorizontal: 16,
+            backgroundColor: 'white',
+            borderBottomLeftRadius: entryBorderRadius,
+            borderBottomRightRadius: entryBorderRadius
+        },
+        textContainerEven: {
+            backgroundColor: _index.colors.black
+        },
+        title: {
+            color: _index.colors.black,
+            fontSize: 13,
+            fontWeight: 'bold',
+            letterSpacing: 0.5
+        },
+        titleEven: {
+            color: 'white'
+        },
+        subtitle: {
+            marginTop: 6,
+            color: _index.colors.gray,
+            fontSize: 12,
+            fontStyle: 'italic'
+        },
+        subtitleEven: {
+            color: 'rgba(255, 255, 255, 0.7)'
+        }
+    });
+});

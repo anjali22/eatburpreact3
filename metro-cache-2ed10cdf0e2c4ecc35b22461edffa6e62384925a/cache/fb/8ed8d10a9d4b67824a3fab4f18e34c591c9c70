@@ -1,0 +1,197 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/components/SliderEntry.js";
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _propTypes = require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _reactNativeSnapCarousel = require(_dependencyMap[4], "react-native-snap-carousel");
+
+    var _SliderEntry = require(_dependencyMap[5], "../styles/SliderEntry.style");
+
+    var _SliderEntry2 = _interopRequireDefault(_SliderEntry);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        SliderEntry: {
+            displayName: "SliderEntry"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/components/SliderEntry.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var SliderEntry = _wrapComponent("SliderEntry")((_temp = _class = function (_Component) {
+        _inherits(SliderEntry, _Component);
+
+        function SliderEntry() {
+            _classCallCheck(this, SliderEntry);
+
+            return _possibleConstructorReturn(this, (SliderEntry.__proto__ || Object.getPrototypeOf(SliderEntry)).apply(this, arguments));
+        }
+
+        _createClass(SliderEntry, [{
+            key: "render",
+            value: function render() {
+                var _props = this.props,
+                    _props$data = _props.data,
+                    title = _props$data.title,
+                    subtitle = _props$data.subtitle,
+                    even = _props.even;
+                var uppercaseTitle = title ? _react3.default.createElement(
+                    _reactNative.Text,
+                    {
+                        style: [_SliderEntry2.default.title, even ? _SliderEntry2.default.titleEven : {}],
+                        numberOfLines: 2,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 41
+                        }
+                    },
+                    title.toUpperCase()
+                ) : false;
+                return _react3.default.createElement(
+                    _reactNative.TouchableOpacity,
+                    {
+                        activeOpacity: 1,
+                        style: _SliderEntry2.default.slideInnerContainer,
+                        onPress: function onPress() {
+                            alert("You've clicked '" + title + "'");
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 50
+                        }
+                    },
+                    _react3.default.createElement(_reactNative.View, {
+                        style: _SliderEntry2.default.shadow,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 55
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: [_SliderEntry2.default.imageContainer, even ? _SliderEntry2.default.imageContainerEven : {}],
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 56
+                            }
+                        },
+                        this.image,
+                        _react3.default.createElement(_reactNative.View, {
+                            style: [_SliderEntry2.default.radiusMask, even ? _SliderEntry2.default.radiusMaskEven : {}],
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 58
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: [_SliderEntry2.default.textContainer, even ? _SliderEntry2.default.textContainerEven : {}],
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 60
+                            }
+                        },
+                        uppercaseTitle,
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: [_SliderEntry2.default.subtitle, even ? _SliderEntry2.default.subtitleEven : {}],
+                                numberOfLines: 2,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 62
+                                }
+                            },
+                            subtitle
+                        )
+                    )
+                );
+            }
+        }, {
+            key: "image",
+            get: function get() {
+                var _props2 = this.props,
+                    illustration = _props2.data.illustration,
+                    parallax = _props2.parallax,
+                    parallaxProps = _props2.parallaxProps,
+                    even = _props2.even;
+                return parallax ? _react3.default.createElement(_reactNativeSnapCarousel.ParallaxImage, _extends({
+                    source: {
+                        uri: illustration
+                    },
+                    containerStyle: [_SliderEntry2.default.imageContainer, even ? _SliderEntry2.default.imageContainerEven : {}],
+                    style: _SliderEntry2.default.image,
+                    parallaxFactor: 0.35,
+                    showSpinner: true,
+                    spinnerColor: even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'
+                }, parallaxProps, {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 20
+                    }
+                })) : _react3.default.createElement(_reactNative.Image, {
+                    source: {
+                        uri: illustration
+                    },
+                    style: _SliderEntry2.default.image,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 30
+                    }
+                });
+            }
+        }]);
+
+        return SliderEntry;
+    }(_react2.Component), _class.propTypes = {
+        data: _propTypes2.default.object.isRequired,
+        even: _propTypes2.default.bool,
+        parallax: _propTypes2.default.bool,
+        parallaxProps: _propTypes2.default.object
+    }, _temp));
+
+    exports.default = SliderEntry;
+});

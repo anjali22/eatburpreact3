@@ -1,0 +1,307 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.js";
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _propTypes = require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _ParallaxImage = require(_dependencyMap[4], "./ParallaxImage.style");
+
+    var _ParallaxImage2 = _interopRequireDefault(_ParallaxImage);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        ParallaxImage: {
+            displayName: "ParallaxImage"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var ParallaxImage = _wrapComponent("ParallaxImage")((_temp = _class = function (_Component) {
+        _inherits(ParallaxImage, _Component);
+
+        function ParallaxImage(props) {
+            _classCallCheck(this, ParallaxImage);
+
+            var _this = _possibleConstructorReturn(this, (ParallaxImage.__proto__ || Object.getPrototypeOf(ParallaxImage)).call(this, props));
+
+            _this.state = {
+                offset: 0,
+                width: 0,
+                height: 0,
+                status: 1,
+                animOpacity: new _reactNative.Animated.Value(0)
+            };
+            _this._onLoad = _this._onLoad.bind(_this);
+            _this._onError = _this._onError.bind(_this);
+            return _this;
+        }
+
+        _createClass(ParallaxImage, [{
+            key: "setNativeProps",
+            value: function setNativeProps(nativeProps) {
+                this._container.setNativeProps(nativeProps);
+            }
+        }, {
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                var _this2 = this;
+
+                this._mounted = true;
+                setTimeout(function () {
+                    _this2._measureLayout();
+                }, 0);
+            }
+        }, {
+            key: "componentWillUnmount",
+            value: function componentWillUnmount() {
+                this._mounted = false;
+            }
+        }, {
+            key: "_measureLayout",
+            value: function _measureLayout() {
+                var _this3 = this;
+
+                if (this._container) {
+                    var _props = this.props,
+                        dimensions = _props.dimensions,
+                        vertical = _props.vertical,
+                        carouselRef = _props.carouselRef,
+                        sliderWidth = _props.sliderWidth,
+                        sliderHeight = _props.sliderHeight,
+                        itemWidth = _props.itemWidth,
+                        itemHeight = _props.itemHeight;
+
+                    if (carouselRef) {
+                        this._container.measureLayout((0, _reactNative.findNodeHandle)(carouselRef), function (x, y, width, height, pageX, pageY) {
+                            var offset = vertical ? y - (sliderHeight - itemHeight) / 2 : x - (sliderWidth - itemWidth) / 2;
+
+                            _this3.setState({
+                                offset: offset,
+                                width: dimensions && dimensions.width ? dimensions.width : Math.ceil(width),
+                                height: dimensions && dimensions.height ? dimensions.height : Math.ceil(height)
+                            });
+                        });
+                    }
+                }
+            }
+        }, {
+            key: "_onLoad",
+            value: function _onLoad(event) {
+                var _this4 = this;
+
+                var animOpacity = this.state.animOpacity;
+                var _props2 = this.props,
+                    fadeDuration = _props2.fadeDuration,
+                    onLoad = _props2.onLoad;
+
+                if (!this._mounted) {
+                    return;
+                }
+
+                this.setState({
+                    status: 2
+                });
+
+                if (onLoad) {
+                    onLoad(event);
+                }
+
+                _reactNative.Animated.timing(animOpacity, {
+                    toValue: 1,
+                    duration: fadeDuration,
+                    easing: _reactNative.Easing.out(_reactNative.Easing.quad),
+                    isInteraction: false,
+                    useNativeDriver: true
+                }).start(function () {
+                    _this4.setState({
+                        status: 3
+                    });
+                });
+            }
+        }, {
+            key: "_onError",
+            value: function _onError(event) {
+                var onError = this.props.onError;
+                this.setState({
+                    status: 4
+                });
+
+                if (onError) {
+                    onError(event);
+                }
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _this5 = this;
+
+                var containerStyle = this.props.containerStyle;
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        ref: function ref(c) {
+                            _this5._container = c;
+                        },
+                        pointerEvents: 'none',
+                        style: [containerStyle, _ParallaxImage2.default.container],
+                        onLayout: this._measureLayout,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 204
+                        }
+                    },
+                    this.image,
+                    this.spinner
+                );
+            }
+        }, {
+            key: "image",
+            get: function get() {
+                var _state = this.state,
+                    status = _state.status,
+                    animOpacity = _state.animOpacity,
+                    offset = _state.offset,
+                    width = _state.width,
+                    height = _state.height;
+
+                var _props3 = this.props,
+                    scrollPosition = _props3.scrollPosition,
+                    dimensions = _props3.dimensions,
+                    vertical = _props3.vertical,
+                    sliderWidth = _props3.sliderWidth,
+                    sliderHeight = _props3.sliderHeight,
+                    parallaxFactor = _props3.parallaxFactor,
+                    style = _props3.style,
+                    other = _objectWithoutProperties(_props3, ["scrollPosition", "dimensions", "vertical", "sliderWidth", "sliderHeight", "parallaxFactor", "style"]);
+
+                var parallaxPadding = (vertical ? height : width) * parallaxFactor;
+                var requiredStyles = {
+                    position: 'relative'
+                };
+                var dynamicStyles = {
+                    width: vertical ? width : width + parallaxPadding * 2,
+                    height: vertical ? height + parallaxPadding * 2 : height,
+                    opacity: animOpacity,
+                    transform: scrollPosition ? [{
+                        translateX: !vertical ? scrollPosition.interpolate({
+                            inputRange: [offset - sliderWidth, offset + sliderWidth],
+                            outputRange: [-parallaxPadding, parallaxPadding],
+                            extrapolate: 'clamp'
+                        }) : 0
+                    }, {
+                        translateY: vertical ? scrollPosition.interpolate({
+                            inputRange: [offset - sliderHeight, offset + sliderHeight],
+                            outputRange: [-parallaxPadding, parallaxPadding],
+                            extrapolate: 'clamp'
+                        }) : 0
+                    }] : []
+                };
+                return _react3.default.createElement(_reactNative.Animated.Image, _extends({}, other, {
+                    style: [_ParallaxImage2.default.image, style, requiredStyles, dynamicStyles],
+                    onLoad: this._onLoad,
+                    onError: status !== 3 ? this._onError : undefined,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 176
+                    }
+                }));
+            }
+        }, {
+            key: "spinner",
+            get: function get() {
+                var status = this.state.status;
+                var _props4 = this.props,
+                    showSpinner = _props4.showSpinner,
+                    spinnerColor = _props4.spinnerColor;
+                return status === 1 && showSpinner ? _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _ParallaxImage2.default.loaderContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 190
+                        }
+                    },
+                    _react3.default.createElement(_reactNative.ActivityIndicator, {
+                        size: 'small',
+                        color: spinnerColor,
+                        animating: true,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 191
+                        }
+                    })
+                ) : false;
+            }
+        }]);
+
+        return ParallaxImage;
+    }(_react2.Component), _class.propTypes = _extends({}, _reactNative.Image.propTypes, {
+        carouselRef: _propTypes2.default.object,
+        itemHeight: _propTypes2.default.number,
+        itemWidth: _propTypes2.default.number,
+        scrollPosition: _propTypes2.default.object,
+        sliderHeight: _propTypes2.default.number,
+        sliderWidth: _propTypes2.default.number,
+        vertical: _propTypes2.default.bool,
+        containerStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        dimensions: _propTypes2.default.shape({
+            width: _propTypes2.default.number,
+            height: _propTypes2.default.number
+        }),
+        fadeDuration: _propTypes2.default.number,
+        parallaxFactor: _propTypes2.default.number,
+        showSpinner: _propTypes2.default.bool,
+        spinnerColor: _propTypes2.default.string
+    }), _class.defaultProps = {
+        containerStyle: {},
+        fadeDuration: 500,
+        parallaxFactor: 0.3,
+        showSpinner: true,
+        spinnerColor: 'rgba(0, 0, 0, 0.4)'
+    }, _temp));
+
+    exports.default = ParallaxImage;
+});

@@ -1,0 +1,11 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+	module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+		"__packager_asset": true,
+		"httpServerLocation": "/assets/app/assets/fonts",
+		"scales": [1],
+		"hash": "33f225b8f5f7d6b34a0926f58f96c1e9",
+		"name": "OpenSans-Semibold",
+		"type": "ttf",
+		"fileHashes": ["33f225b8f5f7d6b34a0926f58f96c1e9"]
+	});
+});

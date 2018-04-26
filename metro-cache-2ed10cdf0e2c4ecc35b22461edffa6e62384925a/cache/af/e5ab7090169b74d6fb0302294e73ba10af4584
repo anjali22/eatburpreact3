@@ -1,0 +1,12 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+	module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+		"__packager_asset": true,
+		"httpServerLocation": "/assets/app/assets/images",
+		"width": 760,
+		"height": 760,
+		"scales": [1],
+		"hash": "9c82ab3e4b9f3c1c52177a71a273c7bb",
+		"name": "coldCoffee",
+		"type": "jpg"
+	});
+});

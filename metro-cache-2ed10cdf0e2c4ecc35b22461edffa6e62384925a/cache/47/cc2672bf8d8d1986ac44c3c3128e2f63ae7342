@@ -1,0 +1,793 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/SearchResultsList.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _tags = require(_dependencyMap[3], "../data/tags");
+
+    var _tags2 = _interopRequireDefault(_tags);
+
+    var _food = require(_dependencyMap[4], "../data/food");
+
+    var _food2 = _interopRequireDefault(_food);
+
+    var _reactRedux = require(_dependencyMap[5], "react-redux");
+
+    var _SearchBarPinterest = require(_dependencyMap[6], "../components/SearchBar/SearchBarPinterest");
+
+    var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        SearchResultsList: {
+            displayName: "SearchResultsList"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/SearchResultsList.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var ds = new _reactNative.ListView.DataSource({
+        rowHasChanged: function rowHasChanged(r1, r2) {
+            return r1 !== r2;
+        }
+    });
+
+    var SearchResultsList = _wrapComponent("SearchResultsList")(function (_React$Component) {
+        _inherits(SearchResultsList, _React$Component);
+
+        function SearchResultsList(props) {
+            var _this2 = this;
+
+            _classCallCheck(this, SearchResultsList);
+
+            var _this = _possibleConstructorReturn(this, (SearchResultsList.__proto__ || Object.getPrototypeOf(SearchResultsList)).call(this, props));
+
+            _this.fetchTopRestaurants = function _callee(foodId) {
+                var response, json;
+                return regeneratorRuntime.async(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                console.log("in fetchTopRestaurants foodid", foodId);
+                                _context.next = 4;
+                                return regeneratorRuntime.awrap(fetch('http://192.168.43.101:3000/getTopRestaurants', {
+                                    method: 'POST',
+                                    headers: {
+                                        Accept: 'application/json',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        foodId: foodId
+                                    })
+                                }));
+
+                            case 4:
+                                response = _context.sent;
+                                _context.next = 7;
+                                return regeneratorRuntime.awrap(response.json());
+
+                            case 7:
+                                json = _context.sent;
+                                console.log(json, "json");
+
+                                _this.setState({
+                                    topRestaurants: json.docs
+                                });
+
+                                _context.next = 15;
+                                break;
+
+                            case 12:
+                                _context.prev = 12;
+                                _context.t0 = _context["catch"](0);
+                                console.error(_context.t0);
+
+                            case 15:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, _this2, [[0, 12]]);
+            };
+
+            _this.renderTag = function (tag) {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.suggestionTagContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 210
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.suggestionTag,
+                            onPress: function onPress() {
+                                return _this._handlePressFood(tag);
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 211
+                            }
+                        },
+                        tag.title
+                    )
+                );
+            };
+
+            state = {
+                searchQuery: '',
+                foodData: _food2.default,
+                refreshing: false,
+                topRestaurants: []
+            };
+            return _this;
+        }
+
+        _createClass(SearchResultsList, [{
+            key: "componentWillMount",
+            value: function componentWillMount() {
+                var params = this.props.navigation.state.params;
+                var searchQuery = params.searchQuery;
+                this.setState({
+                    searchQuery: searchQuery
+                });
+                console.log("search query in comp will mount", searchQuery);
+                var foodId = params.foodId;
+                console.log("foooooood id", foodId);
+                this.fetchTopRestaurants(foodId);
+            }
+        }, {
+            key: "_onRefresh",
+            value: function _onRefresh() {
+                var _this3 = this;
+
+                this.setState({
+                    refreshing: true
+                });
+                fetchData().then(function () {
+                    _this3.setState({
+                        refreshing: false
+                    });
+                });
+            }
+        }, {
+            key: "fetchData",
+            value: function fetchData() {
+                var that = this;
+            }
+        }, {
+            key: "_renderItem",
+            value: function _renderItem(_ref) {
+                var item = _ref.item,
+                    index = _ref.index;
+
+                if (index === 0) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.firstListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 94
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 95
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[7], '../assets/images/sandwich.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 96
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 101
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 102
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 105
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 1) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.twoListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 113
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 114
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 115
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 120
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 121
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 124
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 2) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.threeListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 132
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 133
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[9], '../assets/images/lassi.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 134
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 139
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 140
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 143
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 3) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.fourListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 151
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 152
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[10], '../assets/images/coldCoffee.jpg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 153
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 158
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 159
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 162
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 4) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.fiveListComponent,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 170
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageContainer,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 171
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: styles.image,
+                                resizeMode: "cover",
+                                source: require(_dependencyMap[11], '../assets/images/pavBhaji.jpeg'),
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 172
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 177
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.foodName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 178
+                                    }
+                                },
+                                item.name
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.placeName,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 181
+                                    }
+                                },
+                                item.bestAt
+                            )
+                        )
+                    );
+                } else if (index === 5) return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.lastListComponent,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 189
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.imageContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 190
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.Image, {
+                            style: styles.image,
+                            resizeMode: "cover",
+                            source: require(_dependencyMap[12], '../assets/images/poha.jpg'),
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 191
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.content,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 196
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.foodName,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 197
+                                }
+                            },
+                            item.name
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.placeName,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 200
+                                }
+                            },
+                            item.bestAt
+                        )
+                    )
+                );
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.main,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 221
+                        }
+                    },
+                    _react3.default.createElement(_reactNative.StatusBar, {
+                        translucent: false,
+                        barStyle: "default",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 222
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.searchBarContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 223
+                            }
+                        },
+                        _react3.default.createElement(_SearchBarPinterest2.default, {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 224
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.tagsContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 226
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.ListView, {
+                            horizontal: true,
+                            dataSource: ds.cloneWithRows(_tags2.default),
+                            renderRow: this.renderTag,
+                            showsHorizontalScrollIndicator: false,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 227
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.searchResultsTitleContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 257
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.searchResultsTitle,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 258
+                                }
+                            },
+                            this.state.searchQuery,
+                            ",",
+                            this.props.foodId
+                        )
+                    ),
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        style: styles.list,
+                        refreshControl: _react3.default.createElement(_reactNative.RefreshControl, {
+                            refreshing: this.state.refreshing,
+                            onRefresh: this._onRefresh.bind(this),
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 274
+                            }
+                        }),
+                        data: _food2.default,
+                        extraData: this.state,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        showsVerticalScrollIndicator: false,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 272
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return SearchResultsList;
+    }(_react3.default.Component));
+
+    var styles = {
+        main: {
+            flex: 1,
+            backgroundColor: '#fff'
+        },
+        searchBarContainer: {
+            backgroundColor: '#1976d2'
+        },
+        tagsContainer: {
+            flexDirection: 'row',
+            backgroundColor: '#1976d2'
+        },
+        suggestionTagContainer: {
+            borderRadius: 6,
+            backgroundColor: '#fff',
+            padding: 6,
+            margin: 4
+        },
+        suggestionTag: {
+            fontFamily: 'open-sans-regular',
+            fontSize: 14,
+            color: '#1976d2'
+        },
+        searchResultsTitleContainer: {
+            marginRight: 10,
+            marginTop: 10,
+            marginLeft: 10,
+            marginBottom: 10
+        },
+        searchResultsTitle: {
+            fontFamily: 'open-sans-regular',
+            fontSize: 18,
+            paddingLeft: 20,
+            color: '#00649f'
+        },
+        list: {
+            marginRight: 10,
+            marginLeft: 10
+        },
+        listComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#fff',
+            padding: 5
+        },
+        firstListComponent: {
+            borderTopLeftRadius: 8,
+            borderTopRightRadius: 8,
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#00649f',
+            padding: 5
+        },
+        twoListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#01aac1',
+            padding: 5
+        },
+        threeListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#00dbe7',
+            padding: 5
+        },
+        fourListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#97ecc5',
+            padding: 5
+        },
+        fiveListComponent: {
+            flexDirection: 'row',
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#c6f1e7',
+            padding: 5
+        },
+        lastListComponent: {
+            flexDirection: 'row',
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+            borderBottomColor: '#e5e5e5',
+            backgroundColor: '#c7f3ff',
+            padding: 5
+        },
+        imageContainer: {},
+        image: {
+            height: 80,
+            width: 80,
+            borderRadius: 40
+        },
+        content: {
+            marginLeft: 20,
+            marginTop: 5
+        },
+        foodName: {
+            fontFamily: 'open-sans-semibold',
+            fontSize: 18,
+            color: '#fff'
+        },
+        placeName: {
+            fontFamily: 'open-sans-light',
+            fontSize: 15,
+            color: '#fff'
+        }
+    };
+
+    var mapStateToProps = function mapStateToProps(state) {
+        var foodId = state.search.selectedFood;
+        return {
+            foodId: foodId
+        };
+    };
+
+    exports.default = (0, _reactRedux.connect)()(SearchResultsList);
+});

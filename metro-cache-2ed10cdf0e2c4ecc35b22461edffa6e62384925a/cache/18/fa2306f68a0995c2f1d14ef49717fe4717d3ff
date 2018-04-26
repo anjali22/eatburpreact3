@@ -1,0 +1,89 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.Drawer = exports.Tabs = exports.Stack = undefined;
+
+  var _react = require(_dependencyMap[0], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _reactNative = require(_dependencyMap[1], "react-native");
+
+  var _reactNavigation = require(_dependencyMap[2], "react-navigation");
+
+  var _ItemList = require(_dependencyMap[3], "./ItemList");
+
+  var _ItemList2 = _interopRequireDefault(_ItemList);
+
+  var _Item = require(_dependencyMap[4], "./Item");
+
+  var _Item2 = _interopRequireDefault(_Item);
+
+  var _TabA = require(_dependencyMap[5], "./TabA");
+
+  var _TabA2 = _interopRequireDefault(_TabA);
+
+  var _TabB = require(_dependencyMap[6], "./TabB");
+
+  var _TabB2 = _interopRequireDefault(_TabB);
+
+  var _TabC = require(_dependencyMap[7], "./TabC");
+
+  var _TabC2 = _interopRequireDefault(_TabC);
+
+  var _Plain = require(_dependencyMap[8], "./Plain");
+
+  var _Plain2 = _interopRequireDefault(_Plain);
+
+  var _example = require(_dependencyMap[9], "./example");
+
+  var _example2 = _interopRequireDefault(_example);
+
+  var _Cuisines = require(_dependencyMap[10], "./screens/Cuisines");
+
+  var _Cuisines2 = _interopRequireDefault(_Cuisines);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var Stack = exports.Stack = (0, _reactNavigation.StackNavigator)({
+    ItemList: {
+      screen: _ItemList2.default
+    },
+    Item: {
+      screen: _Item2.default
+    }
+  }, {
+    initialRouteName: 'ItemList'
+  });
+  var Tabs = exports.Tabs = (0, _reactNavigation.TabNavigator)({
+    TabA: {
+      screen: _TabA2.default
+    },
+    TabB: {
+      screen: _TabB2.default
+    },
+    TabC: {
+      screen: Stack
+    }
+  }, {
+    order: ['TabA', 'TabB', 'TabC']
+  });
+  var Drawer = exports.Drawer = (0, _reactNavigation.DrawerNavigator)({
+    Home: {
+      screen: _example2.default
+    },
+    Cuisines: {
+      screen: _Cuisines2.default
+    },
+    Stack: {
+      screen: Stack
+    },
+    Tabs: {
+      screen: Tabs
+    },
+    Plain: {
+      screen: _Plain2.default
+    }
+  });
+});

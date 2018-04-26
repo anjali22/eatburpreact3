@@ -1,0 +1,165 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.animatedStyles = exports.scrollInterpolators = undefined;
+
+    var _reactNativeSnapCarousel = require(_dependencyMap[0], "react-native-snap-carousel");
+
+    function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+    function scrollInterpolator1(index, carouselProps) {
+        var range = [3, 2, 1, 0, -1];
+        var inputRange = (0, _reactNativeSnapCarousel.getInputRangeFromIndexes)(range, index, carouselProps);
+        var outputRange = range;
+        return {
+            inputRange: inputRange,
+            outputRange: outputRange
+        };
+    }
+
+    function animatedStyles1(index, animatedValue, carouselProps) {
+        var sizeRef = carouselProps.vertical ? carouselProps.itemHeight : carouselProps.itemWidth;
+        var translateProp = carouselProps.vertical ? 'translateY' : 'translateX';
+        return {
+            zIndex: carouselProps.data.length - index,
+            opacity: animatedValue.interpolate({
+                inputRange: [2, 3],
+                outputRange: [1, 0],
+                extrapolate: 'clamp'
+            }),
+            transform: [{
+                rotate: animatedValue.interpolate({
+                    inputRange: [-1, 0, 1, 2, 3],
+                    outputRange: ['-25deg', '0deg', '-3deg', '1.8deg', '0deg'],
+                    extrapolate: 'clamp'
+                })
+            }, _defineProperty({}, translateProp, animatedValue.interpolate({
+                inputRange: [-1, 0, 1, 2, 3],
+                outputRange: [-sizeRef * 0.5, 0, -sizeRef, -sizeRef * 2, -sizeRef * 3],
+                extrapolate: 'clamp'
+            }))]
+        };
+    }
+
+    function scrollInterpolator2(index, carouselProps) {
+        var range = [2, 1, 0, -1];
+        var inputRange = (0, _reactNativeSnapCarousel.getInputRangeFromIndexes)(range, index, carouselProps);
+        var outputRange = range;
+        return {
+            inputRange: inputRange,
+            outputRange: outputRange
+        };
+    }
+
+    function animatedStyles2(index, animatedValue, carouselProps) {
+        var sizeRef = carouselProps.vertical ? carouselProps.itemHeight : carouselProps.itemWidth;
+        var translateProp = carouselProps.vertical ? 'translateY' : 'translateX';
+        return {
+            zIndex: carouselProps.data.length - index,
+            opacity: animatedValue.interpolate({
+                inputRange: [-1, 0, 1, 2],
+                outputRange: [0.75, 1, 0.6, 0.4]
+            }),
+            transform: [{
+                rotate: animatedValue.interpolate({
+                    inputRange: [-1, 0, 1, 2],
+                    outputRange: ['0deg', '0deg', '5deg', '8deg'],
+                    extrapolate: 'clamp'
+                })
+            }, {
+                scale: animatedValue.interpolate({
+                    inputRange: [-1, 0, 1, 2],
+                    outputRange: [0.96, 1, 0.85, 0.7]
+                })
+            }, _defineProperty({}, translateProp, animatedValue.interpolate({
+                inputRange: [-1, 0, 1, 2],
+                outputRange: [0, 0, -sizeRef + 30, -sizeRef * 2 + 45],
+                extrapolate: 'clamp'
+            }))]
+        };
+    }
+
+    function scrollInterpolator3(index, carouselProps) {
+        var range = [2, 1, 0, -1];
+        var inputRange = (0, _reactNativeSnapCarousel.getInputRangeFromIndexes)(range, index, carouselProps);
+        var outputRange = range;
+        return {
+            inputRange: inputRange,
+            outputRange: outputRange
+        };
+    }
+
+    function animatedStyles3(index, animatedValue, carouselProps) {
+        var sizeRef = carouselProps.vertical ? carouselProps.itemHeight : carouselProps.itemWidth;
+        var translateProp = carouselProps.vertical ? 'translateY' : 'translateX';
+        return {
+            zIndex: carouselProps.data.length - index,
+            opacity: animatedValue.interpolate({
+                inputRange: [-1, 0, 1, 2],
+                outputRange: [1, 1, 0.75, 0.5],
+                extrapolate: 'clamp'
+            }),
+            transform: [_defineProperty({}, translateProp, animatedValue.interpolate({
+                inputRange: [-1, 0, 1, 2],
+                outputRange: [0, 0, -sizeRef * 2, -sizeRef],
+                extrapolate: 'clamp'
+            }))]
+        };
+    }
+
+    function scrollInterpolator4(index, carouselProps) {
+        var range = [1, 0, -1];
+        var inputRange = (0, _reactNativeSnapCarousel.getInputRangeFromIndexes)(range, index, carouselProps);
+        var outputRange = range;
+        return {
+            inputRange: inputRange,
+            outputRange: outputRange
+        };
+    }
+
+    function animatedStyles4(index, animatedValue, carouselProps) {
+        return {
+            zIndex: carouselProps.data.length - index,
+            opacity: animatedValue.interpolate({
+                inputRange: [-1, 0, 1],
+                outputRange: [0.75, 1, 0.75],
+                extrapolate: 'clamp'
+            }),
+            transform: [{
+                perspective: 1000
+            }, {
+                scale: animatedValue.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [0.65, 1, 0.65],
+                    extrapolate: 'clamp'
+                })
+            }, {
+                rotateX: animatedValue.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: ['30deg', '0deg', '30deg'],
+                    extrapolate: 'clamp'
+                })
+            }, {
+                rotateY: animatedValue.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: ['-30deg', '0deg', '30deg'],
+                    extrapolate: 'clamp'
+                })
+            }]
+        };
+    }
+
+    var scrollInterpolators = exports.scrollInterpolators = {
+        scrollInterpolator1: scrollInterpolator1,
+        scrollInterpolator2: scrollInterpolator2,
+        scrollInterpolator3: scrollInterpolator3,
+        scrollInterpolator4: scrollInterpolator4
+    };
+    var animatedStyles = exports.animatedStyles = {
+        animatedStyles1: animatedStyles1,
+        animatedStyles2: animatedStyles2,
+        animatedStyles3: animatedStyles3,
+        animatedStyles4: animatedStyles4
+    };
+});

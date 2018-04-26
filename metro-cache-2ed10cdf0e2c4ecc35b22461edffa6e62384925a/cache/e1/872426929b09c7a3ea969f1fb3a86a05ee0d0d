@@ -1,0 +1,208 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/pagination/PaginationDot.js";
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _propTypes = require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _Pagination = require(_dependencyMap[4], "./Pagination.style");
+
+    var _Pagination2 = _interopRequireDefault(_Pagination);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        PaginationDot: {
+            displayName: "PaginationDot"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/pagination/PaginationDot.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var PaginationDot = _wrapComponent("PaginationDot")((_temp = _class = function (_PureComponent) {
+        _inherits(PaginationDot, _PureComponent);
+
+        function PaginationDot(props) {
+            _classCallCheck(this, PaginationDot);
+
+            var _this = _possibleConstructorReturn(this, (PaginationDot.__proto__ || Object.getPrototypeOf(PaginationDot)).call(this, props));
+
+            _this.state = {
+                animColor: new _reactNative.Animated.Value(0),
+                animOpacity: new _reactNative.Animated.Value(0),
+                animTransform: new _reactNative.Animated.Value(0)
+            };
+            return _this;
+        }
+
+        _createClass(PaginationDot, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                if (this.props.active) {
+                    this._animate(1);
+                }
+            }
+        }, {
+            key: "componentWillReceiveProps",
+            value: function componentWillReceiveProps(nextProps) {
+                if (nextProps.active !== this.props.active) {
+                    this._animate(nextProps.active ? 1 : 0);
+                }
+            }
+        }, {
+            key: "_animate",
+            value: function _animate() {
+                var toValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+                var _state = this.state,
+                    animColor = _state.animColor,
+                    animOpacity = _state.animOpacity,
+                    animTransform = _state.animTransform;
+                var commonProperties = {
+                    toValue: toValue,
+                    duration: 250,
+                    isInteraction: false,
+                    useNativeDriver: !this._shouldAnimateColor
+                };
+                var animations = [_reactNative.Animated.timing(animOpacity, _extends({
+                    easing: _reactNative.Easing.linear
+                }, commonProperties)), _reactNative.Animated.spring(animTransform, _extends({
+                    friction: 4,
+                    tension: 50
+                }, commonProperties))];
+
+                if (this._shouldAnimateColor) {
+                    animations.push(_reactNative.Animated.timing(animColor, _extends({
+                        easing: _reactNative.Easing.linear
+                    }, commonProperties)));
+                }
+
+                _reactNative.Animated.parallel(animations).start();
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _state2 = this.state,
+                    animColor = _state2.animColor,
+                    animOpacity = _state2.animOpacity,
+                    animTransform = _state2.animTransform;
+                var _props = this.props,
+                    active = _props.active,
+                    activeOpacity = _props.activeOpacity,
+                    carouselRef = _props.carouselRef,
+                    color = _props.color,
+                    containerStyle = _props.containerStyle,
+                    inactiveColor = _props.inactiveColor,
+                    inactiveStyle = _props.inactiveStyle,
+                    inactiveOpacity = _props.inactiveOpacity,
+                    inactiveScale = _props.inactiveScale,
+                    index = _props.index,
+                    style = _props.style,
+                    tappable = _props.tappable;
+                var animatedStyle = {
+                    opacity: animOpacity.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [inactiveOpacity, 1]
+                    }),
+                    transform: [{
+                        scale: animTransform.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [inactiveScale, 1]
+                        })
+                    }]
+                };
+                var animatedColor = this._shouldAnimateColor ? {
+                    backgroundColor: animColor.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [inactiveColor, color]
+                    })
+                } : {};
+                var dotContainerStyle = [_Pagination2.default.sliderPaginationDotContainer, containerStyle || {}];
+                var dotStyle = [_Pagination2.default.sliderPaginationDot, style || {}, !active && inactiveStyle || {}, animatedStyle, animatedColor];
+                var onPress = tappable ? function () {
+                    carouselRef && carouselRef._snapToItem(carouselRef._getPositionIndex(index));
+                } : undefined;
+                return _react3.default.createElement(
+                    _reactNative.TouchableOpacity,
+                    {
+                        style: dotContainerStyle,
+                        activeOpacity: tappable ? activeOpacity : 1,
+                        onPress: onPress,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 135
+                        }
+                    },
+                    _react3.default.createElement(_reactNative.Animated.View, {
+                        style: dotStyle,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 140
+                        }
+                    })
+                );
+            }
+        }, {
+            key: "_shouldAnimateColor",
+            get: function get() {
+                var _props2 = this.props,
+                    color = _props2.color,
+                    inactiveColor = _props2.inactiveColor;
+                return color && inactiveColor;
+            }
+        }]);
+
+        return PaginationDot;
+    }(_react2.PureComponent), _class.propTypes = {
+        inactiveOpacity: _propTypes2.default.number.isRequired,
+        inactiveScale: _propTypes2.default.number.isRequired,
+        active: _propTypes2.default.bool,
+        activeOpacity: _propTypes2.default.number,
+        carouselRef: _propTypes2.default.object,
+        color: _propTypes2.default.string,
+        containerStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        inactiveColor: _propTypes2.default.string,
+        inactiveStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        index: _propTypes2.default.number,
+        style: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        tappable: _propTypes2.default.bool
+    }, _temp));
+
+    exports.default = PaginationDot;
+});

@@ -1,0 +1,12 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/app/assets/images",
+    "width": 1200,
+    "height": 1200,
+    "scales": [1],
+    "hash": "88af0ff9f23e77449e77238c40269f2b",
+    "name": "lasagna",
+    "type": "jpg"
+  });
+});

@@ -1,0 +1,165 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/navigation/RootNavigation.js";
+
+    var _react = require(_dependencyMap[0], "react");
+
+    var _react2 = _interopRequireDefault(_react);
+
+    var _reactNavigation = require(_dependencyMap[1], "react-navigation");
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _Home = require(_dependencyMap[3], "../screens/Home");
+
+    var _Home2 = _interopRequireDefault(_Home);
+
+    var _HomeOne = require(_dependencyMap[4], "../screens/HomeOne");
+
+    var _HomeOne2 = _interopRequireDefault(_HomeOne);
+
+    var _HomeTwo = require(_dependencyMap[5], "../screens/HomeTwo");
+
+    var _HomeTwo2 = _interopRequireDefault(_HomeTwo);
+
+    var _HomeThree = require(_dependencyMap[6], "../screens/HomeThree");
+
+    var _HomeThree2 = _interopRequireDefault(_HomeThree);
+
+    var _HomeFour = require(_dependencyMap[7], "../screens/HomeFour");
+
+    var _HomeFour2 = _interopRequireDefault(_HomeFour);
+
+    var _AddReview = require(_dependencyMap[8], "../screens/AddReview");
+
+    var _AddReview2 = _interopRequireDefault(_AddReview);
+
+    var _SearchList = require(_dependencyMap[9], "../screens/SearchList");
+
+    var _SearchList2 = _interopRequireDefault(_SearchList);
+
+    var _SearchResultsList = require(_dependencyMap[10], "../screens/SearchResultsList");
+
+    var _SearchResultsList2 = _interopRequireDefault(_SearchResultsList);
+
+    var _FontAwesome = require(_dependencyMap[11], "@expo/vector-icons/FontAwesome");
+
+    var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    var SearchStack = (0, _reactNavigation.StackNavigator)({
+        searchList: {
+            screen: _SearchList2.default
+        },
+        searchResultsList: {
+            screen: _SearchResultsList2.default
+        }
+    }, {
+        headerMode: 'none'
+    });
+    var HomeStack = (0, _reactNavigation.StackNavigator)({
+        home: {
+            screen: _HomeFour2.default
+        },
+        searchSuggestion: {
+            screen: SearchStack
+        }
+    }, {
+        headerMode: 'none'
+    });
+    var TabLayout = (0, _reactNavigation.TabNavigator)({
+        home: {
+            screen: HomeStack
+        },
+        map: {
+            screen: _HomeOne2.default
+        },
+        review: {
+            screen: _AddReview2.default
+        },
+        settings: {
+            screen: _Home2.default
+        }
+    }, {
+        navigationOptions: function navigationOptions(_ref) {
+            var navigation = _ref.navigation;
+            return {
+                tabBarLabel: function tabBarLabel() {
+                    var routeName = navigation.state.routeName;
+                    var label = routeName;
+
+                    if (label === 'home') {
+                        return 'Home';
+                    }
+
+                    if (label === 'map') {
+                        return 'Town Map';
+                    }
+
+                    if (label === 'review') {
+                        return 'Review';
+                    }
+
+                    if (label === 'settings') {
+                        return 'Me';
+                    }
+                },
+                tabBarIcon: function tabBarIcon(_ref2) {
+                    var focused = _ref2.focused;
+                    var routeName = navigation.state.routeName;
+                    var iconName = void 0;
+
+                    switch (routeName) {
+                        case 'home':
+                            iconName = _reactNative.Platform.OS === 'ios' ? 'ios-list' : 'home';
+                            break;
+
+                        case 'map':
+                            iconName = _reactNative.Platform.OS === 'ios' ? 'ios-map-outline' : 'map-marker';
+                            break;
+
+                        case 'review':
+                            iconName = _reactNative.Platform.OS === 'ios' ? 'ios-options-outline' : 'star';
+                            break;
+
+                        case 'settings':
+                            iconName = _reactNative.Platform.OS === 'ios' ? 'ion-md-star-outline' : 'cog';
+                    }
+
+                    return _react2.default.createElement(_FontAwesome2.default, {
+                        name: iconName,
+                        size: _reactNative.Platform.OS === 'ios' ? 30 : 27,
+                        style: {
+                            marginBottom: -3
+                        },
+                        color: focused ? '#0d47a1' : '#A9A9A9',
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 104
+                        }
+                    });
+                }
+            };
+        },
+        tabBarComponent: _reactNavigation.TabBarBottom,
+        tabBarPosition: 'bottom',
+        tabBarOptions: {
+            style: {
+                backgroundColor: '#fff',
+                borderTopColor: '#fff',
+                height: 60,
+                padding: 8
+            }
+        }
+    });
+    exports.default = (0, _reactNavigation.StackNavigator)({
+        tabs: {
+            screen: TabLayout
+        }
+    }, {
+        headerMode: 'none'
+    });
+});

@@ -1,0 +1,12 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+   module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+      "__packager_asset": true,
+      "httpServerLocation": "/assets/app/assets/images",
+      "width": 600,
+      "height": 600,
+      "scales": [1],
+      "hash": "5b3c4cd1cf4c7109a2a06d50a79f22fd",
+      "name": "lassi",
+      "type": "jpg"
+   });
+});

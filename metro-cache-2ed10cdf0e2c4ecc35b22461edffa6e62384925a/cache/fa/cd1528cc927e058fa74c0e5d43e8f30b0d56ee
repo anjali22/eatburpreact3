@@ -1,0 +1,12 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/app/assets/images",
+    "width": 871,
+    "height": 292,
+    "scales": [1],
+    "hash": "e90abe522e99b22281faecf82f600d8f",
+    "name": "pikachulogo",
+    "type": "png"
+  });
+});

@@ -1,0 +1,13 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/app/screens",
+    "width": 200,
+    "height": 200,
+    "scales": [1],
+    "hash": "dce1e875f330735f18c3bdd58941e14d",
+    "name": "LogoSmall",
+    "type": "png",
+    "fileHashes": ["dce1e875f330735f18c3bdd58941e14d"]
+  });
+});

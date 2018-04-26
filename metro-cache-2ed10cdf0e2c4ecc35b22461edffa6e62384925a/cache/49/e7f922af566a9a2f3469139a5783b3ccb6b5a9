@@ -1,0 +1,155 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/index.js";
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _reactNativeExtendedStylesheet = require(_dependencyMap[2], "react-native-extended-stylesheet");
+
+  var _reactNativeExtendedStylesheet2 = _interopRequireDefault(_reactNativeExtendedStylesheet);
+
+  var _Home = require(_dependencyMap[3], "./screens/Home");
+
+  var _Home2 = _interopRequireDefault(_Home);
+
+  var _HomeOne = require(_dependencyMap[4], "./screens/HomeOne");
+
+  var _HomeOne2 = _interopRequireDefault(_HomeOne);
+
+  var _HomeTwo = require(_dependencyMap[5], "./screens/HomeTwo");
+
+  var _HomeTwo2 = _interopRequireDefault(_HomeTwo);
+
+  var _RootNavigation = require(_dependencyMap[6], "./navigation/RootNavigation");
+
+  var _RootNavigation2 = _interopRequireDefault(_RootNavigation);
+
+  var _navigator = require(_dependencyMap[7], "./navigator");
+
+  var _expo = require(_dependencyMap[8], "expo");
+
+  var _reactRedux = require(_dependencyMap[9], "react-redux");
+
+  var _store = require(_dependencyMap[10], "./store/store");
+
+  var _store2 = _interopRequireDefault(_store);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    App: {
+      displayName: "App"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/index.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  _reactNativeExtendedStylesheet2.default.build({
+    $primaryBlue: '#4F6D7A'
+  });
+
+  var App = _wrapComponent("App")(function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App(props) {
+      _classCallCheck(this, App);
+
+      var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+      _this.state = {
+        loading: true
+      };
+      return _this;
+    }
+
+    _createClass(App, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        return regeneratorRuntime.async(function componentWillMount$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return regeneratorRuntime.awrap(_expo.Font.loadAsync({
+                  'open-sans-light': require(_dependencyMap[11], './assets/fonts/OpenSans-Light.ttf'),
+                  'pacifico-regular': require(_dependencyMap[12], './assets/fonts/Pacifico-Regular.ttf'),
+                  'open-sans-regular': require(_dependencyMap[13], './assets/fonts/OpenSans-Regular.ttf'),
+                  'open-sans-semibold': require(_dependencyMap[14], './assets/fonts/OpenSans-Semibold.ttf')
+                }));
+
+              case 2:
+                this.setState({
+                  loading: false
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, null, this);
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        if (this.state.loading) {
+          return _react3.default.createElement(_expo.AppLoading, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 41
+            }
+          });
+        }
+
+        return _react3.default.createElement(
+          _reactRedux.Provider,
+          {
+            store: _store2.default,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 45
+            }
+          },
+          _react3.default.createElement(_RootNavigation2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 46
+            }
+          })
+        );
+      }
+    }]);
+
+    return App;
+  }(_react3.default.Component));
+
+  exports.default = App;
+});

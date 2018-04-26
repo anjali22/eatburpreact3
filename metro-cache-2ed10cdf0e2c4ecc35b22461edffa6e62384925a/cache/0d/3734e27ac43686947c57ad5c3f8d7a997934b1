@@ -1,0 +1,211 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/pagination/Pagination.js";
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _propTypes = require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _PaginationDot = require(_dependencyMap[4], "./PaginationDot");
+
+    var _PaginationDot2 = _interopRequireDefault(_PaginationDot);
+
+    var _Pagination = require(_dependencyMap[5], "./Pagination.style");
+
+    var _Pagination2 = _interopRequireDefault(_Pagination);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Pagination: {
+            displayName: "Pagination"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/node_modules/react-native-snap-carousel/src/pagination/Pagination.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var IS_IOS = _reactNative.Platform.OS === 'ios';
+    var IS_RTL = _reactNative.I18nManager.isRTL;
+
+    var Pagination = _wrapComponent("Pagination")((_temp = _class = function (_PureComponent) {
+        _inherits(Pagination, _PureComponent);
+
+        function Pagination(props) {
+            _classCallCheck(this, Pagination);
+
+            var _this = _possibleConstructorReturn(this, (Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call(this, props));
+
+            if (props.dotColor && !props.inactiveDotColor || !props.dotColor && props.inactiveDotColor) {
+                console.warn('react-native-snap-carousel | Pagination: ' + 'You need to specify both `dotColor` and `inactiveDotColor`');
+            }
+
+            if (props.dotElement && !props.inactiveDotElement || !props.dotElement && props.inactiveDotElement) {
+                console.warn('react-native-snap-carousel | Pagination: ' + 'You need to specify both `dotElement` and `inactiveDotElement`');
+            }
+
+            if (props.tappableDots && !props.carouselRef) {
+                console.warn('react-native-snap-carousel | Pagination: ' + 'You must specify prop `carouselRef` when setting `tappableDots` to `true`');
+            }
+
+            return _this;
+        }
+
+        _createClass(Pagination, [{
+            key: "_needsRTLAdaptations",
+            value: function _needsRTLAdaptations() {
+                var vertical = this.props.vertical;
+                return IS_RTL && !IS_IOS && !vertical;
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _props = this.props,
+                    dotsLength = _props.dotsLength,
+                    containerStyle = _props.containerStyle,
+                    vertical = _props.vertical;
+
+                if (!dotsLength || dotsLength < 2) {
+                    return false;
+                }
+
+                var style = [_Pagination2.default.sliderPagination, {
+                    flexDirection: vertical ? 'column' : this._needsRTLAdaptations() ? 'row-reverse' : 'row'
+                }, containerStyle || {}];
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        pointerEvents: 'box-none',
+                        style: style,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 142
+                        }
+                    },
+                    this.dots
+                );
+            }
+        }, {
+            key: "_activeDotIndex",
+            get: function get() {
+                var _props2 = this.props,
+                    activeDotIndex = _props2.activeDotIndex,
+                    dotsLength = _props2.dotsLength;
+                return this._needsRTLAdaptations() ? dotsLength - activeDotIndex - 1 : activeDotIndex;
+            }
+        }, {
+            key: "dots",
+            get: function get() {
+                var _props3 = this.props,
+                    activeOpacity = _props3.activeOpacity,
+                    carouselRef = _props3.carouselRef,
+                    dotsLength = _props3.dotsLength,
+                    dotColor = _props3.dotColor,
+                    dotContainerStyle = _props3.dotContainerStyle,
+                    dotElement = _props3.dotElement,
+                    dotStyle = _props3.dotStyle,
+                    inactiveDotColor = _props3.inactiveDotColor,
+                    inactiveDotElement = _props3.inactiveDotElement,
+                    inactiveDotOpacity = _props3.inactiveDotOpacity,
+                    inactiveDotScale = _props3.inactiveDotScale,
+                    inactiveDotStyle = _props3.inactiveDotStyle,
+                    renderDots = _props3.renderDots,
+                    tappableDots = _props3.tappableDots;
+
+                if (renderDots) {
+                    return renderDots(this._activeDotIndex, dotsLength, this);
+                }
+
+                var DefaultDot = _react3.default.createElement(_PaginationDot2.default, {
+                    carouselRef: carouselRef,
+                    tappable: tappableDots && typeof carouselRef !== 'undefined',
+                    activeOpacity: activeOpacity,
+                    color: dotColor,
+                    containerStyle: dotContainerStyle,
+                    style: dotStyle,
+                    inactiveColor: inactiveDotColor,
+                    inactiveOpacity: inactiveDotOpacity,
+                    inactiveScale: inactiveDotScale,
+                    inactiveStyle: inactiveDotStyle,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 95
+                    }
+                });
+
+                var dots = [];
+
+                for (var i = 0; i < dotsLength; i++) {
+                    var isActive = i === this._activeDotIndex;
+                    dots.push(_react3.default.cloneElement((isActive ? dotElement : inactiveDotElement) || DefaultDot, {
+                        key: "pagination-dot-" + i,
+                        active: i === this._activeDotIndex,
+                        index: i
+                    }));
+                }
+
+                return dots;
+            }
+        }]);
+
+        return Pagination;
+    }(_react2.PureComponent), _class.propTypes = {
+        activeDotIndex: _propTypes2.default.number.isRequired,
+        dotsLength: _propTypes2.default.number.isRequired,
+        activeOpacity: _propTypes2.default.number,
+        carouselRef: _propTypes2.default.object,
+        containerStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        dotColor: _propTypes2.default.string,
+        dotContainerStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        dotElement: _propTypes2.default.element,
+        dotStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        inactiveDotColor: _propTypes2.default.string,
+        inactiveDotElement: _propTypes2.default.element,
+        inactiveDotOpacity: _propTypes2.default.number,
+        inactiveDotScale: _propTypes2.default.number,
+        inactiveDotStyle: _reactNative.ViewPropTypes ? _reactNative.ViewPropTypes.style : _reactNative.View.propTypes.style,
+        renderDots: _propTypes2.default.func,
+        tappableDots: _propTypes2.default.bool,
+        vertical: _propTypes2.default.bool
+    }, _class.defaultProps = {
+        inactiveDotOpacity: 0.5,
+        inactiveDotScale: 0.5,
+        tappableDots: false,
+        vertical: false
+    }, _temp));
+
+    exports.default = Pagination;
+});

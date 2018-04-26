@@ -1,0 +1,614 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/HomeTwo.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _SearchBarWhite = require(_dependencyMap[3], "../components/SearchBar/SearchBarWhite");
+
+    var _SearchBarWhite2 = _interopRequireDefault(_SearchBarWhite);
+
+    var _SearchBarPinterest = require(_dependencyMap[4], "../components/SearchBar/SearchBarPinterest");
+
+    var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
+
+    var _CategoryButton = require(_dependencyMap[5], "../components/CategoryButton/CategoryButton");
+
+    var _CategoryButton2 = _interopRequireDefault(_CategoryButton);
+
+    var _expo = require(_dependencyMap[6], "expo");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        HomeTwo: {
+            displayName: "HomeTwo"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/HomeTwo.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var HomeTwo = _wrapComponent("HomeTwo")(function (_Component) {
+        _inherits(HomeTwo, _Component);
+
+        function HomeTwo() {
+            _classCallCheck(this, HomeTwo);
+
+            return _possibleConstructorReturn(this, (HomeTwo.__proto__ || Object.getPrototypeOf(HomeTwo)).apply(this, arguments));
+        }
+
+        _createClass(HomeTwo, [{
+            key: "render",
+            value: function render() {
+                var _this2 = this;
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.main,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 14
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.imageContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 15
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.Image, {
+                            style: styles.image,
+                            source: require(_dependencyMap[7], './LogoSmall.png'),
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 16
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(_SearchBarPinterest2.default, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 21
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.foodInfoContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 35
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.TouchableNativeFeedback,
+                            {
+                                onPress: function onPress() {
+                                    return _this2._handlePressFood(food[0]);
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 37
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.food,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 39
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: styles.imageContainer,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 40
+                                        }
+                                    },
+                                    _react3.default.createElement(_reactNative.Image, {
+                                        style: styles.image,
+                                        resizeMode: "contain",
+                                        source: require(_dependencyMap[8], '../assets/images/cornSandwich.jpg'),
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 41
+                                        }
+                                    })
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: styles.subtitle,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 47
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: styles.subtitleText,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 48
+                                            }
+                                        },
+                                        "Abc"
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: styles.smallText,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 49
+                                            }
+                                        },
+                                        "Efg"
+                                    )
+                                )
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.food,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 55
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.imageContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 56
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: styles.image,
+                                    resizeMode: "contain",
+                                    source: require(_dependencyMap[9], '../assets/images/lasagna.jpg'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 57
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.subtitle,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 63
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.subtitleText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 64
+                                        }
+                                    },
+                                    "Lasagna"
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.smallText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 65
+                                        }
+                                    },
+                                    "Just My Bakes"
+                                )
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.food,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 68
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.imageContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 69
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: styles.image,
+                                    resizeMode: "contain",
+                                    source: require(_dependencyMap[10], '../assets/images/pavBhaji.jpeg'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 70
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.subtitle,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 76
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.subtitleText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 77
+                                        }
+                                    },
+                                    "Paav Bhaji"
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.smallText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 78
+                                        }
+                                    },
+                                    "Sarafa"
+                                )
+                            )
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.foodInfoContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 82
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.food,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 83
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.imageContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 84
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: styles.image,
+                                    resizeMode: "contain",
+                                    source: require(_dependencyMap[11], '../assets/images/coldCoffee.jpg'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 85
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.subtitle,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 91
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.subtitleText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 92
+                                        }
+                                    },
+                                    "Cold Coffee"
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.smallText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 93
+                                        }
+                                    },
+                                    "Tinku's, MMS"
+                                )
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.food,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 96
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.imageContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 97
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: styles.image,
+                                    resizeMode: "contain",
+                                    source: require(_dependencyMap[12], '../assets/images/poha.jpg'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 98
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.subtitle,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 104
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.subtitleText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 105
+                                        }
+                                    },
+                                    "Poha"
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.smallText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 106
+                                        }
+                                    },
+                                    "Apana, 56 Dukan"
+                                )
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.food,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 109
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.imageContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 110
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: styles.image,
+                                    resizeMode: "contain",
+                                    source: require(_dependencyMap[13], '../assets/images/lassi.jpg'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 111
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.subtitle,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 117
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.subtitleText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 118
+                                        }
+                                    },
+                                    "Lassi"
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.smallText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 119
+                                        }
+                                    },
+                                    "Jail Road"
+                                )
+                            )
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return HomeTwo;
+    }(_react2.Component));
+
+    var styles = {
+        main: {
+            flex: 1,
+            backgroundColor: '#ffffff'
+        },
+        container: {
+            backgroundColor: '#fff'
+        },
+        headingContainer: {
+            height: 200,
+            backgroundColor: '#fff',
+            justifyContent: 'center'
+        },
+        heading: {
+            fontSize: 40,
+            fontWeight: 'bold'
+        },
+        imageContainer: {
+            backgroundColor: '#C2185B',
+            height: 150,
+            width: 150,
+            borderRadius: 64,
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 5
+        },
+        suggestionContainer: {
+            margin: 5,
+            flex: 1,
+            padding: 5,
+            backgroundColor: '#fff',
+            borderWidth: 1,
+            borderColor: '#d9d9d9',
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4
+        },
+        heading: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: 10
+        },
+        headingTextStyle: {
+            fontSize: 18,
+            color: '#000'
+        },
+        subHeading: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: 5
+        },
+        subHeadingTextStyle: {
+            fontSize: 14,
+            color: '#ff8342'
+        },
+        foodInfoContainer: {
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-around'
+        },
+        food: {
+            flex: 1,
+            margin: 2,
+            alignItems: 'center'
+        },
+        imageContainer: {},
+        image: {
+            width: 100,
+            height: 100
+        },
+        subtitle: {
+            paddingTop: 5,
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        subtitleText: {
+            color: '#000000',
+            fontSize: 14
+        },
+        smallText: {
+            color: '#ff8342',
+            fontSize: 12
+        },
+        defaultText: {
+            fontSize: 15,
+            color: '#7e7e7e'
+        },
+        textOnSelect: {
+            fontSize: 15,
+            borderBottomWidth: 2,
+            borderBottomColor: '#000',
+            color: '#000'
+        },
+        button: {
+            alignItems: 'center',
+            paddingTop: 8,
+            paddingBottom: 1
+        }
+    };
+    exports.default = HomeTwo;
+});

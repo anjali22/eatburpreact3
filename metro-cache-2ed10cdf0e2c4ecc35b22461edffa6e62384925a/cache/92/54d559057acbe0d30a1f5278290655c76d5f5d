@@ -1,0 +1,497 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/example.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _reactNativeSnapCarousel = require(_dependencyMap[3], "react-native-snap-carousel");
+
+    var _reactNativeSnapCarousel2 = _interopRequireDefault(_reactNativeSnapCarousel);
+
+    var _SliderEntry = require(_dependencyMap[4], "./styles/SliderEntry.style");
+
+    var _SliderEntry2 = require(_dependencyMap[5], "./components/SliderEntry");
+
+    var _SliderEntry3 = _interopRequireDefault(_SliderEntry2);
+
+    var _index3 = require(_dependencyMap[6], "./styles/index.style");
+
+    var _index4 = _interopRequireDefault(_index3);
+
+    var _entries = require(_dependencyMap[7], "./static/entries");
+
+    var _animations = require(_dependencyMap[8], "./utils/animations");
+
+    var _SearchBarPinterest = require(_dependencyMap[9], "./components/SearchBar/SearchBarPinterest");
+
+    var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
+
+    var _expo = require(_dependencyMap[10], "expo");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        example: {
+            displayName: "example"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/example.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var IS_ANDROID = _reactNative.Platform.OS === 'android';
+    var SLIDER_1_FIRST_ITEM = 1;
+
+    var example = _wrapComponent("example")(function (_React$Component) {
+        _inherits(example, _React$Component);
+
+        function example(props) {
+            _classCallCheck(this, example);
+
+            var _this = _possibleConstructorReturn(this, (example.__proto__ || Object.getPrototypeOf(example)).call(this, props));
+
+            _this.state = {
+                loading: true,
+                slider1ActiveSlide: SLIDER_1_FIRST_ITEM
+            };
+            return _this;
+        }
+
+        _createClass(example, [{
+            key: "componentWillMount",
+            value: function componentWillMount() {
+                return regeneratorRuntime.async(function componentWillMount$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return regeneratorRuntime.awrap(_expo.Font.loadAsync({
+                                    'open-sans-light': require(_dependencyMap[11], './assets/fonts/OpenSans-Light.ttf'),
+                                    'pacifico-regular': require(_dependencyMap[12], './assets/fonts/Pacifico-Regular.ttf'),
+                                    'open-sans-regular': require(_dependencyMap[13], './assets/fonts/OpenSans-Regular.ttf'),
+                                    'open-sans-semibold': require(_dependencyMap[14], './assets/fonts/OpenSans-Semibold.ttf')
+                                }));
+
+                            case 2:
+                                this.setState({
+                                    loading: false
+                                });
+
+                            case 3:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, this);
+            }
+        }, {
+            key: "_renderItemWithParallax",
+            value: function _renderItemWithParallax(_ref, parallaxProps) {
+                var item = _ref.item,
+                    index = _ref.index;
+                return _react3.default.createElement(_SliderEntry3.default, {
+                    data: item,
+                    even: (index + 1) % 2 === 0,
+                    parallax: true,
+                    parallaxProps: parallaxProps,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 42
+                    }
+                });
+            }
+        }, {
+            key: "onPressTab",
+            value: function onPressTab() {}
+        }, {
+            key: "mainExample",
+            value: function mainExample(number, title) {
+                var _this2 = this;
+
+                var slider1ActiveSlide = this.state.slider1ActiveSlide;
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _index4.default.exampleContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 66
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                backgroundColor: '#fff'
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 67
+                            }
+                        },
+                        _react3.default.createElement(_SearchBarPinterest2.default, {
+                            onPress: function onPress() {
+                                return _this2._handlePressSearch();
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 70
+                            }
+                        }),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: {
+                                    flexDirection: 'row',
+                                    marginLeft: 10,
+                                    marginRight: 10,
+                                    marginBottom: 10,
+                                    justifyContent: 'space-around'
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 72
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 80
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        onPress: this.onPressTab,
+                                        style: _index4.default.tabText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 80
+                                        }
+                                    },
+                                    "Trending"
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 81
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: _index4.default.tabText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 81
+                                        }
+                                    },
+                                    "New"
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 82
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: _index4.default.tabText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 82
+                                        }
+                                    },
+                                    "Authentic"
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 83
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: _index4.default.tabText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 83
+                                        }
+                                    },
+                                    "Surprise Me!"
+                                )
+                            )
+                        )
+                    ),
+                    _react3.default.createElement(_reactNativeSnapCarousel2.default, {
+                        ref: function ref(c) {
+                            return _this2._slider1Ref = c;
+                        },
+                        data: _entries.ENTRIES1,
+                        renderItem: this._renderItemWithParallax,
+                        sliderWidth: _SliderEntry.sliderWidth,
+                        itemWidth: _SliderEntry.itemWidth,
+                        hasParallaxImages: true,
+                        firstItem: SLIDER_1_FIRST_ITEM,
+                        inactiveSlideScale: 0.94,
+                        inactiveSlideOpacity: 0.7,
+                        containerCustomStyle: _index4.default.slider,
+                        contentContainerCustomStyle: _index4.default.sliderContentContainer,
+                        loop: true,
+                        loopClonesPerSide: 2,
+                        autoplay: true,
+                        autoplayDelay: 500,
+                        autoplayInterval: 3000,
+                        onSnapToItem: function onSnapToItem(index) {
+                            return _this2.setState({
+                                slider1ActiveSlide: index
+                            });
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 89
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                flexDirection: 'row',
+                                justifyContent: 'space-around',
+                                marginTop: 10
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 110
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 115
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.TouchableHighlight,
+                                {
+                                    onPress: this.props.onPress,
+                                    style: _index4.default.imageNotSelectedContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 116
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: _index4.default.imageNotSelected,
+                                    source: require(_dependencyMap[15], './assets/icons/fire.png'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 117
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    onPress: this.onPressTab,
+                                    style: _index4.default.tabText,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 122
+                                    }
+                                },
+                                "Near Me"
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 123
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.TouchableHighlight,
+                                {
+                                    onPress: this.props.onPress,
+                                    style: _index4.default.imageContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 124
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: _index4.default.image,
+                                    source: require(_dependencyMap[15], './assets/icons/fire.png'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 125
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    onPress: this.onPressTab,
+                                    style: _index4.default.tabText,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 130
+                                    }
+                                },
+                                "Trending"
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 131
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.TouchableHighlight,
+                                {
+                                    onPress: this.props.onPress,
+                                    style: _index4.default.imageNotSelectedContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 132
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: _index4.default.imageNotSelected,
+                                    source: require(_dependencyMap[15], './assets/icons/fire.png'),
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 133
+                                    }
+                                })
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    onPress: this.onPressTab,
+                                    style: _index4.default.tabText,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 138
+                                    }
+                                },
+                                "Review"
+                            )
+                        )
+                    )
+                );
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var example1 = this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
+
+                if (this.state.loading) {
+                    return _react3.default.createElement(_expo.AppLoading, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 250
+                        }
+                    });
+                }
+
+                return _react3.default.createElement(
+                    _reactNative.SafeAreaView,
+                    {
+                        style: _index4.default.safeArea,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 255
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _index4.default.container,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 256
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.StatusBar, {
+                            translucent: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                            barStyle: 'light-content',
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 257
+                            }
+                        }),
+                        this.gradient,
+                        _react3.default.createElement(
+                            _reactNative.ScrollView,
+                            {
+                                style: _index4.default.scrollview,
+                                scrollEventThrottle: 200,
+                                directionalLockEnabled: true,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 263
+                                }
+                            },
+                            example1
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return example;
+    }(_react3.default.Component));
+
+    exports.default = example;
+});

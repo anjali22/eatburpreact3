@@ -1,0 +1,11 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+	module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+		"__packager_asset": true,
+		"httpServerLocation": "/assets/app/assets/fonts",
+		"scales": [1],
+		"hash": "1bf71be111189e76987a4bb9b3115cb7",
+		"name": "OpenSans-Light",
+		"type": "ttf",
+		"fileHashes": ["1bf71be111189e76987a4bb9b3115cb7"]
+	});
+});

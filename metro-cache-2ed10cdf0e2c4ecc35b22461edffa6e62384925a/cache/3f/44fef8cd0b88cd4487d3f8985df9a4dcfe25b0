@@ -1,0 +1,17 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _redux = require(_dependencyMap[0], "redux");
+
+    var _search = require(_dependencyMap[1], "./search");
+
+    var _search2 = _interopRequireDefault(_search);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    exports.default = (0, _redux.combineReducers)({
+        search: _search2.default
+    });
+});
