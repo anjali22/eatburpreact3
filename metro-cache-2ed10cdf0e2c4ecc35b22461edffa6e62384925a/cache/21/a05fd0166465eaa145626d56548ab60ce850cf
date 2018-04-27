@@ -490,6 +490,19 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             " Add Image "
                         )
                     ),
+                    image && _react3.default.createElement(_reactNative.Image, {
+                        source: {
+                            uri: image
+                        },
+                        style: {
+                            width: 200,
+                            height: 200
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 241
+                        }
+                    }),
                     _react3.default.createElement(
                         _reactNative.TouchableOpacity,
                         {
@@ -499,7 +512,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 241
+                                lineNumber: 242
                             }
                         },
                         _react3.default.createElement(
@@ -508,7 +521,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.submitButtonText,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 247
+                                    lineNumber: 248
                                 }
                             },
                             " Submit "

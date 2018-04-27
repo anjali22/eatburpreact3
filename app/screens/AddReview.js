@@ -237,7 +237,8 @@ export default class AddReview extends Component{
                <Text style = {styles.submitButtonText}> Add Image </Text>
                </TouchableOpacity>
                 
-
+                {image &&
+                <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
                <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
