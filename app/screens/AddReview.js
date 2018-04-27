@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, Image, ListView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, Image, ListView, ScrollView } from 'react-native';
 import { ImagePicker } from 'expo';
 
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -15,7 +15,8 @@ export default class AddReview extends Component{
         restaurants: [],
         foodItems: [],
         searchedRestaurants: [],
-        searchedFood: []       
+        searchedFood: [],
+        pickerResult: [],
     }
 
     componentWillMount() {
@@ -55,7 +56,7 @@ export default class AddReview extends Component{
           //this.setState({text: searchedText});
           //console.log('anjaliiiiiiiiiii',this.state.text);
 
-          //this.setState({ restoName: text })
+          this.setState({ restoName: text })
 
     }
     
@@ -64,7 +65,7 @@ export default class AddReview extends Component{
             return food.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
           });
         this.setState({searchedFood: searchedFood});
-        //this.setState({ itemName: text })
+        this.setState({ itemName: text })
     }
 
     handleReview = (text)=> {
@@ -103,11 +104,17 @@ export default class AddReview extends Component{
     };
 
     _handlePressRestaurant = (restaurant) => {
-        this.setState ( { restoName: restaurant.name})
+        this.setState ( { restoName: restaurant.name});
+        this.setState ( { searchedRestaurants: []});
+        console.log("in handle press restaurant", this.state.restoName);
+
     }
 
     _handlePressFood = (food) => {
-        this.setState ( { itemName: food.name})        
+        this.setState ( { itemName: food.name});
+        this.setState ( { searchedFood: []});
+        console.log("in handle press food item", this.state.itemName);
+        
     }
 
 
@@ -117,7 +124,8 @@ export default class AddReview extends Component{
           aspect: [4, 3],
         });
     
-        this._handleImagePicked(pickerResult);
+        this.setState({pickerResult: pickerResult});
+        //this._handleImagePicked(pickerResult);
 
         console.log(pickerResult);
     
@@ -160,46 +168,53 @@ export default class AddReview extends Component{
 
     async onSubmitReview() {
 
-        var data = {
-            restoName: this.state.restoName,
-            itemName: this.state.itemName,
-            review:  this.state.review, 
-            rating: this.state.rating,
-        };
-        console.log(JSON.stringify(data), "data")
-            try {
-                let response = await fetch(
-                 "http://192.168.43.101:3000/addReview",
-                 {
-                   method: "POST",
-                   headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                   },
-                  body: JSON.stringify(data)
-                }
-               );
-                if (response.status >= 200 && response.status < 300) {
-                   alert("authenticated successfully!!!");
-                }
-              } catch (errors) {
+        this._handleImagePicked(this.state.pickerResult);
+
+        // var data = {
+        //     restoName: this.state.restoName,
+        //     itemName: this.state.itemName,
+        //     review:  this.state.review, 
+        //     rating: this.state.rating,
+        // };
+        // console.log(JSON.stringify(data), "data")
+        //     try {
+        //         let response = await fetch(
+        //          "http://192.168.43.101:3000/addReview",
+        //          {
+        //            method: "POST",
+        //            headers: {
+        //             "Accept": "application/json",
+        //             "Content-Type": "application/json"
+        //            },
+        //           body: JSON.stringify(data)
+        //         }
+        //        );
+        //         if (response.status >= 200 && response.status < 300) {
+        //            alert("authenticated successfully!!!");
+        //         }
+        //       } catch (errors) {
            
-                alert(errors);
-               } 
+            //     alert(errors);
+            //    } 
             }
+
+
 
     render(){
 
         let { image } = this.state;
         
         return(
-            
+            <ScrollView>
             <View style = {styles.container}>
             <TextInput style = {styles.input}
+               //onPress = {this.updateText}
                underlineColorAndroid = "transparent"
                placeholder = "Restaurant Name"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
+               //ref = { }
+               value = {this.state.restoName}
                onChangeText = {this.handleRestaurant}/>
                <ListView
                 dataSource={ds.cloneWithRows(this.state.searchedRestaurants)}
@@ -210,6 +225,7 @@ export default class AddReview extends Component{
                placeholder = "Food Name"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
+               value = {this.state.itemName}
                onChangeText = {this.handleFood}/>
                <ListView
                dataSource={ds.cloneWithRows(this.state.searchedFood)}
@@ -248,6 +264,7 @@ export default class AddReview extends Component{
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
          </View>  
+         </ScrollView>
         );
     }
 }
