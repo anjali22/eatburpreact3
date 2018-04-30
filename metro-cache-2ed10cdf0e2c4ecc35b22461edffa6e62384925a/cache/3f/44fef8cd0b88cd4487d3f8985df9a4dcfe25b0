@@ -9,9 +9,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _search2 = _interopRequireDefault(_search);
 
+    var _restaurants = require(_dependencyMap[2], "./restaurants");
+
+    var _restaurants2 = _interopRequireDefault(_restaurants);
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     exports.default = (0, _redux.combineReducers)({
-        search: _search2.default
+        search: _search2.default,
+        restaurants: _restaurants2.default
     });
 });

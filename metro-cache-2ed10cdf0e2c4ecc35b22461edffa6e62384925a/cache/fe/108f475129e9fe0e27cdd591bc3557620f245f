@@ -1,0 +1,50 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.fetchRestaurants = fetchRestaurants;
+    exports.getRestaurants = getRestaurants;
+    exports.fetchRestaurantsSuccess = fetchRestaurantsSuccess;
+    exports.fetchRestaurantsFailure = fetchRestaurantsFailure;
+    var FETCH_RESTAURANTS = exports.FETCH_RESTAURANTS = 'FETCH_RESTAURANTS';
+    var FETCH_RESTAURANTS_SUCCESS = exports.FETCH_RESTAURANTS_SUCCESS = 'FETCH_RESTAURANTS_SUCCESS';
+    var FETCH_RESTAURANTS_FAILURE = exports.FETCH_RESTAURANTS_FAILURE = 'FETCH_RESTAURANTS_FAILURE';
+
+    function fetchRestaurants() {
+        return function (dispatch) {
+            dispatch(getRestaurants());
+            return fetch('http://192.168.43.101:3000/getFoodItems').then(function (res) {
+                return res.json();
+            }).then(function (json) {
+                dispatch(fetchRestaurantsSuccess(json.docs));
+                return json.docs;
+            }).catch(function (err) {
+                return dispatch(fetchRestaurantsFailure(err));
+            });
+        };
+    }
+
+    function getRestaurants() {
+        return {
+            type: FETCH_RESTAURANTS
+        };
+    }
+
+    function fetchRestaurantsSuccess(restaurants) {
+        return {
+            type: FETCH_RESTAURANTS_SUCCESS,
+            payload: {
+                restaurants: restaurants
+            }
+        };
+    }
+
+    function fetchRestaurantsFailure(error) {
+        return {
+            type: FETCH_RESTAURANTS_FAILURE,
+            payload: {
+                error: error
+            }
+        };
+    }
+});

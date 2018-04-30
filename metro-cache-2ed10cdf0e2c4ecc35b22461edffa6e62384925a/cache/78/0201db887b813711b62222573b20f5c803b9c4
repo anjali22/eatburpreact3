@@ -9,7 +9,11 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-    var _reducers = require(_dependencyMap[2], "../reducers");
+    var _reduxThunk = require(_dependencyMap[2], "redux-thunk");
+
+    var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+    var _reducers = require(_dependencyMap[3], "../reducers");
 
     var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -21,5 +25,5 @@ __d(function (global, require, module, exports, _dependencyMap) {
         middleware.push(_reduxLogger2.default);
     }
 
-    exports.default = (0, _redux.createStore)(_reducers2.default, _redux.applyMiddleware.apply(undefined, middleware));
+    exports.default = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 });

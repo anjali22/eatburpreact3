@@ -27,7 +27,11 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _search = require(_dependencyMap[5], "../actions/search");
 
-    var _reactRedux = require(_dependencyMap[6], "react-redux");
+    var _restaurants = require(_dependencyMap[6], "../actions/restaurants");
+
+    var _redux = require(_dependencyMap[7], "redux");
+
+    var _reactRedux = require(_dependencyMap[8], "react-redux");
 
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -66,49 +70,9 @@ __d(function (global, require, module, exports, _dependencyMap) {
         _inherits(SearchList, _React$Component);
 
         function SearchList(props) {
-            var _this2 = this;
-
             _classCallCheck(this, SearchList);
 
             var _this = _possibleConstructorReturn(this, (SearchList.__proto__ || Object.getPrototypeOf(SearchList)).call(this, props));
-
-            _this.fetchData = function _callee() {
-                var response, json;
-                return regeneratorRuntime.async(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.prev = 0;
-                                _context.next = 3;
-                                return regeneratorRuntime.awrap(fetch('http://192.168.43.101:3000/getFoodItems'));
-
-                            case 3:
-                                response = _context.sent;
-                                _context.next = 6;
-                                return regeneratorRuntime.awrap(response.json());
-
-                            case 6:
-                                json = _context.sent;
-
-                                _this.setState({
-                                    data: json.docs
-                                });
-
-                                _context.next = 13;
-                                break;
-
-                            case 10:
-                                _context.prev = 10;
-                                _context.t0 = _context["catch"](0);
-                                console.error(_context.t0);
-
-                            case 13:
-                            case "end":
-                                return _context.stop();
-                        }
-                    }
-                }, null, _this2, [[0, 10]]);
-            };
 
             _this._handlePressFood = function (food) {
                 _this.props.dispatch((0, _search.changeSelectedFood)(food._id));
@@ -125,7 +89,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         style: styles.listItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 56
+                            lineNumber: 61
                         }
                     },
                     _react3.default.createElement(
@@ -137,7 +101,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 58
+                                lineNumber: 63
                             }
                         },
                         food.name
@@ -152,7 +116,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 63
+                                lineNumber: 68
                             }
                         },
                         food.tags[0],
@@ -167,9 +131,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
             };
 
             _this.handleChangeText = function (searchedText) {
+                var _this$props = _this.props,
+                    restaurants = _this$props.restaurants,
+                    loading = _this$props.loading,
+                    error = _this$props.error;
+
                 _this.props.dispatch((0, _search.changeSearchedText)(searchedText));
 
-                var searchedFood = _this.state.data.filter(function (food) {
+                var searchedFood = _this.props.restaurants.filter(function (food) {
                     return food.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
                 });
 
@@ -180,8 +149,6 @@ __d(function (global, require, module, exports, _dependencyMap) {
                 _this.setState({
                     text: searchedText
                 });
-
-                console.log('anjaliiiiiiiiiii', _this.state.text);
             };
 
             _this.onSearchSubmit = function () {
@@ -203,20 +170,47 @@ __d(function (global, require, module, exports, _dependencyMap) {
         }
 
         _createClass(SearchList, [{
-            key: "componentWillMount",
-            value: function componentWillMount() {
-                this.fetchData();
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this.props.dispatch((0, _restaurants.fetchRestaurants)());
             }
         }, {
             key: "render",
             value: function render() {
+                var _props = this.props,
+                    restaurants = _props.restaurants,
+                    loading = _props.loading,
+                    error = _props.error;
+
+                if (loading) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 105
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 106
+                                }
+                            },
+                            "Loading...."
+                        )
+                    );
+                }
+
                 return _react3.default.createElement(
                     _reactNative.View,
                     {
                         style: styles.container,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 96
+                            lineNumber: 118
                         }
                     },
                     _react3.default.createElement(_SearchBarPinterest2.default, {
@@ -225,7 +219,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         onSubmitEditing: this.handleChangeText,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 98
+                            lineNumber: 120
                         }
                     }),
                     _react3.default.createElement(
@@ -237,7 +231,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 104
+                                lineNumber: 126
                             }
                         },
                         _react3.default.createElement(_reactNative.ListView, {
@@ -245,7 +239,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             renderRow: this.renderFood,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 105
+                                lineNumber: 127
                             }
                         })
                     )
@@ -288,5 +282,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
             fontFamily: 'open-sans-semibold'
         }
     };
-    exports.default = (0, _reactRedux.connect)()(SearchList);
+
+    var mapStateToProps = function mapStateToProps(state) {
+        return {
+            restaurants: state.restaurants.restaurants,
+            loading: state.restaurants.loading,
+            error: state.restaurants.error
+        };
+    };
+
+    exports.default = (0, _reactRedux.connect)(mapStateToProps)(SearchList);
 });

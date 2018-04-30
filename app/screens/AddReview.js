@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, Image, ListView, ScrollView } from 'react-native';
-import { ImagePicker } from 'expo';
+import { 
+    View, 
+    Text, 
+    TouchableOpacity, 
+    TextInput, 
+    StyleSheet, 
+    Button, 
+    Image, 
+    ListView, 
+    ScrollView,
+    NativeModules,
+    Alert, 
+    Dimensions } from 'react-native';
 
+import { connect } from 'react-redux';
+import { ImagePicker } from 'expo';
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class AddReview extends Component{
@@ -49,6 +62,7 @@ export default class AddReview extends Component{
     }
 
     handleRestaurant = (text) => {
+        console.log("this.state.restaurants=============",this.state.restaurants);
         var searchedRestaurants = this.state.restaurants.filter(function(restaurant) {
             return restaurant.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
           });
@@ -57,7 +71,6 @@ export default class AddReview extends Component{
           //console.log('anjaliiiiiiiiiii',this.state.text);
 
           this.setState({ restoName: text })
-
     }
     
     handleFood = (text)=> {
@@ -107,16 +120,13 @@ export default class AddReview extends Component{
         this.setState ( { restoName: restaurant.name});
         this.setState ( { searchedRestaurants: []});
         console.log("in handle press restaurant", this.state.restoName);
-
     }
 
     _handlePressFood = (food) => {
         this.setState ( { itemName: food.name});
         this.setState ( { searchedFood: []});
-        console.log("in handle press food item", this.state.itemName);
-        
+        console.log("in handle press food item", this.state.itemName);       
     }
-
 
     addImage = async () => {
         let pickerResult = await ImagePicker.launchImageLibraryAsync({
@@ -159,8 +169,6 @@ export default class AddReview extends Component{
         }
     };
 
-
-
     addReview = (restoName, itemName, review, rating) => {
         this.onSubmitReview();
         //alert(restoName+itemName+review+rating);
@@ -169,36 +177,7 @@ export default class AddReview extends Component{
     async onSubmitReview() {
 
         this._handleImagePicked(this.state.pickerResult);
-
-        // var data = {
-        //     restoName: this.state.restoName,
-        //     itemName: this.state.itemName,
-        //     review:  this.state.review, 
-        //     rating: this.state.rating,
-        // };
-        // console.log(JSON.stringify(data), "data")
-        //     try {
-        //         let response = await fetch(
-        //          "http://192.168.43.101:3000/addReview",
-        //          {
-        //            method: "POST",
-        //            headers: {
-        //             "Accept": "application/json",
-        //             "Content-Type": "application/json"
-        //            },
-        //           body: JSON.stringify(data)
-        //         }
-        //        );
-        //         if (response.status >= 200 && response.status < 300) {
-        //            alert("authenticated successfully!!!");
-        //         }
-        //       } catch (errors) {
-           
-            //     alert(errors);
-            //    } 
-            }
-
-
+    }
 
     render(){
 
@@ -272,15 +251,7 @@ export default class AddReview extends Component{
 async function uploadImageAsync(uri, restoName, itemName, rating, review) {
     let apiUrl = 'http://192.168.43.101:3000/uploadimage';
     console.log(restoName, itemName, rating, review );
-    // Note:
-    // Uncomment this if you want to experiment with local server
-    //
-    // if (Constants.isDevice) {
-    //   apiUrl = `https://your-ngrok-subdomain.ngrok.io/upload`;
-    // } else {
-    //   apiUrl = `http://localhost:3000/upload`
-    // }
-  
+    
     let uriParts = uri.split('.');
     let fileType = uriParts[uriParts.length - 1];
   
@@ -306,7 +277,7 @@ async function uploadImageAsync(uri, restoName, itemName, rating, review) {
     };
   
     return fetch(apiUrl, options);
-  }
+}
 
 const styles = StyleSheet.create({
     container: {
