@@ -11,7 +11,8 @@ import food from '../data/food';
 import SearchBarPinterest from '../components/SearchBar/SearchBarPinterest';
 import { changeSearchedText } from '../actions/search';
 import { changeSelectedFood } from '../actions/search';
-
+import { fetchRestaurants, fetchRestaurantsSuccess, fetchRestaurantsFailure } from '../actions/restaurants';
+import { bindActionCreators } from 'redux';
 //to remove error: this.props.dispatch is not a function
 import { connect } from 'react-redux';
 
@@ -28,21 +29,25 @@ class SearchList extends React.Component {
         };  
     }
 
-    componentWillMount() {
-        this.fetchData();
+    componentDidMount() {
+        this.props.dispatch(fetchRestaurants());
     }
+    
+    // componentWillMount() {
+    //     this.fetchData();
+    // }
 
-    fetchData = async () => { 
-        try {
-            const response = await fetch('http://192.168.43.101:3000/getFoodItems');
-            const json = await response.json();
-            //console.log(json, "json");
-            this.setState({data: json.docs});
-            //console.log(this.state.data,"dataaa=============");
-        } catch( error) {
-            console.error(error);
-        }
-    }
+    // fetchData = async () => { 
+    //     try {
+    //         const response = await fetch('http://192.168.43.101:3000/getFoodItems');
+    //         const json = await response.json();
+    //         //console.log(json, "json");
+    //         this.setState({data: json.docs});
+    //         //console.log(this.state.data,"dataaa=============");
+    //     } catch( error) {
+    //         console.error(error);
+    //     }
+    // }
 
     _handlePressFood = (food) => {
         // console.log("handel press food", food._id);
@@ -73,14 +78,17 @@ class SearchList extends React.Component {
         //console.log(searchedText,'first condition');
         
         //console.log(changeSearchedText(searchedText));
-       this.props.dispatch(changeSearchedText(searchedText));
+        const { restaurants, loading, error } = this.props;
         
-        var searchedFood = this.state.data.filter(function(food) {
+       this.props.dispatch(changeSearchedText(searchedText));
+        //console.log("in handle change text============================", this.props.restaurants);
+        var searchedFood = this.props.restaurants.filter(function(food) {
+            //console.log("food===========", food)
           return food.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
         });
         this.setState({searchedFood: searchedFood});
         this.setState({text: searchedText});
-        console.log('anjaliiiiiiiiiii',this.state.text);
+        //console.log('anjaliiiiiiiiiii',this.state.text);
     }
 
     onSearchSubmit = () => {
@@ -91,6 +99,20 @@ class SearchList extends React.Component {
     }
 
     render(){
+        const { restaurants, loading, error } = this.props;
+        if(loading) {
+            return (
+                <View> 
+                    <Text>Loading....</Text>
+                </View>
+            );
+        }
+        // } else if(error) {
+        //     return (
+        //         <View> <Text>Error: { error.message }</Text></View>
+        //     ) 
+        // }
+        
         return(
         
         <View style= {styles.container}>
@@ -147,4 +169,16 @@ const styles = {
     }
 };
 
-export default connect() (SearchList) ;
+const mapStateToProps = (state) => ({
+    restaurants: state.restaurants.restaurants,
+    loading: state.restaurants.loading,
+    error: state.restaurants.error
+});
+
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         ...bindActionCreators({ fetchRestaurants }, dispatch)
+//     }
+// }
+
+export default connect(mapStateToProps)(SearchList) ;
