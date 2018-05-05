@@ -9,8 +9,8 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
   var initialState = {
     restaurants: [],
-    error: null,
-    loading: false
+    restaurantsError: null,
+    restaurantsLoading: false
   };
 
   var reducer = function reducer() {
@@ -20,22 +20,22 @@ __d(function (global, require, module, exports, _dependencyMap) {
     switch (action.type) {
       case _restaurants.FETCH_RESTAURANTS:
         return _extends({}, state, {
-          error: null,
-          loading: true
+          restaurantsError: null,
+          restaurantsLoading: true
         });
 
       case _restaurants.FETCH_RESTAURANTS_SUCCESS:
         return _extends({}, state, {
           restaurants: action.payload.restaurants,
-          error: null,
-          loading: false
+          restaurantsError: null,
+          restaurantsLoading: false
         });
 
       case _restaurants.FETCH_RESTAURANTS_FAILURE:
         return _extends({}, state, {
           restaurants: [],
-          error: action.payload.error,
-          loading: false
+          restaurantsError: action.payload.error,
+          restaurantsLoading: false
         });
 
       default:

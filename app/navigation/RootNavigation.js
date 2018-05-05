@@ -16,6 +16,7 @@ import HomeFour from '../screens/HomeFour';
 import AddReview from '../screens/AddReview';
 import SearchList from '../screens/SearchList';
 import SearchResultsList from '../screens/SearchResultsList';
+import MyReviews from '../screens/MyReviews';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -61,7 +62,7 @@ const TabLayout = TabNavigator(
             screen : AddReview,
         },
         settings: {
-            screen : Home,
+            screen : MyReviews,
         },
     },
     {

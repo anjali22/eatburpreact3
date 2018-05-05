@@ -25,9 +25,9 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
 
-    var _search = require(_dependencyMap[5], "../actions/search");
+    var _search = require(_dependencyMap[5], "../actions/search.action");
 
-    var _restaurants = require(_dependencyMap[6], "../actions/restaurants");
+    var _restaurants = require(_dependencyMap[6], "../actions/restaurants.action");
 
     var _redux = require(_dependencyMap[7], "redux");
 

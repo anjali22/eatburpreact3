@@ -13,7 +13,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     function fetchRestaurants() {
         return function (dispatch) {
             dispatch(getRestaurants());
-            return fetch('http://192.168.43.101:3000/getFoodItems').then(function (res) {
+            return fetch('http://192.168.43.101:3000/getRestaurants').then(function (res) {
                 return res.json();
             }).then(function (json) {
                 dispatch(fetchRestaurantsSuccess(json.docs));

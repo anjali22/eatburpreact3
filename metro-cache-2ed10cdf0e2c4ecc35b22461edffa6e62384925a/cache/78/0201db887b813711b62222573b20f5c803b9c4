@@ -25,5 +25,5 @@ __d(function (global, require, module, exports, _dependencyMap) {
         middleware.push(_reduxLogger2.default);
     }
 
-    exports.default = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+    exports.default = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
 });

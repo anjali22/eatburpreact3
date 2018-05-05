@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
-import search from './search';
-import restaurants from './restaurants';
+import review from './review.reducer';
+import restaurants from './restaurants.reducer';
+import foodItems from './foodItems.reducer';
+import search from './search.reducer';
 
 export default combineReducers({
-    search, restaurants
+    search, restaurants, foodItems, review
 })

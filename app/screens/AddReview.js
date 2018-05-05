@@ -15,9 +15,13 @@ import {
 
 import { connect } from 'react-redux';
 import { ImagePicker } from 'expo';
+import { fetchRestaurants, fetchRestaurantsSuccess, fetchRestaurantsFailure } from '../actions/restaurants.action';
+import { fetchFoodItems, fetchFoodItemsSuccess, fetchFoodItemsFailure } from '../actions/foodItems.action';
+import { addReview, addReviewSuccess, addReviewFailure } from '../actions/review.action';
+
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-export default class AddReview extends Component{
+class AddReview extends Component{
     
     state = {
         restoName: '',
@@ -32,38 +36,40 @@ export default class AddReview extends Component{
         pickerResult: [],
     }
 
-    componentWillMount() {
-        this.fetchRestaurants();
-        this.fetchFoodItems();
+    componentDidMount() {
+        //this.fetchRestaurants();
+        //this.fetchFoodItems();
+        this.props.dispatch(fetchRestaurants());
+        this.props.dispatch(fetchFoodItems());        
     }
 
-    fetchRestaurants = async () => { 
-        try {
-            const response = await fetch('http://192.168.43.101:3000/getRestaurants');
-            const json = await response.json();
-            //console.log(json, "json");
-            this.setState({restaurants: json.docs});
-            //console.log(this.state.data,"dataaa=============");
-        } catch( error) {
-            console.error(error);
-        }
-    }
+    // fetchRestaurants = async () => { 
+    //     try {
+    //         const response = await fetch('http://192.168.43.101:3000/getRestaurants');
+    //         const json = await response.json();
+    //         //console.log(json, "json");
+    //         this.setState({restaurants: json.docs});
+    //         //console.log(this.state.data,"dataaa=============");
+    //     } catch( error) {
+    //         console.error(error);
+    //     }
+    // }
 
-    fetchFoodItems = async () => { 
-        try {
-            const response = await fetch('http://192.168.43.101:3000/getFoodItems');
-            const json = await response.json();
-            //console.log(json, "json");
-            this.setState({foodItems: json.docs});
-            //console.log(this.state.data,"dataaa=============");
-        } catch( error) {
-            console.error(error);
-        }
-    }
+    // fetchFoodItems = async () => { 
+    //     try {
+    //         const response = await fetch('http://192.168.43.101:3000/getFoodItems');
+    //         const json = await response.json();
+    //         //console.log(json, "json");
+    //         this.setState({foodItems: json.docs});
+    //         //console.log(this.state.data,"dataaa=============");
+    //     } catch( error) {
+    //         console.error(error);
+    //     }
+    // }
 
     handleRestaurant = (text) => {
         console.log("this.state.restaurants=============",this.state.restaurants);
-        var searchedRestaurants = this.state.restaurants.filter(function(restaurant) {
+        var searchedRestaurants = this.props.restaurants.filter(function(restaurant) {
             return restaurant.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
           });
           this.setState({searchedRestaurants: searchedRestaurants});
@@ -74,7 +80,7 @@ export default class AddReview extends Component{
     }
     
     handleFood = (text)=> {
-        var searchedFood = this.state.foodItems.filter(function(food) {
+        var searchedFood = this.props.foodItems.filter(function(food) {
             return food.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
           });
         this.setState({searchedFood: searchedFood});
@@ -151,7 +157,7 @@ export default class AddReview extends Component{
           this.setState({ uploading: true });
     
           if (!pickerResult.cancelled) {
-            uploadResponse = await uploadImageAsync(pickerResult.uri,
+            uploadResponse = this.uploadImageAsync(pickerResult.uri,
             this.state.restoName,
             this.state.itemName,
             this.state.rating,
@@ -168,7 +174,38 @@ export default class AddReview extends Component{
           this.setState({ uploading: false });
         }
     };
-
+    async uploadImageAsync(uri, restoName, itemName, rating, review) {
+        let apiUrl = 'http://192.168.43.101:3000/uploadimage';
+        console.log(restoName, itemName, rating, review );
+        
+        let uriParts = uri.split('.');
+        let fileType = uriParts[uriParts.length - 1];
+      
+        let formData = new FormData();
+        formData.append('photo', {
+          uri,
+          name: `photo.${fileType}`,
+          type: `image/${fileType}`,
+        });
+        formData.append('restaurantName', restoName);
+        formData.append('foodItem', itemName)
+        formData.append('rating', rating);
+        formData.append('review', review);
+      
+        console.log("formdata====================================", formData);
+        this.props.dispatch(addReview(formData));
+        consol.log("form data in addreview.js", formData);
+        // let options = {
+        //   method: 'POST',
+        //   body: formData,
+        //   headers: {
+        //     Accept: 'application/json',
+        //     'Content-Type': 'multipart/form-data',
+        //   },
+        // };
+      
+        //return fetch(apiUrl, options);
+    }
     addReview = (restoName, itemName, review, rating) => {
         this.onSubmitReview();
         //alert(restoName+itemName+review+rating);
@@ -185,6 +222,22 @@ export default class AddReview extends Component{
         
         return(
             <ScrollView>
+                <View
+                style={{
+                    backgroundColor: '#fff',
+                    borderRadius: 4,
+                    borderWidth: 1,
+                    borderColor: '#fff',
+                    margin: 10
+                }}> 
+                    <Text
+                    style={{
+                        fontFamily: 'open-sans-semibold',
+                        fontSize: 20,
+                        color:'#673ab7',
+
+                    }}> Add Review </Text>
+                </View>
             <View style = {styles.container}>
             <TextInput style = {styles.input}
                //onPress = {this.updateText}
@@ -195,9 +248,13 @@ export default class AddReview extends Component{
                //ref = { }
                value = {this.state.restoName}
                onChangeText = {this.handleRestaurant}/>
-               <ListView
+               
+               {this.props.restaurantsLoading ? <Text>Loading...</Text>
+                    :
+                   <ListView
                 dataSource={ds.cloneWithRows(this.state.searchedRestaurants)}
                 renderRow={this.renderRestaurant} />
+               }
                
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
@@ -206,10 +263,12 @@ export default class AddReview extends Component{
                autoCapitalize = "none"
                value = {this.state.itemName}
                onChangeText = {this.handleFood}/>
-               <ListView
+               {this.props.foodItemsLoading ? <Text>Loading...</Text>
+                    :
+                    <ListView
                dataSource={ds.cloneWithRows(this.state.searchedFood)}
                renderRow={this.renderFood} />
-              
+               }
                <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Review"
@@ -248,46 +307,30 @@ export default class AddReview extends Component{
     }
 }
 
-async function uploadImageAsync(uri, restoName, itemName, rating, review) {
-    let apiUrl = 'http://192.168.43.101:3000/uploadimage';
-    console.log(restoName, itemName, rating, review );
-    
-    let uriParts = uri.split('.');
-    let fileType = uriParts[uriParts.length - 1];
-  
-    let formData = new FormData();
-    formData.append('photo', {
-      uri,
-      name: `photo.${fileType}`,
-      type: `image/${fileType}`,
-    });
-    formData.append('name', restoName);
-    formData.append('foodItem', itemName)
-    formData.append('rating', rating);
-    formData.append('review', review);
-  
-    console.log("formdata====================================", formData);
-    let options = {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-  
-    return fetch(apiUrl, options);
-}
 
 const styles = StyleSheet.create({
     container: {
-       paddingTop: 23
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: '#fff',
+        backgroundColor: '#fff',
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 10,
     },
     input: {
        margin: 15,
        height: 40,
        borderColor: '#7a42f4',
-       borderWidth: 1
+       borderWidth: 2,
+       paddingLeft:20
+    },
+    listItem: {
+        paddingLeft: 20
+    },
+    listItemText: {
+        fontFamily: 'open-sans-regular',
+        fontSize: 20,
     },
     submitButton: {
        backgroundColor: '#7a42f4',
@@ -298,4 +341,19 @@ const styles = StyleSheet.create({
     submitButtonText:{
        color: 'white'
     }
-})
+});
+
+const mapStateToProps = (state) => ({
+    restaurants: state.restaurants.restaurants,
+    restaurantsLoading: state.restaurants.restaurantsLoading,
+    restaurantsError: state.restaurants.restaurantsError,
+    foodItems: state.foodItems.foodItems,
+    foodItemsLoading: state.foodItems.foodItemsLoading,
+    foodItemsError: state.foodItems.foodItemsError,
+    review: state.review.review,
+    reviewLoading: state.review.reviewLoading,
+    reviewError: state.review.reviewError
+
+});
+
+export default connect(mapStateToProps)(AddReview) ;
