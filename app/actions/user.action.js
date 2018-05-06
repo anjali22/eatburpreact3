@@ -1,0 +1,55 @@
+import deviceStorage from '../services/storage.service';
+
+export const FETCH_USER = 'FETCH_USER';
+export const POST_USER_SUCCESS = 'POST_USER_SUCCESS';
+export const SIGN_OUT = 'SIGN_OUT';
+export const POST_USER_FAILURE = 'POST_USER_FAILURE';
+
+export function postUser(user) {
+    console.log('user--------', user);
+    return (dispatch) => {
+        console.log('inside here-----------')
+        dispatch(getUser());
+
+        return (
+            fetch('http://192.168.43.41:3000/signIn', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user)
+                }
+            )
+        )
+            .then(res => res.json())
+            .then(json => {
+                console.log('json--------', json);
+                dispatch(postUserSuccess(json));
+                deviceStorage.saveItem('currentUser_Token', json.token);
+                //console.log(json,"jsonnnnnnnnnnnnnn");
+                return json;
+            })
+            .catch(err => dispatch(postUserFailure(err)))
+    }
+}
+
+export function getUser() {
+    return{
+        type: FETCH_USER
+    }
+}
+
+export function postUserSuccess(user) {
+    return {
+        type: POST_USER_SUCCESS,
+        payload: {user}
+    }
+}
+
+export function postUserFailure(err) {
+    return {
+        type: POST_USER_FAILURE,
+        payload: {err}
+    }
+}
