@@ -1,13 +1,7 @@
 import React from 'react';
-import { StackNavigator, TabNavigator, TabBarBottom, TouchableOpacity,Text } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom, TouchableOpacity,Text, SwitchNavigator } from 'react-navigation';
 import {Platform, StatusBar, View} from 'react-native';
-// import HomeScreen from '../screens/HomeScreen';
-// import FoodMapScreen from '../screens/FoodMapScreen';
-// import ReviewScreen from '../screens/ReviewScreen';
-// import SearchDetailScreen from '../screens/SearchDetailScreen';
-// import SearchSuggestionScreen from '../screens/SearchSuggestionScreen';
-// import SettingScreen from '../screens/SettingScreen';
-// import PlaceDetailScreen from '../screens/PlaceDetailScreen';
+
 import Home from '../screens/Home';
 import HomeOne from '../screens/HomeOne';
 import HomeTwo from '../screens/HomeTwo';
@@ -16,6 +10,8 @@ import HomeFour from '../screens/HomeFour';
 import AddReview from '../screens/AddReview';
 import SearchList from '../screens/SearchList';
 import SearchResultsList from '../screens/SearchResultsList';
+import SignIn from '../screens/SignIn';
+import SignUp from '../screens/SignUp';
 import MyReviews from '../screens/MyReviews';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -50,7 +46,7 @@ const HomeStack = StackNavigator(
     }
 );
 
-const TabLayout = TabNavigator(
+const signed = TabNavigator(
     {
         home: {
             screen : HomeStack,
@@ -131,19 +127,98 @@ const TabLayout = TabNavigator(
   }
 );
 
-export default StackNavigator(
+const signedOut = TabNavigator(
     {
-        tabs: {
-            screen : TabLayout,
+        SignUp: {
+            screen: SignUp,
+        },
+        SignIn: {
+            screen: SignIn,
+        }
+    },
+    {
+        navigationOptions: ({ navigation }) => ({
+
+            tabBarLabel: () => {
+                const { routeName } = navigation.state;
+                let label = routeName;
+                if (label === 'SignUp') {
+                    return 'Sign Up';
+                } if (label === 'SignIn') {
+                    return 'Sign In';
+                }
+                return (
+                    <Text
+                        name={label}
+                        size={Platform.OS === 'ios' ? 30 : 27}
+                        style={{ marginBottom: -3 }}
+                        color={focused ? '#0d47a1' : '#A9A9A9'}
+                    //color={focused ? '#0d47a1' : '#fff'}  //default white select blue
+                    //color={focused ? '#fff' : '#A9A9A9'} default grey select white
+                    //color='#fff'                    //tab icon color
+
+                    />
+                );
+            }
+        }),
+        tabBarComponent: TabBarBottom,
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            style: {
+                backgroundColor: '#fff',
+                borderTopColor: '#fff',
+                //backgroundColor: '#E6E6E6', grey
+                //borderTopColor: '#E6E6E6',
+                height: 60,
+                padding: 8
+            },
+
+        },
+    }
+);
+
+    const SignedIn = StackNavigator(
+        {
+            signed: {
+                screen : signed,
+            }
+        },
+        {
+            headerMode: 'none',         //to remove a top title bar
+            // cardStyle: {
+            //     //to fix the status/notification bar and avoid overlapping with coomponents
+            //     paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+                
+            //   }
+            
+        }
+    );
+
+export  const SignedOut = StackNavigator(
+    {
+        signedOut: {
+            screen: signedOut,
         }
     },
     {
         headerMode: 'none',         //to remove a top title bar
-        // cardStyle: {
-        //     //to fix the status/notification bar and avoid overlapping with coomponents
-        //     paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-            
-        //   }
-        
     }
 );
+
+
+export const createRootNavigator = (signedIn = false) => {
+    console.log('signedIn------------', signedIn);
+    return SwitchNavigator(
+        {
+            SignedIn: {
+                screen: SignedIn
+            },
+            SignedOut: {
+                screen: SignedOut
+            }
+        },
+        {
+            initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+        }
+    );
+};
