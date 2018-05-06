@@ -32,8 +32,5 @@ __d(function (global, require, module, exports, _dependencyMap) {
         }
     };
 
-    console.log('initialState', initialState);
-    console.log('changeSearchedText', reducer(initialState, (0, _search.changeSearchedText)('pizzas')));
-    console.log('changeSelectedFood', reducer(initialState, (0, _search.changeSelectedFood)('1')));
     exports.default = reducer;
 });

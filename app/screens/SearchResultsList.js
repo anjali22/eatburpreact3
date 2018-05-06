@@ -302,14 +302,11 @@ const styles = {
     backgroundColor: '#fff'
    },
    searchBarContainer: {
-    backgroundColor: '#1976d2'
-    
+    backgroundColor: '#1976d2' 
    },
    tagsContainer: {
     flexDirection: 'row',
     backgroundColor: '#1976d2',
-
-
    },
    suggestionTagContainer: {
     borderRadius: 6,
@@ -321,8 +318,7 @@ const styles = {
    suggestionTag :{
     fontFamily: 'open-sans-regular',
     fontSize: 14,
-    color: '#1976d2',
-    
+    color: '#1976d2',    
    },
    searchResultsTitleContainer: { 
     marginRight: 10,

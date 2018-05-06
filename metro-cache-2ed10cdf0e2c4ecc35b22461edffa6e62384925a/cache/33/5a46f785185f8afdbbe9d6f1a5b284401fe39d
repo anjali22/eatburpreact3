@@ -44,7 +44,11 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _SearchResultsList2 = _interopRequireDefault(_SearchResultsList);
 
-    var _FontAwesome = require(_dependencyMap[11], "@expo/vector-icons/FontAwesome");
+    var _MyReviews = require(_dependencyMap[11], "../screens/MyReviews");
+
+    var _MyReviews2 = _interopRequireDefault(_MyReviews);
+
+    var _FontAwesome = require(_dependencyMap[12], "@expo/vector-icons/FontAwesome");
 
     var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
@@ -81,7 +85,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
             screen: _AddReview2.default
         },
         settings: {
-            screen: _Home2.default
+            screen: _MyReviews2.default
         }
     }, {
         navigationOptions: function navigationOptions(_ref) {
@@ -138,7 +142,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         color: focused ? '#0d47a1' : '#A9A9A9',
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 104
+                            lineNumber: 105
                         }
                     });
                 }

@@ -21,6 +21,12 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _expo = require(_dependencyMap[4], "expo");
 
+    var _restaurants = require(_dependencyMap[5], "../actions/restaurants.action");
+
+    var _foodItems = require(_dependencyMap[6], "../actions/foodItems.action");
+
+    var _review = require(_dependencyMap[7], "../actions/review.action");
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80,82 +86,10 @@ __d(function (global, require, module, exports, _dependencyMap) {
                 searchedRestaurants: [],
                 searchedFood: [],
                 pickerResult: []
-            }, _this.fetchRestaurants = function _callee() {
-                var response, json;
-                return regeneratorRuntime.async(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.prev = 0;
-                                _context.next = 3;
-                                return regeneratorRuntime.awrap(fetch('http://192.168.43.101:3000/getRestaurants'));
-
-                            case 3:
-                                response = _context.sent;
-                                _context.next = 6;
-                                return regeneratorRuntime.awrap(response.json());
-
-                            case 6:
-                                json = _context.sent;
-
-                                _this.setState({
-                                    restaurants: json.docs
-                                });
-
-                                _context.next = 13;
-                                break;
-
-                            case 10:
-                                _context.prev = 10;
-                                _context.t0 = _context["catch"](0);
-                                console.error(_context.t0);
-
-                            case 13:
-                            case "end":
-                                return _context.stop();
-                        }
-                    }
-                }, null, _this2, [[0, 10]]);
-            }, _this.fetchFoodItems = function _callee2() {
-                var response, json;
-                return regeneratorRuntime.async(function _callee2$(_context2) {
-                    while (1) {
-                        switch (_context2.prev = _context2.next) {
-                            case 0:
-                                _context2.prev = 0;
-                                _context2.next = 3;
-                                return regeneratorRuntime.awrap(fetch('http://192.168.43.101:3000/getFoodItems'));
-
-                            case 3:
-                                response = _context2.sent;
-                                _context2.next = 6;
-                                return regeneratorRuntime.awrap(response.json());
-
-                            case 6:
-                                json = _context2.sent;
-
-                                _this.setState({
-                                    foodItems: json.docs
-                                });
-
-                                _context2.next = 13;
-                                break;
-
-                            case 10:
-                                _context2.prev = 10;
-                                _context2.t0 = _context2["catch"](0);
-                                console.error(_context2.t0);
-
-                            case 13:
-                            case "end":
-                                return _context2.stop();
-                        }
-                    }
-                }, null, _this2, [[0, 10]]);
             }, _this.handleRestaurant = function (text) {
                 console.log("this.state.restaurants=============", _this.state.restaurants);
 
-                var searchedRestaurants = _this.state.restaurants.filter(function (restaurant) {
+                var searchedRestaurants = _this.props.restaurants.filter(function (restaurant) {
                     return restaurant.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
                 });
 
@@ -167,7 +101,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                     restoName: text
                 });
             }, _this.handleFood = function (text) {
-                var searchedFood = _this.state.foodItems.filter(function (food) {
+                var searchedFood = _this.props.foodItems.filter(function (food) {
                     return food.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
                 });
 
@@ -193,7 +127,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         style: styles.listItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 94
+                            lineNumber: 100
                         }
                     },
                     _react3.default.createElement(
@@ -205,7 +139,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 96
+                                lineNumber: 102
                             }
                         },
                         restaurant.name
@@ -218,7 +152,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         style: styles.listItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 107
+                            lineNumber: 113
                         }
                     },
                     _react3.default.createElement(
@@ -230,7 +164,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 109
+                                lineNumber: 115
                             }
                         },
                         food.name
@@ -256,20 +190,20 @@ __d(function (global, require, module, exports, _dependencyMap) {
                 });
 
                 console.log("in handle press food item", _this.state.itemName);
-            }, _this.addImage = function _callee3() {
+            }, _this.addImage = function _callee() {
                 var pickerResult;
-                return regeneratorRuntime.async(function _callee3$(_context3) {
+                return regeneratorRuntime.async(function _callee$(_context) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context.prev = _context.next) {
                             case 0:
-                                _context3.next = 2;
+                                _context.next = 2;
                                 return regeneratorRuntime.awrap(_expo.ImagePicker.launchImageLibraryAsync({
                                     allowsEditing: true,
                                     aspect: [4, 3]
                                 }));
 
                             case 2:
-                                pickerResult = _context3.sent;
+                                pickerResult = _context.sent;
 
                                 _this.setState({
                                     pickerResult: pickerResult
@@ -285,50 +219,46 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
                             case 6:
                             case "end":
-                                return _context3.stop();
+                                return _context.stop();
                         }
                     }
                 }, null, _this2);
-            }, _this._handleImagePicked = function _callee4(pickerResult) {
+            }, _this._handleImagePicked = function _callee2(pickerResult) {
                 var uploadResponse, uploadResult;
-                return regeneratorRuntime.async(function _callee4$(_context4) {
+                return regeneratorRuntime.async(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context4.prev = _context4.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
                                 uploadResponse = void 0, uploadResult = void 0;
-                                _context4.prev = 1;
+                                _context2.prev = 1;
 
                                 _this.setState({
                                     uploading: true
                                 });
 
                                 if (pickerResult.cancelled) {
-                                    _context4.next = 11;
+                                    _context2.next = 9;
                                     break;
                                 }
 
-                                _context4.next = 6;
-                                return regeneratorRuntime.awrap(uploadImageAsync(pickerResult.uri, _this.state.restoName, _this.state.itemName, _this.state.rating, _this.state.review));
-
-                            case 6:
-                                uploadResponse = _context4.sent;
-                                _context4.next = 9;
+                                uploadResponse = _this.uploadImageAsync(pickerResult.uri, _this.state.restoName, _this.state.itemName, _this.state.rating, _this.state.review);
+                                _context2.next = 7;
                                 return regeneratorRuntime.awrap(uploadResponse.json());
 
-                            case 9:
-                                uploadResult = _context4.sent;
+                            case 7:
+                                uploadResult = _context2.sent;
 
                                 _this.setState({
                                     image: uploadResult.location
                                 });
 
-                            case 11:
-                                _context4.next = 19;
+                            case 9:
+                                _context2.next = 17;
                                 break;
 
-                            case 13:
-                                _context4.prev = 13;
-                                _context4.t0 = _context4["catch"](1);
+                            case 11:
+                                _context2.prev = 11;
+                                _context2.t0 = _context2["catch"](1);
                                 console.log({
                                     uploadResponse: uploadResponse
                                 });
@@ -336,48 +266,81 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     uploadResult: uploadResult
                                 });
                                 console.log({
-                                    e: _context4.t0
+                                    e: _context2.t0
                                 });
                                 alert('Upload failed, sorry :(');
 
-                            case 19:
-                                _context4.prev = 19;
+                            case 17:
+                                _context2.prev = 17;
 
                                 _this.setState({
                                     uploading: false
                                 });
 
-                                return _context4.finish(19);
+                                return _context2.finish(17);
 
-                            case 22:
+                            case 20:
                             case "end":
-                                return _context4.stop();
+                                return _context2.stop();
                         }
                     }
-                }, null, _this2, [[1, 13, 19, 22]]);
+                }, null, _this2, [[1, 11, 17, 20]]);
             }, _this.addReview = function (restoName, itemName, review, rating) {
                 _this.onSubmitReview();
             }, _temp), _possibleConstructorReturn(_this, _ret);
         }
 
         _createClass(AddReview, [{
-            key: "componentWillMount",
-            value: function componentWillMount() {
-                this.fetchRestaurants();
-                this.fetchFoodItems();
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this.props.dispatch((0, _restaurants.fetchRestaurants)());
+                this.props.dispatch((0, _foodItems.fetchFoodItems)());
+            }
+        }, {
+            key: "uploadImageAsync",
+            value: function uploadImageAsync(uri, restoName, itemName, rating, review) {
+                var apiUrl, uriParts, fileType, formData;
+                return regeneratorRuntime.async(function uploadImageAsync$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                apiUrl = 'http://192.168.43.101:3000/uploadimage';
+                                console.log(restoName, itemName, rating, review);
+                                uriParts = uri.split('.');
+                                fileType = uriParts[uriParts.length - 1];
+                                formData = new FormData();
+                                formData.append('photo', {
+                                    uri: uri,
+                                    name: "photo." + fileType,
+                                    type: "image/" + fileType
+                                });
+                                formData.append('restaurantName', restoName);
+                                formData.append('foodItem', itemName);
+                                formData.append('rating', rating);
+                                formData.append('review', review);
+                                console.log("formdata====================================", formData);
+                                this.props.dispatch((0, _review.addReview)(formData));
+                                consol.log("form data in addreview.js", formData);
+
+                            case 13:
+                            case "end":
+                                return _context3.stop();
+                        }
+                    }
+                }, null, this);
             }
         }, {
             key: "onSubmitReview",
             value: function onSubmitReview() {
-                return regeneratorRuntime.async(function onSubmitReview$(_context5) {
+                return regeneratorRuntime.async(function onSubmitReview$(_context4) {
                     while (1) {
-                        switch (_context5.prev = _context5.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
                                 this._handleImagePicked(this.state.pickerResult);
 
                             case 1:
                             case "end":
-                                return _context5.stop();
+                                return _context4.stop();
                         }
                     }
                 }, null, this);
@@ -393,16 +356,47 @@ __d(function (global, require, module, exports, _dependencyMap) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 187
+                            lineNumber: 224
                         }
                     },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                backgroundColor: '#fff',
+                                borderRadius: 4,
+                                borderWidth: 1,
+                                borderColor: '#fff',
+                                margin: 10
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 225
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: {
+                                    fontFamily: 'open-sans-semibold',
+                                    fontSize: 20,
+                                    color: '#673ab7'
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 233
+                                }
+                            },
+                            " Add Review "
+                        )
+                    ),
                     _react3.default.createElement(
                         _reactNative.View,
                         {
                             style: styles.container,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 188
+                                lineNumber: 241
                             }
                         },
                         _react3.default.createElement(_reactNative.TextInput, {
@@ -415,15 +409,24 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             onChangeText: this.handleRestaurant,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 189
+                                lineNumber: 242
                             }
                         }),
-                        _react3.default.createElement(_reactNative.ListView, {
+                        this.props.restaurantsLoading ? _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 252
+                                }
+                            },
+                            "Loading..."
+                        ) : _react3.default.createElement(_reactNative.ListView, {
                             dataSource: ds.cloneWithRows(this.state.searchedRestaurants),
                             renderRow: this.renderRestaurant,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 198
+                                lineNumber: 254
                             }
                         }),
                         _react3.default.createElement(_reactNative.TextInput, {
@@ -436,15 +439,24 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             onChangeText: this.handleFood,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 202
+                                lineNumber: 259
                             }
                         }),
-                        _react3.default.createElement(_reactNative.ListView, {
+                        this.props.foodItemsLoading ? _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 266
+                                }
+                            },
+                            "Loading..."
+                        ) : _react3.default.createElement(_reactNative.ListView, {
                             dataSource: ds.cloneWithRows(this.state.searchedFood),
                             renderRow: this.renderFood,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 209
+                                lineNumber: 268
                             }
                         }),
                         _react3.default.createElement(_reactNative.TextInput, {
@@ -456,7 +468,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             onChangeText: this.handleReview,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 213
+                                lineNumber: 272
                             }
                         }),
                         _react3.default.createElement(_reactNative.TextInput, {
@@ -468,7 +480,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             onChangeText: this.handleRating,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 220
+                                lineNumber: 279
                             }
                         }),
                         _react3.default.createElement(
@@ -480,7 +492,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 227
+                                    lineNumber: 286
                                 }
                             },
                             _react3.default.createElement(
@@ -489,7 +501,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.submitButtonText,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 232
+                                        lineNumber: 291
                                     }
                                 },
                                 " Add Image "
@@ -505,7 +517,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 236
+                                lineNumber: 295
                             }
                         }),
                         _react3.default.createElement(
@@ -517,7 +529,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 237
+                                    lineNumber: 296
                                 }
                             },
                             _react3.default.createElement(
@@ -526,7 +538,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.submitButtonText,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 243
+                                        lineNumber: 302
                                     }
                                 },
                                 " Submit "
@@ -540,56 +552,29 @@ __d(function (global, require, module, exports, _dependencyMap) {
         return AddReview;
     }(_react2.Component));
 
-    exports.default = AddReview;
-
-    function uploadImageAsync(uri, restoName, itemName, rating, review) {
-        var apiUrl, uriParts, fileType, formData, options;
-        return regeneratorRuntime.async(function uploadImageAsync$(_context6) {
-            while (1) {
-                switch (_context6.prev = _context6.next) {
-                    case 0:
-                        apiUrl = 'http://192.168.43.101:3000/uploadimage';
-                        console.log(restoName, itemName, rating, review);
-                        uriParts = uri.split('.');
-                        fileType = uriParts[uriParts.length - 1];
-                        formData = new FormData();
-                        formData.append('photo', {
-                            uri: uri,
-                            name: "photo." + fileType,
-                            type: "image/" + fileType
-                        });
-                        formData.append('name', restoName);
-                        formData.append('foodItem', itemName);
-                        formData.append('rating', rating);
-                        formData.append('review', review);
-                        console.log("formdata====================================", formData);
-                        options = {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                Accept: 'application/json',
-                                'Content-Type': 'multipart/form-data'
-                            }
-                        };
-                        return _context6.abrupt("return", fetch(apiUrl, options));
-
-                    case 13:
-                    case "end":
-                        return _context6.stop();
-                }
-            }
-        }, null, this);
-    }
-
     var styles = _reactNative.StyleSheet.create({
         container: {
-            paddingTop: 23
+            borderWidth: 1,
+            borderRadius: 4,
+            borderColor: '#fff',
+            backgroundColor: '#fff',
+            marginLeft: 10,
+            marginRight: 10,
+            marginTop: 10
         },
         input: {
             margin: 15,
             height: 40,
             borderColor: '#7a42f4',
-            borderWidth: 1
+            borderWidth: 2,
+            paddingLeft: 20
+        },
+        listItem: {
+            paddingLeft: 20
+        },
+        listItemText: {
+            fontFamily: 'open-sans-regular',
+            fontSize: 20
         },
         submitButton: {
             backgroundColor: '#7a42f4',
@@ -601,4 +586,20 @@ __d(function (global, require, module, exports, _dependencyMap) {
             color: 'white'
         }
     });
+
+    var mapStateToProps = function mapStateToProps(state) {
+        return {
+            restaurants: state.restaurants.restaurants,
+            restaurantsLoading: state.restaurants.restaurantsLoading,
+            restaurantsError: state.restaurants.restaurantsError,
+            foodItems: state.foodItems.foodItems,
+            foodItemsLoading: state.foodItems.foodItemsLoading,
+            foodItemsError: state.foodItems.foodItemsError,
+            review: state.review.review,
+            reviewLoading: state.review.reviewLoading,
+            reviewError: state.review.reviewError
+        };
+    };
+
+    exports.default = (0, _reactRedux.connect)(mapStateToProps)(AddReview);
 });

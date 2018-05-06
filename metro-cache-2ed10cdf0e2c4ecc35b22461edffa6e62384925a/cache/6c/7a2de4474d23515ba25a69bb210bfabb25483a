@@ -1,0 +1,21 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var CHANGE_SEARCHED_TEXT = exports.CHANGE_SEARCHED_TEXT = 'CHANGE_SEARCHED_TEXT';
+    var CHANGE_SELECTED_FOOD = exports.CHANGE_SELECTED_FOOD = 'CHANGE_SELECTED_FOOD';
+
+    var changeSearchedText = exports.changeSearchedText = function changeSearchedText(searchedText) {
+        return {
+            type: CHANGE_SEARCHED_TEXT,
+            searchedText: searchedText
+        };
+    };
+
+    var changeSelectedFood = exports.changeSelectedFood = function changeSelectedFood(foodId) {
+        return {
+            type: CHANGE_SELECTED_FOOD,
+            foodId: foodId
+        };
+    };
+});

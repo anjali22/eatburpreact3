@@ -7,7 +7,7 @@ export function fetchRestaurants() {
     return (dispatch) => {
         dispatch(getRestaurants());
 
-        return(fetch('http://192.168.43.101:3000/getFoodItems'))
+        return(fetch('http://192.168.43.101:3000/getRestaurants'))
         .then(res => res.json())
         .then(json => {
 

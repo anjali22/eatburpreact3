@@ -1,0 +1,111 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.FETCH_REVIEWS_FAILURE = exports.FETCH_REVIEWS_SUCCESS = exports.FETCH_REVIEWS = exports.ADD_REVIEW_FAILURE = exports.ADD_REVIEW_SUCCESS = exports.ADD_REVIEW = undefined;
+    exports.addReview = addReview;
+    exports.saveReview = saveReview;
+    exports.addReviewSuccess = addReviewSuccess;
+    exports.addReviewFailure = addReviewFailure;
+    exports.fetchReviews = fetchReviews;
+    exports.getReviews = getReviews;
+    exports.fetchReviewsSuccess = fetchReviewsSuccess;
+    exports.fetchReviewsFailure = fetchReviewsFailure;
+
+    var _reviews = require(_dependencyMap[0], "../data/reviews");
+
+    var _reviews2 = _interopRequireDefault(_reviews);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    var ADD_REVIEW = exports.ADD_REVIEW = 'ADD_REVIEW';
+    var ADD_REVIEW_SUCCESS = exports.ADD_REVIEW_SUCCESS = 'ADD_REVIEW_SUCCESS';
+    var ADD_REVIEW_FAILURE = exports.ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE';
+    var FETCH_REVIEWS = exports.FETCH_REVIEWS = 'FETCH_REVIEWS';
+    var FETCH_REVIEWS_SUCCESS = exports.FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS';
+    var FETCH_REVIEWS_FAILURE = exports.FETCH_REVIEWS_FAILURE = 'FETCH_REVIEWS_FAILURE';
+
+    function addReview(data) {
+        return function (dispatch) {
+            dispatch(saveReview());
+            console.log("this.review===============", data);
+            return fetch('http://192.168.43.101:3000/addReview', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: data
+            }).then(function (res) {
+                return res.json();
+            }).then(function (json) {
+                dispatch(addReviewSuccess(json.docs));
+                return json.docs;
+            }).catch(function (err) {
+                return dispatch(addReviewFailure(err));
+            });
+        };
+    }
+
+    function saveReview() {
+        return {
+            type: ADD_REVIEW
+        };
+    }
+
+    function addReviewSuccess(review) {
+        return {
+            type: ADD_REVIEW_SUCCESS,
+            payload: {
+                review: review
+            }
+        };
+    }
+
+    function addReviewFailure() {
+        return {
+            type: ADD_REVIEW_FAILURE,
+            payload: {
+                error: error
+            }
+        };
+    }
+
+    function fetchReviews() {
+        return function (dispatch) {
+            dispatch(getReviews());
+            return fetch('http://192.168.43.101:3000/getRestaurants').then(function (res) {
+                return res.json();
+            }).then(function (json) {
+                dispatch(fetchReviewsSuccess(_reviews2.default));
+                return _reviews2.default;
+            }).catch(function (err) {
+                return dispatch(fetchReviewsSuccess(err));
+            });
+        };
+    }
+
+    function getReviews() {
+        return {
+            type: FETCH_REVIEWS
+        };
+    }
+
+    function fetchReviewsSuccess(reviewsList) {
+        return {
+            type: FETCH_REVIEWS_SUCCESS,
+            payload: {
+                reviewsList: reviewsList
+            }
+        };
+    }
+
+    function fetchReviewsFailure(error) {
+        return {
+            type: FETCH_REVIEWS_FAILURE,
+            payload: {
+                error: error
+            }
+        };
+    }
+});

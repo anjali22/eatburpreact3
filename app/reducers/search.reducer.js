@@ -1,4 +1,4 @@
-import { CHANGE_SEARCHED_TEXT, CHANGE_SELECTED_FOOD, changeSearchedText, changeSelectedFood } from '../actions/search';
+import { CHANGE_SEARCHED_TEXT, CHANGE_SELECTED_FOOD, changeSearchedText, changeSelectedFood } from '../actions/search.action';
 
 const initialState = {
     searchedText: '',
@@ -26,8 +26,8 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-console.log('initialState', initialState);
-console.log('changeSearchedText', reducer(initialState, changeSearchedText('pizzas')));
-console.log('changeSelectedFood', reducer(initialState, changeSelectedFood('1')));
+// console.log('initialState', initialState);
+// console.log('changeSearchedText', reducer(initialState, changeSearchedText('pizzas')));
+// console.log('changeSelectedFood', reducer(initialState, changeSelectedFood('1')));
 
 export default reducer;

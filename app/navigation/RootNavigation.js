@@ -12,6 +12,7 @@ import SearchList from '../screens/SearchList';
 import SearchResultsList from '../screens/SearchResultsList';
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
+import MyReviews from '../screens/MyReviews';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -57,7 +58,7 @@ const signed = TabNavigator(
             screen : AddReview,
         },
         settings: {
-            screen : Home,
+            screen : MyReviews,
         },
     },
     {

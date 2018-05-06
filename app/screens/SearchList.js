@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import food from '../data/food';
 import SearchBarPinterest from '../components/SearchBar/SearchBarPinterest';
-import { changeSearchedText } from '../actions/search';
-import { changeSelectedFood } from '../actions/search';
-import { fetchRestaurants, fetchRestaurantsSuccess, fetchRestaurantsFailure } from '../actions/restaurants';
+import { changeSearchedText } from '../actions/search.action';
+import { changeSelectedFood } from '../actions/search.action';
+import { fetchRestaurants, fetchRestaurantsSuccess, fetchRestaurantsFailure } from '../actions/restaurants.action';
 import { bindActionCreators } from 'redux';
 //to remove error: this.props.dispatch is not a function
 import { connect } from 'react-redux';
