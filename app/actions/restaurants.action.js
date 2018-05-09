@@ -7,7 +7,7 @@ export function fetchRestaurants() {
     return (dispatch) => {
         dispatch(getRestaurants());
 
-        return(fetch('http://192.168.43.101:3000/getRestaurants'))
+        return(fetch('http://192.168.43.41:3000/getRestaurants'))
         .then(res => res.json())
         .then(json => {
 
@@ -19,7 +19,7 @@ export function fetchRestaurants() {
     }
 
 
-    // const request = fetch('http://192.168.43.101:3000/getRestaurants');
+    // const request = fetch('http://192.168.43.41:3000/getRestaurants');
     // console.log("fetching restaurants==============================");
     // return {
     //     type: FETCH_RESTAURANTS,

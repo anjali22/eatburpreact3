@@ -47,7 +47,7 @@ class SearchResultsList extends React.Component {
     fetchTopRestaurants = async (foodId) => {
         try {
             console.log("in fetchTopRestaurants foodid", foodId);
-            const response = await fetch('http://192.168.43.101:3000/getTopRestaurants', {
+            const response = await fetch('http://192.168.43.41:3000/getTopRestaurants', {
             
                 method: 'POST',
                 headers: {

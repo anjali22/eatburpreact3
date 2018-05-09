@@ -13,16 +13,21 @@ const deviceStorage = {
         }
     },
 
-     /* async loadJWT() {
-        try {
-            let value = await AsyncStorage.getItem('currentUser_Token')
-                console.log('vlue-----------', value);
-                return value;
-
-        } catch (error) {
-            console.log('AsyncStorage Error: ' + error.message);
-        }
-    }, */
+    loadJWT() {
+        console.log("inside load jwt=================")
+         return new Promise((resolve, reject) => {
+             AsyncStorage.getItem(currentUser_Token)
+                 .then(res => {
+                     console.log('res=============================', res)
+                     if (res !== null) {
+                         resolve(res);
+                     } else {
+                         resolve(false);
+                     }
+                 })
+                 .catch(err => reject(err));
+         });
+    },
 
      isSignedIn() {
         return new Promise((resolve, reject) => {
@@ -42,13 +47,6 @@ const deviceStorage = {
     async deleteJWT() {
         try {
             await AsyncStorage.removeItem('currentUser_Token')
-                .then(
-                    () => {
-                        this.setState({
-                            jwt: ''
-                        })
-                    }
-                );
         } catch (error) {
             console.log('AsyncStorage Error: ' + error.message);
         }
