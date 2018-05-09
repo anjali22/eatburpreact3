@@ -9,19 +9,22 @@ export const FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS';
 export const FETCH_REVIEWS_FAILURE= 'FETCH_REVIEWS_FAILURE';
 
 import reviews from '../data/reviews';
+import deviceStorage from "../services/storage.service"; 
 
-export function addReview(data) {
+export function addReview(data, token) {
     //console.log("in add review===========================", review);
     return (dispatch) => {
         dispatch(saveReview());
         console.log("this.review===============",data);
+        
+        console.log('token in review----------', token);
         return( 
             fetch(`${API_ROOT}/addReview`, {
                 method: 'POST',
                 headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'multipart/form-data',
-                
+                'x-access-token': token
                 //'Content-Type': 'multipart/form-data',
                 },
                 body: data,
@@ -65,7 +68,6 @@ export function addReviewFailure() {
 export function fetchReviews() {
     return (dispatch) => {
         dispatch(getReviews());
-
         return(fetch(`${API_ROOT}/getRestaurants`))
         .then(res => res.json())
         .then(json => {

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import { postUser } from '../actions/user.action';
+import { postUserSignIn } from '../actions/user.action';
 import { User } from '../data/Records';
 
 class SignInScreen extends React.Component {
@@ -67,16 +67,25 @@ class SignInScreen extends React.Component {
     _login = (username, password) => {
         console.log("login clicked-------");
         console.log('username----', username, 'password------', this.state.password);
-        this.props.dispatch(postUser(
+        this.props.dispatch(postUserSignIn(
             new User({
                 email: this.state.username,
                 password: this.state.password
             })
-        ));
-        this.props.navigation.navigate('home');
-
+        )).then(res => {
+            console.log('res------', res)
+            if (res.token) {
+                //console.log(this.props.user, 'user')
+                this.props.navigation.navigate('home');
+            } else {
+                alert(res.error);
+            }
+        }).catch(err => {
+            alert(err)
+        })
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         paddingTop: 23
@@ -98,4 +107,9 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect()(SignInScreen);
+const mapStateToProps = (state) => ({
+    user: state.user.user,
+    loading: state.user.loading,
+    error: state.user.error
+});
+export default connect(mapStateToProps)(SignInScreen);

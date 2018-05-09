@@ -6,12 +6,9 @@ export const POST_USER_SUCCESS = 'POST_USER_SUCCESS';
 export const SIGN_OUT = 'SIGN_OUT';
 export const POST_USER_FAILURE = 'POST_USER_FAILURE';
 
-export function postUser(user) {
-    console.log('user--------', user);
+export function postUserSignIn(user) {
     return (dispatch) => {
-        console.log('inside here-----------')
         dispatch(getUser());
-
         return (
             fetch(`${API_ROOT}/signIn`, {
                 method: 'POST',
@@ -21,6 +18,32 @@ export function postUser(user) {
                 },
                 body: JSON.stringify(user)
                 }
+            )
+        )
+            .then(res => res.json())
+            .then(json => {
+                console.log('json--------', json);
+                dispatch(postUserSuccess(json));
+                deviceStorage.saveItem('currentUser_Token', json.token);
+                //console.log(json,"jsonnnnnnnnnnnnnn");
+                return json;
+            })
+            .catch(err => dispatch(postUserFailure(err)))
+    }
+}
+
+export function postUserSignUp(user) {
+    return (dispatch) => {
+        dispatch(getUser());
+        return (
+            fetch('http://192.168.43.41:3000/signUp', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user)
+            }
             )
         )
             .then(res => res.json())

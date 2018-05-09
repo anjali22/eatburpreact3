@@ -19,6 +19,7 @@ import { ImagePicker } from 'expo';
 import { fetchRestaurants, fetchRestaurantsSuccess, fetchRestaurantsFailure } from '../actions/restaurants.action';
 import { fetchFoodItems, fetchFoodItemsSuccess, fetchFoodItemsFailure } from '../actions/foodItems.action';
 import { addReview, addReviewSuccess, addReviewFailure } from '../actions/review.action';
+import deviceStorage from '../services/storage.service';
 
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
@@ -37,16 +38,22 @@ class AddReview extends Component{
         searchedRestaurants: [],
         searchedFood: [],
         pickerResult: [],
+        token: ''
     }
 
     componentDidMount() {
         this.props.dispatch(fetchRestaurants());
-        this.props.dispatch(fetchFoodItems());        
+        this.props.dispatch(fetchFoodItems());     
+        deviceStorage.loadJWT()
+        .then(res => {
+            this.setState({token: res})
+        })   
+        .catch(err => alert(err));
     }
 
     // fetchRestaurants = async () => { 
     //     try {
-    //         const response = await fetch('http://192.168.43.101:3000/getRestaurants');
+    //         const response = await fetch('http://192.168.43.41:3000/getRestaurants');
     //         const json = await response.json();
     //         //console.log(json, "json");
     //         this.setState({restaurants: json.docs});
@@ -58,7 +65,7 @@ class AddReview extends Component{
 
     // fetchFoodItems = async () => { 
     //     try {
-    //         const response = await fetch('http://192.168.43.101:3000/getFoodItems');
+    //         const response = await fetch('http://192.168.43.41:3000/getFoodItems');
     //         const json = await response.json();
     //         //console.log(json, "json");
     //         this.setState({foodItems: json.docs});
@@ -193,10 +200,9 @@ class AddReview extends Component{
         formData.append('review', this.state.review);
       
         console.log("formdata====================================", formData);
-        this.props.dispatch(addReview(formData));
-        console.log("form data in addreview.js", formData);
-        // if(!props.state.reviewLoading)
-        //     alert("Review added successfully");
+        this.props.dispatch(addReview(formData, this.state.token));
+        //console.log("form data in addreview.js", formData);
+
         // let options = {
         //   method: 'POST',
         //   body: formData,

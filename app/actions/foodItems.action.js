@@ -8,7 +8,6 @@ export function fetchFoodItems() {
 
     return (dispatch) => {
         dispatch(getFoodItems());
-
         return(fetch(`${API_ROOT}/getFoodItems`))
         .then(res => res.json())
         .then(json => {

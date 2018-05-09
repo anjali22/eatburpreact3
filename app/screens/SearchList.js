@@ -39,7 +39,7 @@ class SearchList extends React.Component {
 
     // fetchData = async () => { 
     //     try {
-    //         const response = await fetch('http://192.168.43.101:3000/getFoodItems');
+    //         const response = await fetch('http://192.168.43.41:3000/getFoodItems');
     //         const json = await response.json();
     //         //console.log(json, "json");
     //         this.setState({data: json.docs});
