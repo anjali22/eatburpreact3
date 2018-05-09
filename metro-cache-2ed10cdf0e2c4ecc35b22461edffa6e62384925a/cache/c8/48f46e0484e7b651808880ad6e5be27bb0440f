@@ -1,0 +1,211 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/SignUp.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _reactRedux = require(_dependencyMap[3], "react-redux");
+
+    var _user = require(_dependencyMap[4], "../actions/user.action");
+
+    var _Records = require(_dependencyMap[5], "../data/Records");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        SignUpScreen: {
+            displayName: "SignUpScreen"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/anjali/Desktop/Eatburp/eatburpreact3/app/screens/SignUp.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var SignUpScreen = _wrapComponent("SignUpScreen")(function (_React$Component) {
+        _inherits(SignUpScreen, _React$Component);
+
+        function SignUpScreen(props) {
+            _classCallCheck(this, SignUpScreen);
+
+            var _this = _possibleConstructorReturn(this, (SignUpScreen.__proto__ || Object.getPrototypeOf(SignUpScreen)).call(this, props));
+
+            _this._handleUsername = function (text) {
+                console.log(text, 'text--------');
+
+                _this.setState({
+                    username: text
+                });
+
+                console.log(_this.state.username);
+            };
+
+            _this._handlePassword = function (text) {
+                _this.setState({
+                    password: text
+                });
+
+                console.log(_this.state.password);
+            };
+
+            _this._login = function (username, password) {
+                console.log("login clicked-------");
+                console.log('username----', username, 'password------', _this.state.password);
+
+                _this.props.dispatch((0, _user.postUser)(new _Records.User({
+                    email: _this.state.username,
+                    password: _this.state.password
+                })));
+            };
+
+            _this.state = {
+                username: '',
+                password: ''
+            };
+            return _this;
+        }
+
+        _createClass(SignUpScreen, [{
+            key: "render",
+            value: function render() {
+                var _this2 = this;
+
+                return _react3.default.createElement(
+                    _reactNative.ScrollView,
+                    {
+                        style: {
+                            padding: 20
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 26
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: {
+                                fontSize: 27
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 27
+                            }
+                        },
+                        "Login"
+                    ),
+                    _react3.default.createElement(_reactNative.TextInput, {
+                        style: styles.input,
+                        underlineColorAndroid: "transparent",
+                        placeholder: "Username",
+                        placeholderTextColor: "#9a73ef",
+                        autoCapitalize: "none",
+                        onChangeText: this._handleUsername,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 31
+                        }
+                    }),
+                    _react3.default.createElement(_reactNative.TextInput, {
+                        style: styles.input,
+                        underlineColorAndroid: "transparent",
+                        placeholder: "Password",
+                        placeholderTextColor: "#9a73ef",
+                        autoCapitalize: "none",
+                        onChangeText: this._handlePassword,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 37
+                        }
+                    }),
+                    _react3.default.createElement(_reactNative.View, {
+                        style: {
+                            margin: 7
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 44
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.TouchableOpacity,
+                        {
+                            style: styles.submitButton,
+                            onPress: function onPress() {
+                                return _this2._login(_this2.state.username, _this2.state.password);
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 45
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.submitButtonText,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 50
+                                }
+                            },
+                            " Submit "
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return SignUpScreen;
+    }(_react3.default.Component));
+
+    var styles = _reactNative.StyleSheet.create({
+        container: {
+            paddingTop: 23
+        },
+        input: {
+            margin: 15,
+            height: 40,
+            borderColor: '#7a42f4',
+            borderWidth: 1
+        },
+        submitButton: {
+            backgroundColor: '#7a42f4',
+            padding: 10,
+            margin: 15,
+            height: 40
+        },
+        submitButtonText: {
+            color: 'white'
+        }
+    });
+
+    exports.default = (0, _reactRedux.connect)()(SignUpScreen);
+});

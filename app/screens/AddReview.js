@@ -11,7 +11,8 @@ import {
     ScrollView,
     NativeModules,
     Alert, 
-    Dimensions } from 'react-native';
+    Dimensions,
+    ActivityIndicator } from 'react-native';
 
 import { connect } from 'react-redux';
 import { ImagePicker } from 'expo';
@@ -26,7 +27,9 @@ class AddReview extends Component{
     
     state = {
         restoName: '',
+        restoId: '',
         itemName: '',
+        itemId: '',
         review: '',
         rating: '',
         image: null, 
@@ -39,8 +42,6 @@ class AddReview extends Component{
     }
 
     componentDidMount() {
-        //this.fetchRestaurants();
-        //this.fetchFoodItems();
         this.props.dispatch(fetchRestaurants());
         this.props.dispatch(fetchFoodItems());     
         deviceStorage.loadJWT()
@@ -80,18 +81,30 @@ class AddReview extends Component{
             return restaurant.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
           });
           this.setState({searchedRestaurants: searchedRestaurants});
-          //this.setState({text: searchedText});
-          //console.log('anjaliiiiiiiiiii',this.state.text);
-
           this.setState({ restoName: text })
     }
     
+    _handlePressRestaurant = (restaurant) => {
+        this.setState ( { restoName: restaurant.name});
+        this.setState ( { restoId: restaurant._id});      
+        this.setState ( { searchedRestaurants: []});
+        console.log("in handle press restaurant", this.state.restoName);
+    }
+
     handleFood = (text)=> {
         var searchedFood = this.props.foodItems.filter(function(food) {
+            //console.log('foooooooo************************dddddddddddd',food);
             return food.name.toLowerCase().indexOf(text.toLowerCase()) > -1;
           });
         this.setState({searchedFood: searchedFood});
         this.setState({ itemName: text })
+    }
+
+    _handlePressFood = (food) => {
+        this.setState ( { itemName: food.name});
+        this.setState({ itemId: food._id })        
+        this.setState ( { searchedFood: []});
+        console.log("in handle press food item", this.state.itemName);       
     }
 
     handleReview = (text)=> {
@@ -129,18 +142,6 @@ class AddReview extends Component{
         );
     };
 
-    _handlePressRestaurant = (restaurant) => {
-        this.setState ( { restoName: restaurant.name});
-        this.setState ( { searchedRestaurants: []});
-        console.log("in handle press restaurant", this.state.restoName);
-    }
-
-    _handlePressFood = (food) => {
-        this.setState ( { itemName: food.name});
-        this.setState ( { searchedFood: []});
-        console.log("in handle press food item", this.state.itemName);       
-    }
-
     addImage = async () => {
         let pickerResult = await ImagePicker.launchImageLibraryAsync({
           allowsEditing: true,
@@ -164,26 +165,23 @@ class AddReview extends Component{
           this.setState({ uploading: true });
     
           if (!pickerResult.cancelled) {
-            uploadResponse = this.uploadImageAsync(pickerResult.uri,
-            this.state.restoName,
-            this.state.itemName,
-            this.state.rating,
-            this.state.review);
-            uploadResult = await uploadResponse.json();
-            this.setState({ image: uploadResult.location });
+            this.uploadImageAsync(pickerResult.uri);
+            // uploadResult = await uploadResponse.json();
+            // this.setState({ image: uploadResult.location });
           }
         } catch (e) {
           console.log({ uploadResponse });
           console.log({ uploadResult });
           console.log({ e });
-          alert('Upload failed, sorry :(');
+          console.log("e****************************************",e)
+          //alert('Upload failed, sorry :(');
         } finally {
           this.setState({ uploading: false });
         }
     };
-    async uploadImageAsync(uri, restoName, itemName, rating, review) {
-        let apiUrl = 'http://192.168.43.41:3000/uploadimage';
-        console.log(restoName, itemName, rating, review );
+    async uploadImageAsync(uri) {
+        //let apiUrl = 'http://192.168.43.101:3000/uploadimage';
+        //console.log(restoName, itemName, rating, review );
         
         let uriParts = uri.split('.');
         let fileType = uriParts[uriParts.length - 1];
@@ -194,14 +192,17 @@ class AddReview extends Component{
           name: `photo.${fileType}`,
           type: `image/${fileType}`,
         });
-        formData.append('restaurantName', restoName);
-        formData.append('foodItem', itemName)
-        formData.append('rating', rating);
-        formData.append('review', review);
+        formData.append('restaurantId', this.state.restoId);
+        formData.append('itemId', this.state.itemId)
+        formData.append('restaurantName', this.state.restoName);
+        formData.append('itemName', this.state.itemName);
+        formData.append('rating', this.state.rating);
+        formData.append('review', this.state.review);
       
         console.log("formdata====================================", formData);
         this.props.dispatch(addReview(formData, this.state.token));
         //console.log("form data in addreview.js", formData);
+
         // let options = {
         //   method: 'POST',
         //   body: formData,
@@ -213,7 +214,7 @@ class AddReview extends Component{
       
         //return fetch(apiUrl, options);
     }
-    addReview = (restoName, itemName, review, rating) => {
+    addReview () {
         this.onSubmitReview();
         //alert(restoName+itemName+review+rating);
     }
@@ -303,12 +304,16 @@ class AddReview extends Component{
                <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.addReview(this.state.itemName, this.state.review, 
-                    this.state.restoName, this.state.rating)
+                  () => this.addReview()
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
          </View>  
+         {this.props.reviewLoading &&
+                  <View style={styles.loading}>
+                      <ActivityIndicator/>
+                  </View>
+         }
          </ScrollView>
         );
     }
@@ -316,6 +321,17 @@ class AddReview extends Component{
 
 
 const styles = StyleSheet.create({
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.5,
+        backgroundColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     container: {
         borderWidth: 1,
         borderRadius: 4,

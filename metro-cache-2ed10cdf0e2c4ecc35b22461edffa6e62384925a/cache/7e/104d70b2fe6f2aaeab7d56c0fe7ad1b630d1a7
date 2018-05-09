@@ -1,0 +1,85 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.currentUser_Token = undefined;
+
+    var _reactNative = require(_dependencyMap[0], "react-native");
+
+    var currentUser_Token = exports.currentUser_Token = "currentUser_Token";
+    var deviceStorage = {
+        saveItem: function saveItem(key, value) {
+            return regeneratorRuntime.async(function saveItem$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.prev = 0;
+                            _context.next = 3;
+                            return regeneratorRuntime.awrap(_reactNative.AsyncStorage.setItem(key, value));
+
+                        case 3:
+                            console.log('saved----', value);
+                            _context.next = 9;
+                            break;
+
+                        case 6:
+                            _context.prev = 6;
+                            _context.t0 = _context["catch"](0);
+                            console.log('AsyncStorage Error: ' + _context.t0.message);
+
+                        case 9:
+                        case "end":
+                            return _context.stop();
+                    }
+                }
+            }, null, this, [[0, 6]]);
+        },
+        isSignedIn: function isSignedIn() {
+            return new Promise(function (resolve, reject) {
+                _reactNative.AsyncStorage.getItem(currentUser_Token).then(function (res) {
+                    console.log(res);
+
+                    if (res !== null) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                }).catch(function (err) {
+                    return reject(err);
+                });
+            });
+        },
+        deleteJWT: function deleteJWT() {
+            var _this = this;
+
+            return regeneratorRuntime.async(function deleteJWT$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.prev = 0;
+                            _context2.next = 3;
+                            return regeneratorRuntime.awrap(_reactNative.AsyncStorage.removeItem('currentUser_Token').then(function () {
+                                _this.setState({
+                                    jwt: ''
+                                });
+                            }));
+
+                        case 3:
+                            _context2.next = 8;
+                            break;
+
+                        case 5:
+                            _context2.prev = 5;
+                            _context2.t0 = _context2["catch"](0);
+                            console.log('AsyncStorage Error: ' + _context2.t0.message);
+
+                        case 8:
+                        case "end":
+                            return _context2.stop();
+                    }
+                }
+            }, null, this, [[0, 5]]);
+        }
+    };
+    exports.default = deviceStorage;
+});

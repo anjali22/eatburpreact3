@@ -1,0 +1,16 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.User = undefined;
+
+    var _immutable = require(_dependencyMap[0], "immutable");
+
+    var User = exports.User = (0, _immutable.Record)({
+        id: null,
+        authToken: null,
+        name: null,
+        email: null,
+        password: null
+    });
+});

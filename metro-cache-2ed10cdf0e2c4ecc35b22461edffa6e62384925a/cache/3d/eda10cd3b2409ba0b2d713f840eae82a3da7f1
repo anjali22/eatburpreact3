@@ -1,0 +1,47 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _user = require(_dependencyMap[0], "../actions/user.action");
+
+    var initialState = {
+        user: [],
+        error: null,
+        loading: false
+    };
+
+    var reducer = function reducer() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+        var action = arguments[1];
+
+        switch (action.type) {
+            case _user.FETCH_USER:
+                return _extends({}, state, {
+                    error: null,
+                    loading: true
+                });
+
+            case _user.POST_USER_SUCCESS:
+                return _extends({}, state, {
+                    user: action.payload.user,
+                    error: null,
+                    loading: false
+                });
+
+            case _user.POST_USER_FAILURE:
+                return _extends({}, state, {
+                    user: [],
+                    error: action.payload.error,
+                    loading: false
+                });
+
+            default:
+                return state;
+        }
+    };
+
+    exports.default = reducer;
+});

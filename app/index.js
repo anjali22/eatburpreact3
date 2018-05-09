@@ -55,11 +55,11 @@ export default class App extends React.Component {
     });
     this.setState({ loading: false });
     console.log('inside here---------')
-    /* deviceStorage.isSignedIn()
+    deviceStorage.isSignedIn()
       .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
       .catch(err => alert(err));
-     */
-deviceStorage.deleteJWT();
+    
+    //deviceStorage.deleteJWT();
   }
 
   render(){

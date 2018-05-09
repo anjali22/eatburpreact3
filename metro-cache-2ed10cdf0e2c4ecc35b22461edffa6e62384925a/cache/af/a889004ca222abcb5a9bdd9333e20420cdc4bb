@@ -1,0 +1,11 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _reactNative = require(_dependencyMap[0], "react-native");
+
+  exports.default = _reactNative.NativeModules.ReactNativeConfig || {};
+});

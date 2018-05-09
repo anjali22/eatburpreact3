@@ -12,7 +12,9 @@ __d(function (global, require, module, exports, _dependencyMap) {
     exports.fetchReviewsSuccess = fetchReviewsSuccess;
     exports.fetchReviewsFailure = fetchReviewsFailure;
 
-    var _reviews = require(_dependencyMap[0], "../data/reviews");
+    var _apiConfig = require(_dependencyMap[0], "../../api-config");
+
+    var _reviews = require(_dependencyMap[1], "../data/reviews");
 
     var _reviews2 = _interopRequireDefault(_reviews);
 
@@ -29,7 +31,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
         return function (dispatch) {
             dispatch(saveReview());
             console.log("this.review===============", data);
-            return fetch('http://192.168.43.101:3000/addReview', {
+            return fetch(_apiConfig.API_ROOT + "/addReview", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -39,7 +41,8 @@ __d(function (global, require, module, exports, _dependencyMap) {
             }).then(function (res) {
                 return res.json();
             }).then(function (json) {
-                dispatch(addReviewSuccess(json.docs));
+                console.log("klsdhfldkhflksdfds======================", json);
+                dispatch(addReviewSuccess(json));
                 return json.docs;
             }).catch(function (err) {
                 return dispatch(addReviewFailure(err));
@@ -74,7 +77,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     function fetchReviews() {
         return function (dispatch) {
             dispatch(getReviews());
-            return fetch('http://192.168.43.101:3000/getRestaurants').then(function (res) {
+            return fetch(_apiConfig.API_ROOT + "/getRestaurants").then(function (res) {
                 return res.json();
             }).then(function (json) {
                 dispatch(fetchReviewsSuccess(_reviews2.default));

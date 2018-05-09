@@ -2,10 +2,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+    exports.FETCH_FOOD_ITEMS_FAILURE = exports.FETCH_FOOD_ITEMS_SUCCESS = exports.FETCH_FOOD_ITEMS = undefined;
     exports.fetchFoodItems = fetchFoodItems;
     exports.getFoodItems = getFoodItems;
     exports.fetchFoodItemsSuccess = fetchFoodItemsSuccess;
     exports.fetchFoodItemsFailure = fetchFoodItemsFailure;
+
+    var _apiConfig = require(_dependencyMap[0], "../../api-config");
+
     var FETCH_FOOD_ITEMS = exports.FETCH_FOOD_ITEMS = 'FETCH_FOOD_ITEMS';
     var FETCH_FOOD_ITEMS_SUCCESS = exports.FETCH_FOOD_ITEMS_SUCCESS = 'FETCH_FOOD_ITEMS_SUCCESS';
     var FETCH_FOOD_ITEMS_FAILURE = exports.FETCH_FOOD_ITEMS_FAILURE = 'FETCH_FOOD_ITEMS_FAILURE';
@@ -13,7 +17,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     function fetchFoodItems() {
         return function (dispatch) {
             dispatch(getFoodItems());
-            return fetch('http://192.168.43.101:3000/getFoodItems').then(function (res) {
+            return fetch(_apiConfig.API_ROOT + "/getFoodItems").then(function (res) {
                 return res.json();
             }).then(function (json) {
                 dispatch(fetchFoodItemsSuccess(json.docs));

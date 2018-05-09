@@ -1,3 +1,5 @@
+import { API_ROOT } from '../../api-config';
+
 export const FETCH_FOOD_ITEMS = 'FETCH_FOOD_ITEMS';
 export const FETCH_FOOD_ITEMS_SUCCESS = 'FETCH_FOOD_ITEMS_SUCCESS';
 export const FETCH_FOOD_ITEMS_FAILURE = 'FETCH_FOOD_ITEMS_FAILURE';
@@ -6,8 +8,7 @@ export function fetchFoodItems() {
 
     return (dispatch) => {
         dispatch(getFoodItems());
-
-        return(fetch('http://192.168.43.41:3000/getFoodItems'))
+        return(fetch(`${API_ROOT}/getFoodItems`))
         .then(res => res.json())
         .then(json => {
 
