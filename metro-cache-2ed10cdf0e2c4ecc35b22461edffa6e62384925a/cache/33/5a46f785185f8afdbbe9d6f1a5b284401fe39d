@@ -2,6 +2,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+    exports.createRootNavigator = exports.SignedOut = undefined;
     var _jsxFileName = "/home/anjali/Desktop/Eatburp/eatburpreact3/app/navigation/RootNavigation.js";
 
     var _react = require(_dependencyMap[0], "react");
@@ -44,11 +45,19 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _SearchResultsList2 = _interopRequireDefault(_SearchResultsList);
 
-    var _MyReviews = require(_dependencyMap[11], "../screens/MyReviews");
+    var _SignIn = require(_dependencyMap[11], "../screens/SignIn");
+
+    var _SignIn2 = _interopRequireDefault(_SignIn);
+
+    var _SignUp = require(_dependencyMap[12], "../screens/SignUp");
+
+    var _SignUp2 = _interopRequireDefault(_SignUp);
+
+    var _MyReviews = require(_dependencyMap[13], "../screens/MyReviews");
 
     var _MyReviews2 = _interopRequireDefault(_MyReviews);
 
-    var _FontAwesome = require(_dependencyMap[12], "@expo/vector-icons/FontAwesome");
+    var _FontAwesome = require(_dependencyMap[14], "@expo/vector-icons/FontAwesome");
 
     var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
@@ -74,7 +83,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }, {
         headerMode: 'none'
     });
-    var TabLayout = (0, _reactNavigation.TabNavigator)({
+    var signed = (0, _reactNavigation.TabNavigator)({
         home: {
             screen: HomeStack
         },
@@ -142,7 +151,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         color: focused ? '#0d47a1' : '#A9A9A9',
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 105
+                            lineNumber: 101
                         }
                     });
                 }
@@ -159,11 +168,82 @@ __d(function (global, require, module, exports, _dependencyMap) {
             }
         }
     });
-    exports.default = (0, _reactNavigation.StackNavigator)({
-        tabs: {
-            screen: TabLayout
+    var signedOut = (0, _reactNavigation.TabNavigator)({
+        SignUp: {
+            screen: _SignUp2.default
+        },
+        SignIn: {
+            screen: _SignIn2.default
+        }
+    }, {
+        navigationOptions: function navigationOptions(_ref3) {
+            var navigation = _ref3.navigation;
+            return {
+                tabBarLabel: function tabBarLabel() {
+                    var routeName = navigation.state.routeName;
+                    var label = routeName;
+
+                    if (label === 'SignUp') {
+                        return 'Sign Up';
+                    }
+
+                    if (label === 'SignIn') {
+                        return 'Sign In';
+                    }
+
+                    return _react2.default.createElement(_reactNavigation.Text, {
+                        name: label,
+                        size: _reactNative.Platform.OS === 'ios' ? 30 : 27,
+                        style: {
+                            marginBottom: -3
+                        },
+                        color: focused ? '#0d47a1' : '#A9A9A9',
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 151
+                        }
+                    });
+                }
+            };
+        },
+        tabBarComponent: _reactNavigation.TabBarBottom,
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            style: {
+                backgroundColor: '#fff',
+                borderTopColor: '#fff',
+                height: 60,
+                padding: 8
+            }
+        }
+    });
+    var SignedIn = (0, _reactNavigation.StackNavigator)({
+        signed: {
+            screen: signed
         }
     }, {
         headerMode: 'none'
     });
+    var SignedOut = exports.SignedOut = (0, _reactNavigation.StackNavigator)({
+        signedOut: {
+            screen: signedOut
+        }
+    }, {
+        headerMode: 'none'
+    });
+
+    var createRootNavigator = exports.createRootNavigator = function createRootNavigator() {
+        var signedIn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+        console.log('signedIn------------', signedIn);
+        return (0, _reactNavigation.SwitchNavigator)({
+            SignedIn: {
+                screen: SignedIn
+            },
+            SignedOut: {
+                screen: SignedOut
+            }
+        }, {
+            initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+        });
+    };
 });

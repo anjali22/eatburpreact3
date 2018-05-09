@@ -73,7 +73,7 @@ class SignInScreen extends React.Component {
                 password: this.state.password
             })
         ));
-        this.props.navigation.navigate('Home');
+        this.props.navigation.navigate('home');
 
     }
 }

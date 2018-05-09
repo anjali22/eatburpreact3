@@ -5,19 +5,23 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _redux = require(_dependencyMap[0], "redux");
 
-    var _review = require(_dependencyMap[1], "./review.reducer");
+    var _user = require(_dependencyMap[1], "./user.reducer");
+
+    var _user2 = _interopRequireDefault(_user);
+
+    var _review = require(_dependencyMap[2], "./review.reducer");
 
     var _review2 = _interopRequireDefault(_review);
 
-    var _restaurants = require(_dependencyMap[2], "./restaurants.reducer");
+    var _restaurants = require(_dependencyMap[3], "./restaurants.reducer");
 
     var _restaurants2 = _interopRequireDefault(_restaurants);
 
-    var _foodItems = require(_dependencyMap[3], "./foodItems.reducer");
+    var _foodItems = require(_dependencyMap[4], "./foodItems.reducer");
 
     var _foodItems2 = _interopRequireDefault(_foodItems);
 
-    var _search = require(_dependencyMap[4], "./search.reducer");
+    var _search = require(_dependencyMap[5], "./search.reducer");
 
     var _search2 = _interopRequireDefault(_search);
 
@@ -27,6 +31,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
         search: _search2.default,
         restaurants: _restaurants2.default,
         foodItems: _foodItems2.default,
-        review: _review2.default
+        review: _review2.default,
+        user: _user2.default
     });
 });

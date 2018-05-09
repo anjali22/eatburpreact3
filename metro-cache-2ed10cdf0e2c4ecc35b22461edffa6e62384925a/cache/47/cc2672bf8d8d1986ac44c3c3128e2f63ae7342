@@ -27,7 +27,9 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var _reactRedux = require(_dependencyMap[5], "react-redux");
 
-    var _SearchBarPinterest = require(_dependencyMap[6], "../components/SearchBar/SearchBarPinterest");
+    var _apiConfig = require(_dependencyMap[6], "../../api-config");
+
+    var _SearchBarPinterest = require(_dependencyMap[7], "../components/SearchBar/SearchBarPinterest");
 
     var _SearchBarPinterest2 = _interopRequireDefault(_SearchBarPinterest);
 
@@ -83,7 +85,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 _context.prev = 0;
                                 console.log("in fetchTopRestaurants foodid", foodId);
                                 _context.next = 4;
-                                return regeneratorRuntime.awrap(fetch('http://192.168.43.101:3000/getTopRestaurants', {
+                                return regeneratorRuntime.awrap(fetch(_apiConfig.API_ROOT + "/getTopRestaurants", {
                                     method: 'POST',
                                     headers: {
                                         Accept: 'application/json',
@@ -130,7 +132,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         style: styles.suggestionTagContainer,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 210
+                            lineNumber: 212
                         }
                     },
                     _react3.default.createElement(
@@ -142,7 +144,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 211
+                                lineNumber: 213
                             }
                         },
                         tag.title
@@ -204,7 +206,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.firstListComponent,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 94
+                                lineNumber: 96
                             }
                         },
                         _react3.default.createElement(
@@ -213,16 +215,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.imageContainer,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 95
+                                    lineNumber: 97
                                 }
                             },
                             _react3.default.createElement(_reactNative.Image, {
                                 style: styles.image,
                                 resizeMode: "cover",
-                                source: require(_dependencyMap[7], '../assets/images/sandwich.jpg'),
+                                source: require(_dependencyMap[8], '../assets/images/sandwich.jpg'),
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 96
+                                    lineNumber: 98
                                 }
                             })
                         ),
@@ -232,7 +234,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.content,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 101
+                                    lineNumber: 103
                                 }
                             },
                             _react3.default.createElement(
@@ -241,7 +243,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.foodName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 102
+                                        lineNumber: 104
                                     }
                                 },
                                 item.name
@@ -252,7 +254,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.placeName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 105
+                                        lineNumber: 107
                                     }
                                 },
                                 item.bestAt
@@ -266,7 +268,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.twoListComponent,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 113
+                                lineNumber: 115
                             }
                         },
                         _react3.default.createElement(
@@ -275,16 +277,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.imageContainer,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 114
+                                    lineNumber: 116
                                 }
                             },
                             _react3.default.createElement(_reactNative.Image, {
                                 style: styles.image,
                                 resizeMode: "cover",
-                                source: require(_dependencyMap[8], '../assets/images/lasagna.jpg'),
+                                source: require(_dependencyMap[9], '../assets/images/lasagna.jpg'),
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 115
+                                    lineNumber: 117
                                 }
                             })
                         ),
@@ -294,7 +296,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.content,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 120
+                                    lineNumber: 122
                                 }
                             },
                             _react3.default.createElement(
@@ -303,7 +305,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.foodName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 121
+                                        lineNumber: 123
                                     }
                                 },
                                 item.name
@@ -314,7 +316,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.placeName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 124
+                                        lineNumber: 126
                                     }
                                 },
                                 item.bestAt
@@ -328,7 +330,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.threeListComponent,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 132
+                                lineNumber: 134
                             }
                         },
                         _react3.default.createElement(
@@ -337,16 +339,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.imageContainer,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 133
+                                    lineNumber: 135
                                 }
                             },
                             _react3.default.createElement(_reactNative.Image, {
                                 style: styles.image,
                                 resizeMode: "cover",
-                                source: require(_dependencyMap[9], '../assets/images/lassi.jpg'),
+                                source: require(_dependencyMap[10], '../assets/images/lassi.jpg'),
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 134
+                                    lineNumber: 136
                                 }
                             })
                         ),
@@ -356,7 +358,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.content,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 139
+                                    lineNumber: 141
                                 }
                             },
                             _react3.default.createElement(
@@ -365,7 +367,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.foodName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 140
+                                        lineNumber: 142
                                     }
                                 },
                                 item.name
@@ -376,7 +378,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.placeName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 143
+                                        lineNumber: 145
                                     }
                                 },
                                 item.bestAt
@@ -390,7 +392,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.fourListComponent,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 151
+                                lineNumber: 153
                             }
                         },
                         _react3.default.createElement(
@@ -399,16 +401,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.imageContainer,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 152
+                                    lineNumber: 154
                                 }
                             },
                             _react3.default.createElement(_reactNative.Image, {
                                 style: styles.image,
                                 resizeMode: "cover",
-                                source: require(_dependencyMap[10], '../assets/images/coldCoffee.jpg'),
+                                source: require(_dependencyMap[11], '../assets/images/coldCoffee.jpg'),
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 153
+                                    lineNumber: 155
                                 }
                             })
                         ),
@@ -418,7 +420,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.content,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 158
+                                    lineNumber: 160
                                 }
                             },
                             _react3.default.createElement(
@@ -427,7 +429,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.foodName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 159
+                                        lineNumber: 161
                                     }
                                 },
                                 item.name
@@ -438,7 +440,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.placeName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 162
+                                        lineNumber: 164
                                     }
                                 },
                                 item.bestAt
@@ -452,7 +454,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.fiveListComponent,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 170
+                                lineNumber: 172
                             }
                         },
                         _react3.default.createElement(
@@ -461,16 +463,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.imageContainer,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 171
+                                    lineNumber: 173
                                 }
                             },
                             _react3.default.createElement(_reactNative.Image, {
                                 style: styles.image,
                                 resizeMode: "cover",
-                                source: require(_dependencyMap[11], '../assets/images/pavBhaji.jpeg'),
+                                source: require(_dependencyMap[12], '../assets/images/pavBhaji.jpeg'),
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 172
+                                    lineNumber: 174
                                 }
                             })
                         ),
@@ -480,7 +482,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.content,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 177
+                                    lineNumber: 179
                                 }
                             },
                             _react3.default.createElement(
@@ -489,7 +491,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.foodName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 178
+                                        lineNumber: 180
                                     }
                                 },
                                 item.name
@@ -500,7 +502,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     style: styles.placeName,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 181
+                                        lineNumber: 183
                                     }
                                 },
                                 item.bestAt
@@ -513,7 +515,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         style: styles.lastListComponent,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 189
+                            lineNumber: 191
                         }
                     },
                     _react3.default.createElement(
@@ -522,16 +524,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.imageContainer,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 190
+                                lineNumber: 192
                             }
                         },
                         _react3.default.createElement(_reactNative.Image, {
                             style: styles.image,
                             resizeMode: "cover",
-                            source: require(_dependencyMap[12], '../assets/images/poha.jpg'),
+                            source: require(_dependencyMap[13], '../assets/images/poha.jpg'),
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 191
+                                lineNumber: 193
                             }
                         })
                     ),
@@ -541,7 +543,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.content,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 196
+                                lineNumber: 198
                             }
                         },
                         _react3.default.createElement(
@@ -550,7 +552,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.foodName,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 197
+                                    lineNumber: 199
                                 }
                             },
                             item.name
@@ -561,7 +563,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.placeName,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 200
+                                    lineNumber: 202
                                 }
                             },
                             item.bestAt
@@ -578,7 +580,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         style: styles.main,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 221
+                            lineNumber: 223
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
@@ -586,7 +588,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         barStyle: "default",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 222
+                            lineNumber: 224
                         }
                     }),
                     _react3.default.createElement(
@@ -595,13 +597,13 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.searchBarContainer,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 223
+                                lineNumber: 225
                             }
                         },
                         _react3.default.createElement(_SearchBarPinterest2.default, {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 224
+                                lineNumber: 226
                             }
                         })
                     ),
@@ -611,7 +613,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.tagsContainer,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 226
+                                lineNumber: 228
                             }
                         },
                         _react3.default.createElement(_reactNative.ListView, {
@@ -621,7 +623,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             showsHorizontalScrollIndicator: false,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 227
+                                lineNumber: 229
                             }
                         })
                     ),
@@ -631,7 +633,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             style: styles.searchResultsTitleContainer,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 257
+                                lineNumber: 259
                             }
                         },
                         _react3.default.createElement(
@@ -640,7 +642,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 style: styles.searchResultsTitle,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 258
+                                    lineNumber: 260
                                 }
                             },
                             this.state.searchQuery,
@@ -655,7 +657,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                             onRefresh: this._onRefresh.bind(this),
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 274
+                                lineNumber: 276
                             }
                         }),
                         data: _food2.default,
@@ -665,7 +667,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         showsVerticalScrollIndicator: false,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 272
+                            lineNumber: 274
                         }
                     })
                 );

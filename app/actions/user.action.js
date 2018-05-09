@@ -1,4 +1,5 @@
 import deviceStorage from '../services/storage.service';
+import { API_ROOT } from '../../api-config';
 
 export const FETCH_USER = 'FETCH_USER';
 export const POST_USER_SUCCESS = 'POST_USER_SUCCESS';
@@ -12,7 +13,7 @@ export function postUser(user) {
         dispatch(getUser());
 
         return (
-            fetch('http://192.168.43.41:3000/signIn', {
+            fetch(`${API_ROOT}/signIn`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

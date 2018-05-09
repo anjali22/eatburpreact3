@@ -1,3 +1,5 @@
+import { API_ROOT } from '../../api-config';
+
 export const FETCH_RESTAURANTS = 'FETCH_RESTAURANTS';
 export const FETCH_RESTAURANTS_SUCCESS = 'FETCH_RESTAURANTS_SUCCESS';
 export const FETCH_RESTAURANTS_FAILURE = 'FETCH_RESTAURANTS_FAILURE';
@@ -7,7 +9,7 @@ export function fetchRestaurants() {
     return (dispatch) => {
         dispatch(getRestaurants());
 
-        return(fetch('http://192.168.43.101:3000/getRestaurants'))
+        return(fetch(`${API_ROOT}/getRestaurants`))
         .then(res => res.json())
         .then(json => {
 

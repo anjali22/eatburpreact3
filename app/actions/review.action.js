@@ -1,3 +1,5 @@
+import { API_ROOT } from '../../api-config';
+
 export const ADD_REVIEW = 'ADD_REVIEW';
 export const ADD_REVIEW_SUCCESS = 'ADD_REVIEW_SUCCESS';
 export const ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE';
@@ -14,7 +16,7 @@ export function addReview(data) {
         dispatch(saveReview());
         console.log("this.review===============",data);
         return( 
-            fetch('http://192.168.43.101:3000/addReview', {
+            fetch(`${API_ROOT}/addReview`, {
                 method: 'POST',
                 headers: {
                 'Accept': 'application/json',
@@ -26,12 +28,11 @@ export function addReview(data) {
                 }
             )
         )
-        .then(
-
-            res => res.json())
+         .then(
+             res => res.json())
         .then(json => {
-
-            dispatch(addReviewSuccess(json.docs));
+            console.log("klsdhfldkhflksdfds======================",json);
+            dispatch(addReviewSuccess(json));
             //console.log(json,"jsonnnnnnnnnnnnnn");
             return json.docs;
         })  
@@ -65,7 +66,7 @@ export function fetchReviews() {
     return (dispatch) => {
         dispatch(getReviews());
 
-        return(fetch('http://192.168.43.101:3000/getRestaurants'))
+        return(fetch(`${API_ROOT}/getRestaurants`))
         .then(res => res.json())
         .then(json => {
 

@@ -19,6 +19,8 @@ import food from '../data/food';
 
 import { connect } from 'react-redux';
 
+import { API_ROOT } from '../../api-config';
+
 import SearchBarPinterest from '../components/SearchBar/SearchBarPinterest';
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
@@ -47,7 +49,7 @@ class SearchResultsList extends React.Component {
     fetchTopRestaurants = async (foodId) => {
         try {
             console.log("in fetchTopRestaurants foodid", foodId);
-            const response = await fetch('http://192.168.43.101:3000/getTopRestaurants', {
+            const response = await fetch(`${API_ROOT}/getTopRestaurants`, {
             
                 method: 'POST',
                 headers: {
