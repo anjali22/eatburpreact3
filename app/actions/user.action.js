@@ -36,7 +36,7 @@ export function postUserSignUp(user) {
     return (dispatch) => {
         dispatch(getUser());
         return (
-            fetch('http://192.168.43.41:3000/signUp', {
+            fetch(`${API_ROOT}/signUp`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
