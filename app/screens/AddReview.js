@@ -97,6 +97,7 @@ class AddReview extends Component{
     handleFood = (text)=> {
         var searchedFood = this.props.foodItems.filter(function(food) {
             //console.log('foooooooo************************dddddddddddd',food);
+            if(food.dish_name)
             return food.dish_name.toLowerCase().indexOf(text.toLowerCase()) > -1;
           });
         this.setState({searchedFood: searchedFood});

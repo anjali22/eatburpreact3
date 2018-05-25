@@ -16,8 +16,10 @@ import {
 
 import { connect } from 'react-redux';
 import { fetchReviews, fetchReviewsSuccess, fetchReviewsFailure } from '../actions/review.action';
+import deviceStorage from "../services/storage.service";
 
 class MyReviews extends Component {
+
 
     componentDidMount(){
         //get user details
@@ -26,6 +28,11 @@ class MyReviews extends Component {
     }
 
 
+    onLogoutPress = () => {
+        console.log("on logout press");      
+        this.props.navigation.navigate('SignedOut');
+        deviceStorage.deleteJWT();
+    };
 
     render(){
         return(
@@ -45,9 +52,13 @@ class MyReviews extends Component {
                  renderItem={({item}) => <Text>{item.review}</Text>}
                />
 
-               <TouchableOpacity>
-                   
-               </TouchableOpacity>
+               <TouchableOpacity onPress={this.onLogoutPress}>
+               <View >
+                 <Text >
+                   Logout
+                 </Text>
+               </View>
+             </TouchableOpacity> 
             </View>
         )
     }
