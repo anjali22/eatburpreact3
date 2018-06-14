@@ -3,7 +3,6 @@ import { API_ROOT } from '../../api-config';
 export const ADD_REVIEW = 'ADD_REVIEW';
 export const ADD_REVIEW_SUCCESS = 'ADD_REVIEW_SUCCESS';
 export const ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE';
-
 export const FETCH_REVIEWS = 'FETCH_REVIEWS';
 export const FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS';
 export const FETCH_REVIEWS_FAILURE= 'FETCH_REVIEWS_FAILURE';
@@ -31,7 +30,7 @@ export function addReview(data, token) {
                 }
             )
         )
-         .then(
+        .then(
              res => res.json())
         .then(json => {
             console.log("klsdhfldkhflksdfds======================",json);
@@ -76,7 +75,7 @@ export function fetchReviews() {
             //console.log(json,"jsonnnnnnnnnnnnnn");
             return reviews;
         })  
-        .catch(err => dispatch(fetchReviewsSuccess(err)))
+        .catch(err => dispatch(fetchReviewsFailure(err)))
     }
 }
 

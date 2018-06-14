@@ -15,7 +15,7 @@ export function fetchTopDishRestaurants(item) {
         return(fetch(`${API_ROOT}/getTopDishRestaurants?tag=`+item))
         .then(res => res.json())
         .then(json => {
-            console.log(json,"jsonnnnnnnnnnnnnn=========================================");
+            //console.log(json,"jsonnnnnnnnnnnnnn=========================================");
             
             dispatch(fetchTopDishRestaurantsSuccess(json));
             return json;
@@ -53,7 +53,7 @@ export function fetchRestaurants() {
         .then(json => {
 
             dispatch(fetchRestaurantsSuccess(json.docs));
-            console.log(json,"jsonnnnnnnnnnnnnn=========================================");
+            //console.log(json,"jsonnnnnnnnnnnnnn=========================================");
             return json.docs;
         })  
         .catch(err => dispatch(fetchRestaurantsFailure(err)))
